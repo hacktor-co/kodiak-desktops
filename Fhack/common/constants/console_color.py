@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+
+"""
+    - Created on jun 5/2019 by [topcodermc@gmail.com]
+
+    - This package hanle Fhack console colors
+"""
 
 from colorama import init, Fore
 

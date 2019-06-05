@@ -3,25 +3,40 @@
 """
     - Created on jun 5/2019 by [topcodermc@gmail.com]
 
-    - This package hanle Fhack application execution that user can
-     execute this as console application or GUI base
+    - This package hanle Fhack console
 """
 
-try:
-    import argparse
+from sys import argv
 
-    from common.constants.console_color import ConsoleColor
-
-except ImportError as error:
-    print("Has problem with importing library in core/Fhack.py as %s" % error)
-    raise SystemExit
+from common.constants.console_color import ConsoleColor
+from console.console_base import main as console_main
+from gui.gui_base import main as gui_main
 
 
 def main():
-    print(ConsoleColor.RED + "Hello this is test")
-    argparse.ArgumentParser(
-        description=str("<Instagram bruteforce script>\n Created By topcoder.mc")
-    )
+
+    try:
+
+        if argv[1] == "-c":
+            console_main()
+        elif argv[1] == "-g":
+            gui_main()
+        elif argv[1] == "-h":
+            print(
+               ConsoleColor.MAGENTA + """
+                Thank you for using fhack => Fhack arguments is
+                    -c : for console base fhack
+                    -g : for gui base fhack
+                    -h : for see this text
+                
+                @ http://hacktor.co
+                """ + ConsoleColor.WHITE
+            )
+        else:
+            console_main()
+
+    except IndexError:
+        console_main()
 
 
 if __name__ == '__main__':
