@@ -14,14 +14,13 @@ from gui.gui_base import main as gui_main
 
 
 def main():
-
     try:
 
-        if argv[1] == "-c":
+        if str(argv[1]).lower() == "-c":
             console_main()
-        elif argv[1] == "-g":
+        elif str(argv[1]).lower() == "-g":
             gui_main()
-        elif argv[1] == "-h":
+        elif str(argv[1]).lower() == "-h":
             print(
                ConsoleColor.MAGENTA + """
                 Thank you for using fhack => Fhack arguments is

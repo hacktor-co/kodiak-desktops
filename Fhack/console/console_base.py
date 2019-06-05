@@ -6,9 +6,10 @@
     - This package hanle Fhack console app
 """
 
+from common.constants.console_color import ConsoleColor
 
 def main():
-    print("Console base fhack")
+    print(ConsoleColor.RED + "Console base fhack")
 
 
 if __name__ == "__main__":
