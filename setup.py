@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# Note: To use the 'upload' functionality of this file, you must:
+# todo: must fix script installer in linux
 
 import io
 import os

@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
 """
-    - Created on jun 5/2019 by [topcodermc@gmail.com]
+    - Created on jun 5/2019 - hacktorco
 
-    - This package hanle Fhack console
+    - This package hanle Fhack application that user select which kind of
+        application want to run, gui base or console base
 """
 
 from sys import argv
