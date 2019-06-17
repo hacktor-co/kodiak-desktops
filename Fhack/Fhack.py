@@ -2,6 +2,7 @@
 
 """
     - Created on jun 5/2019 - hacktorco
+    - All rights reserved for hacktor team
 
     - This package hanle Fhack application that user select which kind of
         application want to run, gui base or console base
@@ -10,8 +11,8 @@
 from sys import argv
 
 from common.constants.console_color import ConsoleColor
-from console.console_base import main as console_main
-from gui.gui_base import main as gui_main
+from core.console.console_base import main as console_main
+from core.gui.gui_base import main as gui_main
 
 
 def main():
@@ -33,10 +34,10 @@ def main():
                 """ + ConsoleColor.WHITE
             )
         else:
-            console_main()
+            gui_main()
 
     except IndexError:
-        console_main()
+        gui_main()
 
 
 if __name__ == '__main__':
