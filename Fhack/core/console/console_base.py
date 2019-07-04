@@ -2,6 +2,7 @@
 
 """
     - Created on jun 5/2019 - hacktorco
+    - All rights reserved for hacktor team
 
     - This package hanle Fhack console app
 """
