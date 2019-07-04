@@ -11,8 +11,8 @@
 from sys import argv
 
 from common.constants.console_color import ConsoleColor
-from core.console.console_base import main as console_main
-from core.gui.gui_base import main as gui_main
+from console.console_base import main as console_main
+from gui.gui_base import main as gui_main
 
 
 def main():
