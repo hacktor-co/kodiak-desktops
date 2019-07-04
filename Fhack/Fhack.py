@@ -33,10 +33,10 @@ def main():
                 """ + ConsoleColor.WHITE
             )
         else:
-            console_main()
+            gui_main()
 
     except IndexError:
-        console_main()
+        gui_main()
 
 
 if __name__ == '__main__':

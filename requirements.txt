@@ -1,2 +1,4 @@
+PyRECONSTRUCT
 colorama==0.4.1
 pyinstaller==3.4
+PyQt5==5.12.3

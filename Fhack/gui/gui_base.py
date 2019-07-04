@@ -6,9 +6,19 @@
     - This package hanle Fhack gui app
 """
 
+import sys
+
+from PyQt5.QtWidgets import QApplication
+
+from gui.ui.main_window import MainWindow
+
 
 def main():
-    print("gui application of fhack")
+    app = QApplication(sys.argv)
+
+    hwnd_main = MainWindow()
+
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
