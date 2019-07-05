@@ -18,7 +18,6 @@ class SideBarWidget(QWidget):
         super(SideBarWidget, self).__init__(parent)
 
         sidebar_layout = QBoxLayout(QBoxLayout.TopToBottom)
-        sidebar_layout = QBoxLayout(QBoxLayout.TopToBottom)
         sidebar_layout.setSpacing(0)
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
         self.setStyleSheet(
