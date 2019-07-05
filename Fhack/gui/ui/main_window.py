@@ -1,35 +1,55 @@
+#!/usr/bin/python3
+"""
+    - Created on jun 5/2019 - hacktorco
+    - All rights reserved for hacktor team
 
+    - This package handle main window of application
+"""
+
+
+from PyQt5.QtCore import QRect
 from PyQt5.QtWidgets import (
-    QWidget, QApplication
+    QMainWindow, QApplication, QStackedWidget,
+    QSizePolicy
 )
 
+from gui.ui.sidebar_frame import SideBarWidget
 
-class MainWindow(QWidget):
 
-    def __init__(self):
-        super().__init__()
+class MainWindow(QMainWindow):
 
+    def __init__(self, parent=None):
+        super(MainWindow, self).__init__(parent)
         self.setWindowTitle("FHack")
 
-        screen_size = QApplication.desktop().geometry()
+        self.central_widget = QStackedWidget()
 
+        self.setCentralWidget(self.central_widget)
+
+        self.__add_widgets__()
+        self.__init_ui__()
+
+    def __add_widgets__(self):
+
+        sidebar_widget = SideBarWidget(self)
+        self.central_widget.addWidget(sidebar_widget)
+
+    def __init_ui__(self):
+        self.setStyleSheet(
+            """
+                background-color: #fff;
+                min-width: 1150px;
+                max-width: 1150px;
+                min-height: 790px;
+                max-height: 790px;
+            """
+        )
+
+        screen_size = QApplication.desktop().geometry()
         self.setGeometry(
             int((screen_size.width() - 800) / 2),
             int((screen_size.height() - 600) / 2),
             0, 0
-        ) # set the main window to center of screen
+        )  # set the main window to center of screen
 
-        self.setStyleSheet(
-            """
-                background-color: #fff;
-                min-width: 800px;
-                max-width: 800px;
-                min-height: 600px;
-                max-height: 600px;
-            """
-        )
-
-        self.__init_ui__()
-
-    def __init_ui__(self):
         self.show()

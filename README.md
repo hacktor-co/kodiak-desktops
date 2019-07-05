@@ -1,6 +1,6 @@
 # FHack
 
-FHack is Automation of hacking
+FHack is here for Automation of hacking
 
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
 ![CORE](https://img.shields.io/badge/core-1.0.0.2-green.svg)
@@ -11,18 +11,18 @@ FHack is Automation of hacking
 # ABOUT.
 
 Fhack is free and open source freamework for penetration testing and hacking. So if you wanna do something bad please wait.
-We coming soon.
+coming soon.
 
 # Community
 
 |name | post | Email |
 ----------|------------|-------|
-|topcoder|creator and programmer|topcodermc@gmail.com
+|hacktor|creator and programmer|hacktor@hacktor.co
 
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | supported | dependencies already installed |status |
 ----------|-------|------|------|-------|
-|Debian(8)|1.2 | yes| yes | working   |
+|Debian(8)|1.2|yes|yes|working|
 |MACOS|1.2|yes|yes|working|
 
 # INSTALLATION

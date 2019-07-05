@@ -4,7 +4,7 @@
     - Created on jun 5/2019 - hacktorco
     - All rights reserved for hacktor team
 
-    - This package hanle Fhack gui app
+    - This package that handle Fhack gui app
 """
 
 import sys
