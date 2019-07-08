@@ -6,10 +6,11 @@
     - side bar menu ui's code
 """
 
-from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QWidget, QLabel, QVBoxLayout,
-    QPushButton
+    QPushButton, QFrame
 )
 
 
@@ -24,6 +25,7 @@ class SideBarWidget(QWidget):
 
         self.setStyleSheet(
             """
+                background-color: #2fb5b6;
                 min-width: 120px;
                 max-width: 120px;
                 min-height: 790px;
@@ -32,23 +34,31 @@ class SideBarWidget(QWidget):
             """
         )
 
-        sidebar_layout.addWidget(self.__sidebar_frame__())
+        sidebar_layout.addWidget(self.__icon_holder_frame__())
         sidebar_layout.addWidget(self.__tools_menu_button__())
         sidebar_layout.addWidget(self.__notification_menu_button__())
         sidebar_layout.addWidget(self.__report_menu_button__())
         sidebar_layout.addWidget(self.__hackbox_menu_button__())
         sidebar_layout.addWidget(self.__ai_menu_button__())
         sidebar_layout.addWidget(self.__setting_menu_button__())
+        sidebar_layout.addWidget(self.__extra_frame__())
 
         sidebar_layout.addStretch()
         self.setLayout(sidebar_layout)
 
     @staticmethod
-    def __sidebar_frame__():
+    def __icon_holder_frame__():
         icon_holder = QLabel()
+
+        image = QPixmap('./assets/index-logo.svg')
+
+        image.scaled(10, 10)
+
+        icon_holder.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        icon_holder.setPixmap(image)
+
         icon_holder.setStyleSheet(
             """
-                background-color: #2fb5b6;
                 max-height: 60px;
                 min-height: 60px;
                 min-width: 120px;
@@ -60,15 +70,16 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __tools_menu_button__():
-        button = QPushButton("Tools")
+        button = QPushButton("tools")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
@@ -82,9 +93,10 @@ class SideBarWidget(QWidget):
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
@@ -98,9 +110,10 @@ class SideBarWidget(QWidget):
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
@@ -114,9 +127,10 @@ class SideBarWidget(QWidget):
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
@@ -130,9 +144,10 @@ class SideBarWidget(QWidget):
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
@@ -146,10 +161,22 @@ class SideBarWidget(QWidget):
                 background-color: #2c3a47;
                 max-height: 100px;
                 min-height: 100px;
-                min-width: 120px;
-                max-width: 120px; 
-                margin-bottom: 1px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
             """
         )
 
         return button
+
+    @staticmethod
+    def __extra_frame__():
+        frame = QFrame()
+        frame.setStyleSheet(
+            """
+                background-color: #2c3a47;
+            """
+        )
+
+        return frame
