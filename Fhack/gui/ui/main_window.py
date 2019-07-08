@@ -37,7 +37,7 @@ class MainWindow(QMainWindow):
     def __init_ui__(self):
         self.setStyleSheet(
             """
-                background-color: #fff;
+                background-color: #1b222c;
                 min-width: 1150px;
                 max-width: 1150px;
                 min-height: 790px;
