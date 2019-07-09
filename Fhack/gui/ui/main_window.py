@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import (
     QSizePolicy
 )
 
-from gui.ui.sidebar_frame import SideBarWidget
+from gui.ui.sidebar_widget import SideBarWidget
 
 
 class MainWindow(QMainWindow):

@@ -40,6 +40,7 @@ class SideBarWidget(QWidget):
         sidebar_layout.addWidget(self.__report_menu_button__())
         sidebar_layout.addWidget(self.__hackbox_menu_button__())
         sidebar_layout.addWidget(self.__ai_menu_button__())
+        sidebar_layout.addWidget(self.__black_store_menu_button__())
         sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__extra_frame__())
 
@@ -154,6 +155,23 @@ class SideBarWidget(QWidget):
         return button
 
     @staticmethod
+    def __black_store_menu_button__():
+        button = QPushButton("black store")
+        button.setStyleSheet(
+            """
+                background-color: #2c3a47;
+                max-height: 100px;
+                min-height: 100px;
+                min-width: 116px;
+                max-width: 116px;
+                border: 2px solid #2c3a47;
+                border-bottom: 1px solid #000;
+            """
+        )
+
+        return button
+
+    @staticmethod
     def __setting_menu_button__():
         button = QPushButton("setting")
         button.setStyleSheet(
@@ -176,6 +194,8 @@ class SideBarWidget(QWidget):
         frame.setStyleSheet(
             """
                 background-color: #2c3a47;
+                max-height: 8px;
+                min-height: 8px;
             """
         )
 
