@@ -6,11 +6,10 @@
     - This package handle main window of application
 """
 
-
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import QRect, Qt
 from PyQt5.QtWidgets import (
-    QMainWindow, QApplication, QStackedWidget,
-    QSizePolicy
+    QMainWindow, QApplication, QHBoxLayout,
+    QSizePolicy, QWidget
 )
 
 from gui.ui.sidebar_widget import SideBarWidget
@@ -22,17 +21,22 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(parent)
         self.setWindowTitle("FHack")
 
-        self.central_widget = QStackedWidget()
-
-        self.setCentralWidget(self.central_widget)
-
         self.__add_widgets__()
         self.__init_ui__()
 
     def __add_widgets__(self):
 
-        sidebar_widget = SideBarWidget(self)
-        self.central_widget.addWidget(sidebar_widget)
+        widget = QWidget(self)
+        main_layout = QHBoxLayout(widget)
+
+        sidebar_widget = SideBarWidget(self, main_layout)
+
+        main_layout.setSpacing(0)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addStretch()
+        main_layout.addWidget(sidebar_widget)
+
+        self.setCentralWidget(widget)
 
     def __init_ui__(self):
         self.setStyleSheet(

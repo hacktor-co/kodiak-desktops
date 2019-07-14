@@ -5,19 +5,27 @@
 
     - side bar menu ui's code
 """
+from functools import partial
 
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QWidget, QLabel, QVBoxLayout,
-    QPushButton, QFrame
+    QPushButton, QFrame, QScrollArea
 )
 
+from gui.ui.tools_box_scroll_widget import ToolsBoxScrollWidget
 
 class SideBarWidget(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, main_layout=None):
         super(SideBarWidget, self).__init__(parent)
+
+        self.tools_box_widget = ToolsBoxScrollWidget(parent)
+
+        # self.tools_box_widget.hide()
+
+        self.parent = parent
 
         sidebar_layout = QVBoxLayout()
         sidebar_layout.setSpacing(0)
@@ -47,6 +55,8 @@ class SideBarWidget(QWidget):
         sidebar_layout.addStretch()
         self.setLayout(sidebar_layout)
 
+        main_layout.addWidget(self.tools_box_widget)
+
     @staticmethod
     def __icon_holder_frame__():
         icon_holder = QLabel()
@@ -69,9 +79,9 @@ class SideBarWidget(QWidget):
 
         return icon_holder
 
-    @staticmethod
-    def __tools_menu_button__():
-        button = QPushButton("tools")
+    def __tools_menu_button__(self):
+
+        button = QPushButton("Tools Box")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -84,11 +94,22 @@ class SideBarWidget(QWidget):
             """
         )
 
+        def create_tool_box_widget(tools_box_widget):
+            if tools_box_widget.isHidden():
+                tools_box_widget.show()
+            # tools_box_widget = ToolsBoxScrollWidget(parent)
+
+            # main_layout.addWidget(tools_box_widget)
+
+            # tools_box_widget.hide()
+
+        button.clicked.connect(partial(create_tool_box_widget, self.tools_box_widget))
+
         return button
 
     @staticmethod
     def __notification_menu_button__():
-        button = QPushButton("notification")
+        button = QPushButton("Notifiy Box")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -105,7 +126,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __report_menu_button__():
-        button = QPushButton("report")
+        button = QPushButton("Reports")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -122,7 +143,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __hackbox_menu_button__():
-        button = QPushButton("hackbox")
+        button = QPushButton("HackBox")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -139,7 +160,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __ai_menu_button__():
-        button = QPushButton("ai")
+        button = QPushButton("Brain")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -156,7 +177,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __black_store_menu_button__():
-        button = QPushButton("black store")
+        button = QPushButton("Black Store")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
@@ -173,7 +194,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __setting_menu_button__():
-        button = QPushButton("setting")
+        button = QPushButton("Setting")
         button.setStyleSheet(
             """
                 background-color: #2c3a47;
