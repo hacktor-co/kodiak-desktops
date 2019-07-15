@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import (
     QSizePolicy, QWidget
 )
 
+from gui.common.styles.main_window import *
 from gui.ui.sidebar_widget import SideBarWidget
 
 
@@ -28,6 +29,9 @@ class MainWindow(QMainWindow):
 
         widget = QWidget(self)
         main_layout = QHBoxLayout(widget)
+        # main_layout.setAlignment(Qt.AlignLeft)
+        main_layout.addStretch()
+        main_layout.setAlignment(Qt.AlignTop | Qt.AlignRight)
 
         sidebar_widget = SideBarWidget(self, main_layout)
 
@@ -39,20 +43,12 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
     def __init_ui__(self):
-        self.setStyleSheet(
-            """
-                background-color: #1b222c;
-                min-width: 1150px;
-                max-width: 1150px;
-                min-height: 790px;
-                max-height: 790px;
-            """
-        )
+        self.setStyleSheet(main_window_style)
 
         screen_size = QApplication.desktop().geometry()
         self.setGeometry(
-            int((screen_size.width() - 800) / 2),
-            int((screen_size.height() - 600) / 2),
+            int((screen_size.width() - 1150) / 2),
+            int((screen_size.height() - 790) / 2),
             0, 0
         )  # set the main window to center of screen
 
