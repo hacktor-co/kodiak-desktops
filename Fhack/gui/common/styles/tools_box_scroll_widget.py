@@ -8,7 +8,7 @@
 
 main_widget_style = """
     background-color: red;
+    min-width: 200px;
+    max-width: 200px;
     position: absolute;
-    left: 400px;
-    top: 10px;
 """

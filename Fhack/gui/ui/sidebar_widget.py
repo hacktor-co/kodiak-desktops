@@ -44,8 +44,6 @@ class SideBarWidget(QWidget):
         sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__extra_frame__())
 
-        sidebar_layout.setAlignment(Qt.AlignTop | Qt.AlignRight)
-
         sidebar_layout.addStretch()
         self.setLayout(sidebar_layout)
 

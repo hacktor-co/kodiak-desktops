@@ -8,7 +8,8 @@
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel
+    QWidget, QVBoxLayout, QLabel, QScrollArea,
+    QPushButton
 )
 
 from gui.common.styles.tools_box_scroll_widget import *
@@ -19,11 +20,33 @@ class ToolsBoxScrollWidget(QWidget):
         super(ToolsBoxScrollWidget, self).__init__(parent)
 
         self.setStyleSheet(main_widget_style)
+        self.setContentsMargins(0, 0, 0, 0)
+
         layout = QVBoxLayout(self)
-        layout.setAlignment(Qt.AlignRight)
+        layout.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addStretch()
 
-        label = QLabel("Hell this is test for scroll view")
-        layout.addWidget(label)
+        # Container Widget
+        widget = QWidget()
+        widget.setContentsMargins(0, 0, 0, 0)
+
+        # Layout of Container Widget
+        for _ in range(100):
+            btn = QPushButton("test")
+            layout.addWidget(btn)
+        widget.setLayout(layout)
+
+        # Scroll Area Properties
+        scroll = QScrollArea()
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll.setWidgetResizable(False)
+        scroll.setWidget(widget)
+
+        # Scroll Area Layer add
+        vLayout = QVBoxLayout(self)
+        vLayout.addWidget(scroll)
+        self.setLayout(vLayout)
+
         self.setLayout(layout)
