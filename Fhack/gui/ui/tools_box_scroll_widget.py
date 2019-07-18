@@ -23,13 +23,14 @@ class ToolsBoxScrollWidget(QWidget):
 
             self.setStyleSheet(main_widget_style)
 
-            formLayout = QFormLayout()
+            form_layout = QFormLayout()
 
-            groupBox = QGroupBox()
-            groupBox.setStyleSheet("""
-                background-color: red;
+            group_box = QGroupBox()
+            group_box.setAlignment(Qt.AlignLeft)
+            group_box.setStyleSheet("""
+                border: none;
             """)
-            groupBox.setContentsMargins(0, 0, 0, 0)
+            group_box.setContentsMargins(0, 0, 0, 0)
 
             for i in range(10):
                 button = QPushButton("Click Me")
@@ -37,18 +38,19 @@ class ToolsBoxScrollWidget(QWidget):
                     background-color: green;
                     color: white;
                     min-height: 90px;
-                    max-height: 90px;
-                    min-width: 150px;
+                    min-width: 170px;
                 """)
-                formLayout.addRow(button)
+                form_layout.addRow(button)
 
-            groupBox.setLayout(formLayout)
+            group_box.setLayout(form_layout)
 
             scroll = QScrollArea()
             scroll.setStyleSheet("""
-                min-width: 200px;
+                background-color: red;
+
             """)
-            scroll.setWidget(groupBox)
+            scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            scroll.setWidget(group_box)
 
             layout = QVBoxLayout(self)
             layout.setContentsMargins(0, 0, 0, 0)
