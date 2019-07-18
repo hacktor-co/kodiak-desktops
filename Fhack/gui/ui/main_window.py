@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import (
     QSizePolicy, QWidget
 )
 
-from gui.common.styles.main_window import *
+from gui.common.styles.main_window_styles import *
 from gui.ui.sidebar_widget import SideBarWidget
 
 

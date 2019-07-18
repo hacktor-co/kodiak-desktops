@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import (
     QPushButton, QFrame, QScrollArea
 )
 
-from gui.common.styles.sidebar_widget import *
+from gui.common.styles.sidebar_widget_styles import *
 from gui.ui.tools_box_scroll_widget import ToolsBoxScrollWidget
 
 
