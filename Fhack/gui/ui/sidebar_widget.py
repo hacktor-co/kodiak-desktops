@@ -36,11 +36,7 @@ class SideBarWidget(QWidget):
 
         sidebar_layout.addWidget(self.__icon_holder_frame__())
         sidebar_layout.addWidget(self.__tools_menu_button__())
-        sidebar_layout.addWidget(self.__notification_menu_button__())
         sidebar_layout.addWidget(self.__report_menu_button__())
-        sidebar_layout.addWidget(self.__hackbox_menu_button__())
-        sidebar_layout.addWidget(self.__ai_menu_button__())
-        sidebar_layout.addWidget(self.__black_store_menu_button__())
         sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__extra_frame__())
 
@@ -78,36 +74,8 @@ class SideBarWidget(QWidget):
         return button
 
     @staticmethod
-    def __notification_menu_button__():
-        button = QPushButton("NotifiyBox")
-        button.setStyleSheet(menu_buttons)
-
-        return button
-
-    @staticmethod
     def __report_menu_button__():
         button = QPushButton("Reports")
-        button.setStyleSheet(menu_buttons)
-
-        return button
-
-    @staticmethod
-    def __ai_menu_button__():
-        button = QPushButton("Brain")
-        button.setStyleSheet(menu_buttons)
-
-        return button
-
-    @staticmethod
-    def __hackbox_menu_button__():
-        button = QPushButton("HackBox")
-        button.setStyleSheet(menu_buttons)
-
-        return button
-
-    @staticmethod
-    def __black_store_menu_button__():
-        button = QPushButton("BlackStore")
         button.setStyleSheet(menu_buttons)
 
         return button

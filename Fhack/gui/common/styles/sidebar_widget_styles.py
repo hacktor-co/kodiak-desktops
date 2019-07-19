@@ -34,6 +34,6 @@ menu_buttons = """
 
 extra_frame = """
     background-color: #2c3a47;
-    max-height: 9px;
-    min-height: 9px;
+    max-height: 500px;
+    min-height: 500px;
 """
