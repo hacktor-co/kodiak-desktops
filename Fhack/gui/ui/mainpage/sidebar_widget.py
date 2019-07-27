@@ -16,7 +16,8 @@ from PyQt5.QtWidgets import (
 )
 
 from gui.common.styles.mainpage.sidebar_widget_styles import *
-from gui.ui.mainpage.tools_box_scroll_widget import ToolsBoxScrollWidget
+from gui.ui.toolsboxpage.tools_box_scroll_widget import ToolsBoxScrollWidget
+from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
 
 
 class SideBarWidget(QWidget):
@@ -25,9 +26,9 @@ class SideBarWidget(QWidget):
         super(SideBarWidget, self).__init__(parent)
 
         # init all boxes layout
-        self.tools_box_widget = ToolsBoxScrollWidget(parent)
+        self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname="WebTools")
+        self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
         # end
-
         sidebar_layout = QVBoxLayout()
         sidebar_layout.setSpacing(0)
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
@@ -43,7 +44,8 @@ class SideBarWidget(QWidget):
         sidebar_layout.addStretch()
         self.setLayout(sidebar_layout)
 
-        main_layout.addWidget(self.tools_box_widget)
+        main_layout.addWidget(self.tools_box_holder_widget)
+        main_layout.addWidget(self.tools_box_scroll_widget)
 
     @staticmethod
     def __icon_holder_frame__():
@@ -69,7 +71,7 @@ class SideBarWidget(QWidget):
             if tools_box_widget.isHidden():
                 tools_box_widget.show()
 
-        button.clicked.connect(partial(create_tool_box_widget, self.tools_box_widget))
+        button.clicked.connect(partial(create_tool_box_widget, self.tools_box_scroll_widget))
 
         return button
 

@@ -17,3 +17,11 @@ tool_category_btn_style = """
     min-height: 90px;
     min-width: 170px;
 """
+
+group_box_style = """
+    border: none;
+"""
+
+scroll_area_style = """
+    background-color: transparent;
+"""

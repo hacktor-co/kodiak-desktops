@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         main_layout.setSpacing(0)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.addStretch()
-        main_layout.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+        main_layout.setAlignment(Qt.AlignTop | Qt.AlignRight)
 
         sidebar_widget = SideBarWidget(self, main_layout)
 
