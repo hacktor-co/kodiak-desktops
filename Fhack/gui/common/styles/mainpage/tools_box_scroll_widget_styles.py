@@ -10,3 +10,10 @@ main_widget_style = """
     min-width: 200px;
     max-width: 200px;
 """
+
+tool_category_btn_style = """
+    background-color: green;
+    color: white;
+    min-height: 90px;
+    min-width: 170px;
+"""

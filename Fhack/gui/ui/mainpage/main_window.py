@@ -12,8 +12,8 @@ from PyQt5.QtWidgets import (
     QSizePolicy, QWidget
 )
 
-from gui.common.styles.main_window_styles import *
-from gui.ui.sidebar_widget import SideBarWidget
+from gui.common.styles.mainpage.main_window_styles import *
+from gui.ui.mainpage.sidebar_widget import SideBarWidget
 
 
 class MainWindow(QMainWindow):
@@ -46,6 +46,8 @@ class MainWindow(QMainWindow):
 
         screen_size = QApplication.desktop().geometry()
         self.setGeometry(
+            # 1150 -> width of window
+            # 790  -> height og window
             int((screen_size.width() - 1150) / 2),
             int((screen_size.height() - 790) / 2),
             0, 0

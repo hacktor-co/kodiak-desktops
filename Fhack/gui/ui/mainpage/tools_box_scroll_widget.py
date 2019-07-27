@@ -12,7 +12,11 @@ from PyQt5.QtWidgets import (
     QPushButton, QFormLayout, QGroupBox
 )
 
-from gui.common.styles.tools_box_scroll_widget_styles import *
+from gui.common.styles.mainpage.tools_box_scroll_widget_styles import *
+from common.utils.pwd_helper import (
+    get_all_directory, GET_CWD
+)
+from common.constants.consts import DEFINE_PLUGIN_TOOLSBOX_PATH
 
 
 class ToolsBoxScrollWidget(QWidget):
@@ -32,14 +36,9 @@ class ToolsBoxScrollWidget(QWidget):
             """)
             group_box.setContentsMargins(0, 0, 0, 0)
 
-            for i in range(4):
-                button = QPushButton("Click Me")
-                button.setStyleSheet("""
-                    background-color: green;
-                    color: white;
-                    min-height: 90px;
-                    min-width: 170px;
-                """)
+            for tool_category in get_all_directory(GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH):
+                button = QPushButton(tool_category)
+                button.setStyleSheet(tool_category_btn_style)
                 form_layout.addRow(button)
 
             group_box.setLayout(form_layout)

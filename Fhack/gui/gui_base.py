@@ -11,7 +11,7 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from gui.ui.main_window import MainWindow
+from gui.ui.mainpage.main_window import MainWindow
 
 
 def main():

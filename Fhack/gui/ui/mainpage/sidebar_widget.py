@@ -15,8 +15,8 @@ from PyQt5.QtWidgets import (
     QPushButton, QFrame, QScrollArea
 )
 
-from gui.common.styles.sidebar_widget_styles import *
-from gui.ui.tools_box_scroll_widget import ToolsBoxScrollWidget
+from gui.common.styles.mainpage.sidebar_widget_styles import *
+from gui.ui.mainpage.tools_box_scroll_widget import ToolsBoxScrollWidget
 
 
 class SideBarWidget(QWidget):
