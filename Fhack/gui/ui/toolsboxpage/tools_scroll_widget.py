@@ -9,11 +9,11 @@
 
 from functools import partial
 
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QScrollArea, QHBoxLayout,
-    QPushButton, QFormLayout, QGroupBox
+    QPushButton, QGroupBox
 )
 
 from gui.common.styles.toolsboxpage.tools_scroll_widget_styles import *
