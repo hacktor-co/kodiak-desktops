@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    - Created on jul 28/2019 - hacktorco
+    - Created on jul 31/2019 - hacktorco
     - All rights reserved for hacktor team
 
     - this package get all tools in toolbox from parent class then
@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (
     QPushButton, QFormLayout, QGroupBox
 )
 
-from gui.common.styles.toolsboxpage.tools_box_scroll_widget_styles import *
+from gui.common.styles.toolsboxpage.tools_scroll_widget_styles import *
 from common.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
@@ -32,9 +32,6 @@ class ToolsScrollWidget(QWidget):
         self.parent_layout = parent
 
     def generate_widget(self, list_tools_path):
-        print(list_tools_path)
-
-        self.setStyleSheet(main_widget_style)
 
         group_box = QGroupBox()
         group_box.setStyleSheet(group_box_style)
@@ -47,30 +44,41 @@ class ToolsScrollWidget(QWidget):
         layout_v = QVBoxLayout()
         layout_v.addStretch()
 
-        for tool_category in range(1, 10):
-            button = QPushButton("item")
-            button.setStyleSheet("""
-                    min-width: 200px;
-                    max-width: 200px;
-                    min-height: 200px;
-                    max-height: 200px;
-                    background-color: red;
-                """)
-            layout.addWidget(button)
-            if tool_category % 4 == 0:
-                layout_v.addLayout(layout)
+        # draw box foreach tool in toolbox plugin algorithem
+        if len(list_tools_path) > 4:
+            tool_counter = 1
+            remind_list = list()
 
-                layout = QHBoxLayout()
-                layout.setContentsMargins(5, 0, 5, 0)
-                layout.addStretch()
-            #
-            # if tool_category % 3 == 0:
-            #     print(tool_category)
-            #     print("I am here")
-            #
-            #     layout = QHBoxLayout(self)
-            #     layout.setContentsMargins(0, 0, 0, 0)
-            #     layout.addStretch()
+            for tool_category in list_tools_path:
+                button = QPushButton(tool_category)
+
+                button.setStyleSheet(button_tool_style)
+                layout.addWidget(button)
+                if tool_counter % 4 == 0:
+                    layout_v.addLayout(layout)
+
+                    layout = QHBoxLayout()
+                    layout.setContentsMargins(5, 0, 5, 0)
+                    layout.addStretch()
+
+                    remind_list = tool_category[tool_counter - 1:]
+
+                tool_counter += 1
+
+            # draw all remind item in list
+            for tool in remind_list:
+                button = QPushButton(tool)
+                button.setStyleSheet(button_tool_style)
+
+                layout.addWidget(button)
+            layout_v.addLayout(layout)
+        else:
+            for tool in list_tools_path:
+                button = QPushButton(tool)
+                button.setStyleSheet(button_tool_style)
+
+                layout.addWidget(button)
+            layout_v.addLayout(layout)
 
         group_box.setLayout(layout_v)
 

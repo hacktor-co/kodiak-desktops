@@ -22,6 +22,7 @@ from common.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
 from gui.ui.toolsboxpage.tools_scroll_widget import ToolsScrollWidget
+from gui.common.styles.toolsboxpage.tools_box_holder_widget_styles import *
 
 
 class ToolsBoxHolderWidget(QWidget):
@@ -32,11 +33,7 @@ class ToolsBoxHolderWidget(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
 
-        self.setStyleSheet("""
-           min-width: 830px;
-           max-width: 830px;
-           background-color: green;
-       """)
+        self.setStyleSheet(main_style)
 
         self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 
@@ -49,20 +46,11 @@ class ToolsBoxHolderWidget(QWidget):
                 break
             self.layout.itemAt(1).widget().deleteLater()
 
-        if boxname == "WebTools":
-            tools_list_path = list()
-            for tool in get_all_directory(
-                GET_CWD + "/" + DEFINE_PLUGIN_TOOLSBOX_PATH + "/" +
-                boxname + DEFINE_PLUGIN_TOOLS_PATH + "/", 0
-            ):
-                tools_list_path.append(tool)
+        tools_list_path = list()
+        for tool in get_all_directory(
+            GET_CWD + "/" + DEFINE_PLUGIN_TOOLSBOX_PATH + "/" +
+            boxname + DEFINE_PLUGIN_TOOLS_PATH + "/", 0
+        ):
+            tools_list_path.append(tool)
 
-            self.tools_scroll_widget.generate_widget(tools_list_path)
-
-        elif boxname == "NetworkTools":
-            button = QPushButton("Hello2")
-            self.layout.addWidget(button)
-        elif boxname == "LocalAppTools":
-
-            button = QPushButton("Hello3")
-            self.layout.addWidget(button)
+        self.tools_scroll_widget.generate_widget(tools_list_path)

@@ -18,7 +18,7 @@ from PyQt5.QtWidgets import (
 from gui.common.styles.mainpage.sidebar_widget_styles import *
 from gui.ui.toolsboxpage.tools_box_scroll_widget import ToolsBoxScrollWidget
 from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
-
+from common.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
 
 class SideBarWidget(QWidget):
 
@@ -26,7 +26,7 @@ class SideBarWidget(QWidget):
         super(SideBarWidget, self).__init__(parent)
 
         # init all boxes layout
-        self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname="NetworkTools")
+        self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname=DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW)
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
         # end
         sidebar_layout = QVBoxLayout()
