@@ -24,6 +24,8 @@ def get_all_directory(path, level: int = 0) -> list:
     num_sep = some_dir.count(os.path.sep)
     for root, dirs, files in os.walk(some_dir):
         for item in dirs:
+            if item == "__pycache__":
+                continue
             list_dirs.append(item)
         num_sep_this = root.count(os.path.sep)
         if num_sep + level <= num_sep_this:

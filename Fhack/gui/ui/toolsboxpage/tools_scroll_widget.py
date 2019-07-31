@@ -77,6 +77,14 @@ class ToolsScrollWidget(QWidget):
                 button = QPushButton(tool)
                 button.setStyleSheet(button_tool_style)
 
+                # TODO: it must delete and set plugin base architecture
+                def button_click(parent):
+                    from plugins.toolsbox.WebTools.tools.directory_finder.gui_handler import MainWindow
+                    dialog = MainWindow(parent)
+                    dialog.show()
+                button.clicked.connect(partial(button_click, self))
+                # end
+
                 layout.addWidget(button)
             layout_v.addLayout(layout)
 

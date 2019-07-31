@@ -1,3 +1,5 @@
+beautifulsoup4
+requests
 PyRECONSTRUCT
 colorama==0.4.1
 pyinstaller==3.4
