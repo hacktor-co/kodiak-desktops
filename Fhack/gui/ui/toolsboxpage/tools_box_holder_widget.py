@@ -15,14 +15,30 @@ from PyQt5.QtWidgets import (
     QPushButton, QFormLayout, QGroupBox
 )
 
+from common.constants.consts import (
+    DEFINE_PLUGIN_TOOLS_PATH, DEFINE_PLUGIN_TOOLSBOX_PATH
+)
+from common.utils.pwd_helper import (
+    get_all_directory, GET_CWD
+)
+from gui.ui.toolsboxpage.tools_scroll_widget import ToolsScrollWidget
+
+
 class ToolsBoxHolderWidget(QWidget):
     def __init__(self, parent=None, boxname: str = ""):
         super(ToolsBoxHolderWidget, self).__init__(parent)
-        print(boxname + " ID: " + str(id(self)))
 
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
+
+        self.setStyleSheet("""
+           min-width: 830px;
+           max-width: 830px;
+           background-color: green;
+       """)
+
+        self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 
         self.create_widget(boxname)
 
@@ -34,26 +50,19 @@ class ToolsBoxHolderWidget(QWidget):
             self.layout.itemAt(1).widget().deleteLater()
 
         if boxname == "WebTools":
-            self.setStyleSheet("""
-                        min-width: 830px;
-                        max-width: 830px;
-                        background-color: red;
-                    """)
-            button = QPushButton("Hello1")
-            self.layout.addWidget(button)
+            tools_list_path = list()
+            for tool in get_all_directory(
+                GET_CWD + "/" + DEFINE_PLUGIN_TOOLSBOX_PATH + "/" +
+                boxname + DEFINE_PLUGIN_TOOLS_PATH + "/", 0
+            ):
+                tools_list_path.append(tool)
+
+            self.tools_scroll_widget.generate_widget(tools_list_path)
+
         elif boxname == "NetworkTools":
-            self.setStyleSheet("""
-                        min-width: 830px;
-                        max-width: 830px;
-                        background-color: cyan;
-                    """)
             button = QPushButton("Hello2")
             self.layout.addWidget(button)
         elif boxname == "LocalAppTools":
-            self.setStyleSheet("""
-                               min-width: 830px;
-                               max-width: 830px;
-                               background-color: green;
-                           """)
+
             button = QPushButton("Hello3")
             self.layout.addWidget(button)

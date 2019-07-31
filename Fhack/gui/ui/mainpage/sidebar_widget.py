@@ -26,7 +26,7 @@ class SideBarWidget(QWidget):
         super(SideBarWidget, self).__init__(parent)
 
         # init all boxes layout
-        self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname="WebTools")
+        self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname="NetworkTools")
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
         # end
         sidebar_layout = QVBoxLayout()

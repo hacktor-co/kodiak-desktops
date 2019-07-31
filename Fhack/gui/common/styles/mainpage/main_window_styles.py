@@ -13,3 +13,4 @@ main_window_style = """
     min-height: 790px;
     max-height: 790px;
 """
+#    border-radius: 5px;

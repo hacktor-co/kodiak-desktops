@@ -20,7 +20,9 @@ from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
 from common.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
-from common.constants.consts import DEFINE_PLUGIN_TOOLSBOX_PATH
+from common.constants.consts import (
+    DEFINE_PLUGIN_TOOLSBOX_PATH, DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH
+)
 
 
 class ToolsBoxScrollWidget(QWidget):
@@ -49,7 +51,10 @@ class ToolsBoxScrollWidget(QWidget):
                     toolbox_holder_widgets.create_widget(boxname)
                     pass
 
-                asset_path = GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH + '/' + tool_category + "/assets/"
+                asset_path = (
+                        GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH + '/' +
+                        tool_category + DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH + "/"
+                )
 
                 button_icon = QIcon(asset_path + tool_category)  # set icon's of all buttons that exist in toolboxs
                 button.setIconSize(QSize(60, 60))

@@ -5,3 +5,5 @@
 """
 
 DEFINE_PLUGIN_TOOLSBOX_PATH = '/plugins/toolsbox'
+DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH = '/assets'
+DEFINE_PLUGIN_TOOLS_PATH = "/tools"
