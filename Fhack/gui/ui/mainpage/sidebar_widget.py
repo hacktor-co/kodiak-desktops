@@ -8,8 +8,8 @@
 
 from functools import partial
 
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QIcon
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import (
     QWidget, QLabel, QVBoxLayout,
     QPushButton, QFrame, QScrollArea
@@ -51,7 +51,7 @@ class SideBarWidget(QWidget):
     def __icon_holder_frame__():
         icon_holder = QLabel()
 
-        image = QPixmap('./gui/assets/index-logo.svg')
+        image = QPixmap('./gui/assets/fhack_main_ico.svg')
 
         image.scaled(10, 10)
 
@@ -64,8 +64,11 @@ class SideBarWidget(QWidget):
 
     def __tools_menu_button__(self):
 
-        button = QPushButton("ToolsBox")
-        button.setStyleSheet(menu_buttons)
+        button = QPushButton()
+        button.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
+        button.setIconSize(QSize(70, 70))
+
+        button.setStyleSheet(selected_button)
 
         def create_tool_box_widget(tools_box_widget):
             if tools_box_widget.isHidden():
@@ -77,15 +80,21 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __report_menu_button__():
-        button = QPushButton("Reports")
-        button.setStyleSheet(menu_buttons)
+        button = QPushButton()
+        button.setStyleSheet(not_selected_button)
+
+        button.setIcon(QIcon('./gui/assets/report_img_fade_icon.svg'))
+        button.setIconSize(QSize(70, 70))
 
         return button
 
     @staticmethod
     def __setting_menu_button__():
-        button = QPushButton("Setting")
-        button.setStyleSheet(menu_buttons)
+        button = QPushButton()
+        button.setStyleSheet(not_selected_button)
+
+        button.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
+        button.setIconSize(QSize(70, 70))
 
         return button
 

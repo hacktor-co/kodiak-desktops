@@ -3,7 +3,7 @@
 FHack is here for Automation of hacking
 
 ![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
-![CORE](https://img.shields.io/badge/core-0.0.0.9-green.svg)
+![CORE](https://img.shields.io/badge/core-0.0.0.10-green.svg)
 ![Modules](https://img.shields.io/badge/modules-0-red.svg)
 ![Python](https://img.shields.io/badge/Python-3.7-green.svg)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-green.svg)

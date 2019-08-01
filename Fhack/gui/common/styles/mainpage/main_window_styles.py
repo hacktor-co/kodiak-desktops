@@ -7,7 +7,7 @@
 """
 
 main_window_style = """
-    background-color: #1b222c;
+    background-color: #1F1F1F;
     min-width: 1150px;
     max-width: 1150px;
     min-height: 790px;

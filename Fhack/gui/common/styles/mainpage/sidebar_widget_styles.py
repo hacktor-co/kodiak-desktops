@@ -7,33 +7,47 @@
 """
 
 main_widget_style = """
-    background-color: #2fb5b6;
-    min-width: 120px;
-    max-width: 120px;
+    background-color: #1F1F1F;
+    min-width: 170px;
+    max-width: 170px;
     min-height: 790px;
     max-height: 790px;
+    border-left: 2px solid #10A1D7;
     padding: 0;
 """
 
 icon_holder_frame = """
-    max-height: 60px;
-    min-height: 60px;
-    min-width: 120px;
-    max-width: 120px;
+    background-color: #272E39;
+    max-height: 150px;
+    min-height: 150px;
+    min-width: 170px;
+    max-width: 170px;
+    border-bottom: 2px solid #10A1D7;
 """
 
-menu_buttons = """
-    background-color: #2c3a47;
-    max-height: 100px;
-    min-height: 100px;
-    min-width: 116px;
-    max-width: 116px;
-    border: 2px solid #2c3a47;
-    border-bottom: 1px solid #000;
+selected_button = """
+    background-color: #1F1F1F;
+    max-height: 134px;
+    min-height: 134px;
+    min-width: 170px;
+    max-width: 170px;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #10A1D7;
 """
+
+not_selected_button = """
+    background-color: #272E39;
+    max-height: 134px;
+    min-height: 134px;
+    min-width: 170px;
+    max-width: 170px;
+    border: 2px solid transparent;
+    border-left: 2px solid #10A1D7;
+"""
+
 
 extra_frame = """
-    background-color: #2c3a47;
+    background-color: #272E39;
     max-height: 500px;
     min-height: 500px;
 """
