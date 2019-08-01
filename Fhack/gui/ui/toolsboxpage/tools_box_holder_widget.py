@@ -53,4 +53,4 @@ class ToolsBoxHolderWidget(QWidget):
         ):
             tools_list_path.append(tool)
 
-        self.tools_scroll_widget.generate_widget(tools_list_path)
+        self.tools_scroll_widget.generate_widget(tools_list_path, box_name=boxname)

@@ -31,7 +31,7 @@ class ToolsScrollWidget(QWidget):
 
         self.parent_layout = parent
 
-    def generate_widget(self, list_tools_path):
+    def generate_widget(self, list_tools_path, box_name):
 
         group_box = QGroupBox()
         group_box.setStyleSheet(group_box_style)
@@ -73,17 +73,23 @@ class ToolsScrollWidget(QWidget):
                 layout.addWidget(button)
             layout_v.addLayout(layout)
         else:
+
+            import importlib
+
             for tool in list_tools_path:
                 button = QPushButton(tool)
                 button.setStyleSheet(button_tool_style)
 
-                # TODO: it must delete and set plugin base architecture
-                def button_click(parent):
-                    from plugins.toolsbox.WebTools.tools.directory_finder.gui_handler import MainWindow
-                    dialog = MainWindow(parent)
-                    dialog.show()
-                button.clicked.connect(partial(button_click, self))
-                # end
+                # plugin path
+                plugin_module_path = (
+                        "plugins.toolsbox" + "." +
+                        box_name + "." + "tools" + "." + tool + ".gui_handler"
+                )
+
+                plugin_module = importlib.import_module(plugin_module_path, ".")
+                plugin = plugin_module.MainWindow()
+
+                button.clicked.connect(partial(plugin.execute_app, self))
 
                 layout.addWidget(button)
             layout_v.addLayout(layout)

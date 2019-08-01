@@ -49,7 +49,6 @@ class ToolsBoxScrollWidget(QWidget):
 
                 def selected_tools_box_widget(boxname, toolbox_holder_widgets):
                     toolbox_holder_widgets.create_widget(boxname)
-                    pass
 
                 asset_path = (
                         GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH + '/' +
