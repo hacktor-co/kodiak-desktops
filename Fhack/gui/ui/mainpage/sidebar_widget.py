@@ -36,9 +36,9 @@ class SideBarWidget(QWidget):
         self.setStyleSheet(main_widget_style)
 
         sidebar_layout.addWidget(self.__icon_holder_frame__())
+        sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__tools_menu_button__())
         sidebar_layout.addWidget(self.__report_menu_button__())
-        sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__extra_frame__())
 
         sidebar_layout.addStretch()
@@ -91,6 +91,7 @@ class SideBarWidget(QWidget):
     @staticmethod
     def __setting_menu_button__():
         button = QPushButton()
+        # todo => fix this button style sheet
         button.setStyleSheet(not_selected_button)
 
         button.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))

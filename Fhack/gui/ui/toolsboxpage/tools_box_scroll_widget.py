@@ -44,8 +44,9 @@ class ToolsBoxScrollWidget(QWidget):
             # other programmer that want's to write plugin on ToolBox package must create assets on each directory
             # and set image with svg format and same name as ToolBox's package
             for tool_category in get_all_directory(GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH, 0):
-                button = QPushButton(tool_category)
+                button = QPushButton()
                 button.setStyleSheet(tool_category_btn_style)
+                button.setContentsMargins(0, 0, 0, 0)
 
                 def selected_tools_box_widget(boxname, toolbox_holder_widgets):
                     toolbox_holder_widgets.create_widget(boxname)
@@ -56,7 +57,7 @@ class ToolsBoxScrollWidget(QWidget):
                 )
 
                 button_icon = QIcon(asset_path + tool_category)  # set icon's of all buttons that exist in toolboxs
-                button.setIconSize(QSize(60, 60))
+                button.setIconSize(QSize(70, 70))
                 button.setIcon(button_icon)
 
                 button.clicked.connect(partial(selected_tools_box_widget, tool_category, self.toolbox_holder_widget))

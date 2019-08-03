@@ -22,7 +22,6 @@ icon_holder_frame = """
     min-height: 150px;
     min-width: 170px;
     max-width: 170px;
-    border-bottom: 2px solid #10A1D7;
 """
 
 selected_button = """
@@ -33,6 +32,7 @@ selected_button = """
     max-width: 170px;
     border: 2px solid transparent;
     border-bottom: 2px solid #10A1D7;
+    border-top: 2px solid #10A1D7;
 """
 
 not_selected_button = """
