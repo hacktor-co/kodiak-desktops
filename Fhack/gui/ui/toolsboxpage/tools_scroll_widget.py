@@ -102,4 +102,15 @@ class ToolsScrollWidget(QWidget):
         scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         scroll_area.setWidget(group_box)
 
+        # TODO: must change it with toptoolbar widget
+        buttons = QPushButton("Button")
+        buttons.setStyleSheet("""
+            max-width: 100px;
+            min-width: 100px;
+            max-height: 100px;
+            min-height: 100px;
+        """)
+
+        self.parent_layout.layout.addWidget(buttons)
+
         self.parent_layout.layout.addWidget(scroll_area)  # parent layout is => QVBoxLayout
