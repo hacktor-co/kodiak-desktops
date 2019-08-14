@@ -36,17 +36,6 @@ class ToolsBoxHolderWidget(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
 
-        # TODO: must change it with toptoolbar widget
-        # buttons = QPushButton("Button")
-        # buttons.setStyleSheet("""
-        #     max-width: 100px;
-        #     min-width: 100px;
-        #     max-height: 100px;
-        #     min-height: 100px;
-        # """)
-
-        # self.layout.addChildWidget(buttons)
-
         self.create_widget(boxname)
 
     def create_widget(self, boxname):
