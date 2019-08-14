@@ -29,13 +29,23 @@ class ToolsBoxHolderWidget(QWidget):
     def __init__(self, parent=None, boxname: str = ""):
         super(ToolsBoxHolderWidget, self).__init__(parent)
 
+        self.setStyleSheet(main_style)
+        self.tools_scroll_widget = ToolsScrollWidget(parent=self)
+
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
 
-        self.setStyleSheet(main_style)
+        # TODO: must change it with toptoolbar widget
+        # buttons = QPushButton("Button")
+        # buttons.setStyleSheet("""
+        #     max-width: 100px;
+        #     min-width: 100px;
+        #     max-height: 100px;
+        #     min-height: 100px;
+        # """)
 
-        self.tools_scroll_widget = ToolsScrollWidget(parent=self)
+        # self.layout.addChildWidget(buttons)
 
         self.create_widget(boxname)
 
@@ -44,7 +54,7 @@ class ToolsBoxHolderWidget(QWidget):
         for i in reversed(range(self.layout.count())):
             if i == 0:
                 break
-            self.layout.itemAt(1).widget().deleteLater()
+            self.layout.itemAt(i).widget().deleteLater()
 
         tools_list_path = list()
         for tool in get_all_directory(

@@ -74,7 +74,7 @@ class ToolsScrollWidget(QWidget):
             layout_v.addLayout(layout)
         else:
 
-            import importlib
+            from importlib import import_module
 
             for tool in list_tools_path:
                 button = QPushButton(tool)
@@ -86,7 +86,7 @@ class ToolsScrollWidget(QWidget):
                         box_name + "." + "tools" + "." + tool + ".gui_handler"
                 )
 
-                plugin_module = importlib.import_module(plugin_module_path, ".")
+                plugin_module = import_module(plugin_module_path, ".")
                 plugin = plugin_module.MainWindow()
 
                 button.clicked.connect(partial(plugin.execute_app, self))
@@ -102,7 +102,6 @@ class ToolsScrollWidget(QWidget):
         scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         scroll_area.setWidget(group_box)
 
-        # TODO: must change it with toptoolbar widget
         buttons = QPushButton("Button")
         buttons.setStyleSheet("""
             max-width: 100px;
