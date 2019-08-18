@@ -23,6 +23,7 @@ from common.utils.pwd_helper import (
 from common.constants.consts import (
     DEFINE_PLUGIN_TOOLSBOX_PATH, DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH
 )
+from gui.ui.components.custom_widgets.top_tool_bar import TopToolBar
 
 
 class ToolsScrollWidget(QWidget):
@@ -110,6 +111,8 @@ class ToolsScrollWidget(QWidget):
             min-height: 100px;
         """)
 
-        self.parent_layout.layout.addWidget(buttons)
+        top_bar = TopToolBar(self)
+
+        self.parent_layout.layout.addWidget(top_bar)
 
         self.parent_layout.layout.addWidget(scroll_area)  # parent layout is => QVBoxLayout
