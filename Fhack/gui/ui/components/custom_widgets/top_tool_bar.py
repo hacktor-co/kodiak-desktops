@@ -29,33 +29,36 @@ class TopToolBar(QWidget):
             min-width: 770px;
             max-width: 770px;
             background-color: red;
-            min-height: 100px;
-            max-height: 100px;
+            min-height: 40px;
+            max-height: 40px;
         """)
 
         button = QPushButton("1")
         button.setStyleSheet("""
             min-width: 100px;
             max-width: 100px;
-            min-height: 100px;
+            min-height: 40px;
+            max-height: 40px;
             margin-right: 20px;
-            max-height: 100px;
         """)
         layout_main.addWidget(button)
+
         button = QPushButton("2")
         button.setStyleSheet("""
             min-width: 100px;
             max-width: 100px;
-            min-height: 100px;
-            max-height: 100px;
+            min-height: 40px;
+            max-height: 40px;
         """)
         layout_main.addWidget(button)
+
         button = QPushButton("3")
         button.setStyleSheet("""
-            min-width: 100px;
-            max-width: 100px;
-            min-height: 100px;
-            max-height: 100px;
+            min-width: 280px;
+            max-width: 280px;
+            min-height: 40px;
+            max-height: 40px;
+            margin-right: 200px;
         """)
         layout_main.addWidget(button)
 
