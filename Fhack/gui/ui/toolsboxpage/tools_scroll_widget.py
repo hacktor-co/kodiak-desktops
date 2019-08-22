@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
     - Created on jul 31/2019 - hacktorco
     - All rights reserved for hacktor team
@@ -111,7 +110,7 @@ class ToolsScrollWidget(QWidget):
             min-height: 100px;
         """)
 
-        top_bar = TopToolBar(self)
+        top_bar = TopToolBar(self, location_path=box_name)
 
         self.parent_layout.layout.addWidget(top_bar)
 

@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
     - Created on jul 28/2019 - hacktorco
     - All rights reserved for hacktor team
