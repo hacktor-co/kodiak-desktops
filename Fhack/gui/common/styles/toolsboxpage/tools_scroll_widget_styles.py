@@ -8,6 +8,7 @@
 
 group_box_style = """
     border: none;
+    margin-top: 25px;
 """
 
 scroll_area_style = """
@@ -19,5 +20,6 @@ button_tool_style = """
     max-width: 200px;
     min-height: 200px;
     max-height: 200px;
-    background-color: red;
+    background-color: #272E39;
+    border-radius: 10px;
 """

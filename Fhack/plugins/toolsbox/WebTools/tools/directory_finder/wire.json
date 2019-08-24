@@ -6,5 +6,11 @@
     "country": "Iran",
     "email": "topcodermc@gmail.com"
   },
-  "requirements": []
+  "requirements": [],
+  "assets": {
+    "css": {
+        "border": "2px solid red"
+    }
+  },
+  "tool_tip": "find all directory that exist in web app"
 }
