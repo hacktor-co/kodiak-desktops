@@ -3,14 +3,28 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QWidget, QPushButton
 )
 
-
 class MainWindowHandler(QWidget):
     def __init__(self, parent=None, parent_layout=None):
         super(MainWindowHandler, self).__init__(parent)
         self.__init_ui__()
 
     def __add_controls(self, org_layout):
-        pass
+        a = QPushButton("hello")
+        a.setStyleSheet("""
+            min-width: 100px;
+            max-width: 100px;
+            min-height: 100px;
+            min-height: 100px;
+        """)
+        org_layout.addWidget(a)
+        a = QPushButton("hello")
+        a.setStyleSheet("""
+            min-width: 100px;
+            max-width: 100px;
+            min-height: 100px;
+            min-height: 100px;
+        """)
+        org_layout.addWidget(a)
 
     def __init_ui__(self):
         main_layout = QVBoxLayout()

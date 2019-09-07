@@ -14,10 +14,11 @@ from .gui.styles.main_window_styles import *
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, parent=None):
+
+    def init(self, parent):
         super(MainWindow, self).__init__(parent)
-        self.setStyleSheet(main_window_style)
         self.setWindowTitle("Directory finder")
+        self.setStyleSheet(main_window_style)
         self.setLayoutDirection(Qt.LeftToRight)
         self.__add_widgets__()
 
@@ -37,4 +38,5 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(widget)
 
     def execute_app(self, parent=None):
+        self.init(parent)
         self.show()

@@ -49,6 +49,7 @@ class ToolsScrollWidget(QWidget):
 
         plugin_module = import_module(plugin_module_path, ".")
         plugin = plugin_module.MainWindow()
+
         return plugin.execute_app
 
     @staticmethod
@@ -65,13 +66,14 @@ class ToolsScrollWidget(QWidget):
             return button_style
 
     @staticmethod
-    def __set_tool_icon__ (box_name: str, tool: str, button):
+    def __set_tool_icon__(box_name: str, tool: str, button):
         # set icon's of all buttons that exist in assets of tool
-        if path.exists ("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg"):
+        if path.exists("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg"):
             button_icon = QIcon("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg")
             button.setIconSize(QSize(70, 70))
             button.setIcon(button_icon)
-        else: button.setText(tool)
+        else:
+            button.setText(tool)
 
     def generate_widget(self, list_tools_path, box_name):
 
