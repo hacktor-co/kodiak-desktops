@@ -4,9 +4,10 @@
     - tool for finding directory of web applications
 """
 
-from PyQt5.QtCore import QRect, Qt
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QMainWindow, QApplication, QHBoxLayout, QWidget
+    QMainWindow, QHBoxLayout, QWidget,
+    QAction, QMenu
 )
 
 from .gui.windows.main_window_handler import MainWindowHandler
@@ -17,9 +18,11 @@ class MainWindow(QMainWindow):
 
     def init(self, parent):
         super(MainWindow, self).__init__(parent)
-        self.setWindowTitle("Directory finder")
+        self.setWindowTitle("Directory Finder")
         self.setStyleSheet(main_window_style)
-        self.setLayoutDirection(Qt.LeftToRight)
+        self.setLayoutDirection(Qt.RightToLeft)
+        self.setContentsMargins(0, 0, 0, 0)
+
         self.__add_widgets__()
 
     def __add_widgets__(self):
@@ -29,7 +32,6 @@ class MainWindow(QMainWindow):
         main_layout.setSpacing(0)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.addStretch()
-        main_layout.setAlignment(Qt.AlignTop | Qt.AlignRight)
 
         mainwindow_handler = MainWindowHandler(self, parent_layout=main_layout)
 
@@ -39,4 +41,5 @@ class MainWindow(QMainWindow):
 
     def execute_app(self, parent=None):
         self.init(parent)
+
         self.show()
