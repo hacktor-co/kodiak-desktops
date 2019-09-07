@@ -9,8 +9,9 @@
 from functools import partial
 from importlib import import_module
 import json
+from os import path
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QScrollArea, QHBoxLayout,
@@ -63,6 +64,15 @@ class ToolsScrollWidget(QWidget):
                     button_style += _ + ":" + wire["assets"][item][_] + ";"
             return button_style
 
+    @staticmethod
+    def __set_tool_icon__ (box_name: str, tool: str, button):
+        # set icon's of all buttons that exist in assets of tool
+        if path.exists ("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg"):
+            button_icon = QIcon("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg")
+            button.setIconSize(QSize(70, 70))
+            button.setIcon(button_icon)
+        else: button.setText(tool)
+
     def generate_widget(self, list_tools_path, box_name):
 
         group_box = QGroupBox()
@@ -82,7 +92,10 @@ class ToolsScrollWidget(QWidget):
             remind_list = list()
 
             for tool in list_tools_path:
-                button = QPushButton(tool)
+                button = QPushButton()
+
+                self.__set_tool_icon__(box_name, tool, button)
+
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(
@@ -100,13 +113,16 @@ class ToolsScrollWidget(QWidget):
                     layout.setContentsMargins(5, 0, 5, 0)
                     layout.addStretch()
 
-                    remind_list = tool[tool_counter - 1:]
+                    remind_list.append(tool)
 
                 tool_counter += 1
 
             # draw all remind item in list
             for tool in remind_list:
-                button = QPushButton(tool)
+                button = QPushButton()
+
+                self.__set_tool_icon__(box_name, tool, button)
+
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(
@@ -121,7 +137,10 @@ class ToolsScrollWidget(QWidget):
         else:
             # draw tools if toolsbox item is < 4
             for tool in list_tools_path:
-                button = QPushButton(tool)
+                button = QPushButton()
+
+                self.__set_tool_icon__(box_name, tool, button)
+
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(

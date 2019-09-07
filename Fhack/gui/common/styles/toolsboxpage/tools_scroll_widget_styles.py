@@ -16,10 +16,11 @@ scroll_area_style = """
 """
 
 button_tool_style = """
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 200px;
-    max-height: 200px;
+    min-width: 150px;
+    max-width: 15px;
+    min-height: 150px;
+    max-height: 150px;
     background-color: #272E39;
     border-radius: 10px;
+    margin-left: 15px;
 """

@@ -9,7 +9,8 @@
   "requirements": [],
   "assets": {
     "css": {
-        "border": "2px solid red"
+        "border": "2px solid red",
+        "color": "#fff"
     }
   },
   "tool_tip": "find all directory that exist in web app"
