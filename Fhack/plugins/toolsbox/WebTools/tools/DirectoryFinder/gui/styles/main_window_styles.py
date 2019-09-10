@@ -6,6 +6,8 @@
 
 main_window_style = """
     background-color: #1F1F1F;
-    min-width: 800px;
-    min-height: 600px;
+    min-width: 1080px;
+    min-height: 800px;
+    max-width: 1080px;
+    max-height: 800px;
 """
