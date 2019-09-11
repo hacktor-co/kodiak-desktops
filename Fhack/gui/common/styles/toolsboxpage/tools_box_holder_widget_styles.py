@@ -1,4 +1,3 @@
-#!/usr/bin/python3tools_box_scroll_widget
 """
     - Created on jul 31/2019 - hacktorco
     - All rights reserved for hacktor team

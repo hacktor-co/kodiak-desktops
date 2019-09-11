@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
     - Created on jul 15/2019 - hacktorco
     - All rights reserved for hacktor team
@@ -13,4 +12,3 @@ main_window_style = """
     min-height: 790px;
     max-height: 790px;
 """
-#    border-radius: 5px;

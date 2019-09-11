@@ -41,10 +41,17 @@ class MainWindowHandler(QWidget):
         # tool_bar_layout.addWidget(listwidget)
 
         tableWidget = QTableWidget()
-        # tableWidget.setObjectName("tableView")
+        tableWidget.setAccessibleName("tableViewResult")
         tableWidget.setStyleSheet(
             """
-                QTableWidget {
+                QTableWidget[accessibleName="tableViewResult"] {
+                    border: none;
+                    min-height: 400px;
+                    min-width: 1080px;
+                    max-width: 1080px;
+                    max-height: 400px;
+                    background-color: white;
+                    color: white;
                 }
             """
         )
@@ -58,7 +65,7 @@ class MainWindowHandler(QWidget):
         tableWidget.setItem(2, 1, QTableWidgetItem("Cell (3,2)"))
         tableWidget.setItem(3, 0, QTableWidgetItem("Cell (4,1)"))
         tableWidget.setItem(3, 1, QTableWidgetItem("Cell (4,2)"))
-        # tableWidget.setLayoutDirection(Qt.LeftToRight)
+        tableWidget.setLayoutDirection(Qt.LeftToRight)
 
         tool_bar_layout.addWidget(tableWidget)
         org_layout.addLayout(tool_bar_layout)

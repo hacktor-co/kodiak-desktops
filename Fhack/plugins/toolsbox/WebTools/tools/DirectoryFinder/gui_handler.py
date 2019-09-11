@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
 
     def init(self, parent):
         super(MainWindow, self).__init__(parent)
+        self.setAccessibleName("mainWindowObject")
         self.setWindowTitle("Directory Finder")
         self.setStyleSheet(main_window_style)
         self.setLayoutDirection(Qt.RightToLeft)
