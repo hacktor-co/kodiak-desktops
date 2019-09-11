@@ -1,9 +1,10 @@
 
 from PyQt5.QtWidgets import (
     QVBoxLayout, QWidget, QPushButton, QHBoxLayout,
-    QTableWidget, QTableWidgetItem, QListWidget
+    QTableWidget, QTableWidgetItem, QHeaderView
 )
 from PyQt5.QtCore import Qt
+from ..custom_widgets.table_view_result_show import TableViewShowResult
 
 
 class MainWindowHandler(QWidget):
@@ -13,38 +14,20 @@ class MainWindowHandler(QWidget):
 
     @staticmethod
     def __add_controls__(org_layout):
-        tool_bar_layout = QHBoxLayout()
-        tool_bar_layout.addStretch()
-        tool_bar_layout.setContentsMargins(0, 0, 0, 0)
-        tool_bar_layout.setAlignment(Qt.AlignTop)
 
-        tableWidget = QTableWidget()
-        tableWidget.setAccessibleName("tableViewResult")
-        tableWidget.setStyleSheet(
-            """
-                [accessibleName="tableViewResult"] {
-                    background-color: #1f1f1f;
-                    min-height: 400px;
-                    min-width: 1080px;
-                    max-width: 1080px;
-                    max-height: 400px;
-                }
-            """
-        )
-        tableWidget.setRowCount(4)
-        tableWidget.setColumnCount(2)
-        tableWidget.setItem(0, 0, QTableWidgetItem("Cell (1,1)"))
-        tableWidget.setItem(0, 1, QTableWidgetItem("Cell (1,2)"))
-        tableWidget.setItem(1, 0, QTableWidgetItem("Cell (2,1)"))
-        tableWidget.setItem(1, 1, QTableWidgetItem("Cell (2,2)"))
-        tableWidget.setItem(2, 0, QTableWidgetItem("Cell (3,1)"))
-        tableWidget.setItem(2, 1, QTableWidgetItem("Cell (3,2)"))
-        tableWidget.setItem(3, 0, QTableWidgetItem("Cell (4,1)"))
-        tableWidget.setItem(3, 1, QTableWidgetItem("Cell (4,2)"))
-        tableWidget.setLayoutDirection(Qt.LeftToRight)
-        tool_bar_layout.addWidget(tableWidget)
+        def add_table_view_show_urls_result():
+            """ this function create table view for showing tested url and draw them for user """
+            tool_bar_layout = QHBoxLayout()
+            tool_bar_layout.addStretch()
+            tool_bar_layout.setContentsMargins(0, 0, 0, 0)
 
-        org_layout.addLayout(tool_bar_layout)
+            data = {'Url': ['1', '2', '3', '4'],
+                    'Status': ['1', '2', '1', '3']}
+            data_set = TableViewShowResult(data, 4, 2)
+            tool_bar_layout.addWidget(data_set)
+            org_layout.addLayout(tool_bar_layout)
+
+        add_table_view_show_urls_result()
 
     def __init_ui__(self):
         main_layout = QVBoxLayout()
