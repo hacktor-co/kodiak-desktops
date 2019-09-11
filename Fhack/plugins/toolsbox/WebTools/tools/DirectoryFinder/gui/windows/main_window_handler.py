@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 
 class MainWindowHandler(QWidget):
     def __init__(self, parent=None, parent_layout=None):
-        super(MainWindowHandler, self).__init__(parent)
+        super().__init__()
         self.__init_ui__()
 
     @staticmethod
@@ -17,41 +17,17 @@ class MainWindowHandler(QWidget):
         tool_bar_layout.addStretch()
         tool_bar_layout.setContentsMargins(0, 0, 0, 0)
         tool_bar_layout.setAlignment(Qt.AlignTop)
-        #
-        # listwidget = QListWidget()
-        #
-        # listwidget.setStyleSheet(
-        #     """
-        #         QListWidget {
-        #             min-height: 400px;
-        #             min-width: 360px;
-        #             max-width: 360px;
-        #             max-height: 400px;
-        #             background-color: white;
-        #         }
-        #     """
-        # )
-        # listwidget.setLayoutDirection(Qt.LeftToRight)
-        # listwidget.setMaximumWidth(360)
-        # listwidget.setMinimumWidth(360)
-
-        # for item in range(0, 100):
-        #     listwidget.insertItem(item, "item " + str(item))
-
-        # tool_bar_layout.addWidget(listwidget)
 
         tableWidget = QTableWidget()
         tableWidget.setAccessibleName("tableViewResult")
         tableWidget.setStyleSheet(
             """
-                QTableWidget[accessibleName="tableViewResult"] {
-                    border: none;
+                [accessibleName="tableViewResult"] {
+                    background-color: #1f1f1f;
                     min-height: 400px;
                     min-width: 1080px;
                     max-width: 1080px;
                     max-height: 400px;
-                    background-color: white;
-                    color: white;
                 }
             """
         )
@@ -66,8 +42,8 @@ class MainWindowHandler(QWidget):
         tableWidget.setItem(3, 0, QTableWidgetItem("Cell (4,1)"))
         tableWidget.setItem(3, 1, QTableWidgetItem("Cell (4,2)"))
         tableWidget.setLayoutDirection(Qt.LeftToRight)
-
         tool_bar_layout.addWidget(tableWidget)
+
         org_layout.addLayout(tool_bar_layout)
 
     def __init_ui__(self):

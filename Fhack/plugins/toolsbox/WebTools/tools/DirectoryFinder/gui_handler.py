@@ -6,23 +6,31 @@
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
-    QMainWindow, QHBoxLayout, QWidget,
-    QAction, QMenu
+    QMainWindow, QHBoxLayout, QWidget, QApplication
 )
 
 from .gui.windows.main_window_handler import MainWindowHandler
-from .gui.styles.main_window_styles import *
+from .gui.styles.gui_handler_styles import *
 
 
 class MainWindow(QMainWindow):
 
     def init(self, parent):
-        super(MainWindow, self).__init__(parent)
-        self.setAccessibleName("mainWindowObject")
+        super().__init__()
+        self.setAccessibleName("QMainWindowStyle")
         self.setWindowTitle("Directory Finder")
         self.setStyleSheet(main_window_style)
         self.setLayoutDirection(Qt.RightToLeft)
         self.setContentsMargins(0, 0, 0, 0)
+
+        screen_size = QApplication.desktop().geometry()
+        self.setGeometry(
+            # 1080 -> width of window
+            # 800  -> height og window
+            int((screen_size.width() - 1080) / 2),
+            int((screen_size.height() - 800) / 2),
+            0, 0
+        )  # set the main window to center of screen
 
         self.__add_widgets__()
 
