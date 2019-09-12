@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
     QMainWindow, QHBoxLayout, QWidget, QApplication
 )
 
-from .gui.windows.main_window_handler import MainWindowHandler
+from .gui.main_window_handler import MainWindowHandler
 from .gui.styles.gui_handler_styles import *
 
 
