@@ -23,7 +23,9 @@ def execute_tool(message_pack: dict):
             rhost, import_file_path=import_file_path,
             use_local_database=use_local_database
     ):
-        yield ({
-            "response": item,
-            "timestamp": datetime.now()
-        })
+        yield (
+            {
+                "response": item,
+                "timestamp": datetime.now()
+            }
+        )
