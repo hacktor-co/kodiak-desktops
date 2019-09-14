@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         self.setGeometry(
             # 1080 -> width of window
             # 800  -> height og window
-            int((screen_size.width() - 1080) / 2),
+            int((screen_size.width() - 1000) / 2),
             int((screen_size.height() - 800) / 2),
             0, 0
         )  # set the main window to center of screen

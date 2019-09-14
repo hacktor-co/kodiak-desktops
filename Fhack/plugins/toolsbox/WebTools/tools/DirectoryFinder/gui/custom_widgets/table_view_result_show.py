@@ -27,26 +27,27 @@ class TableViewShowResult(QTableWidget):
 
         self.setLayoutDirection(Qt.LeftToRight)
 
-    def __execute_display_result__(self):
-        for item in execute_tool(message_pack={
-            "Rhost": "http://hacktor.co",
-            "ImportFilePath": "/Users/topcoder/Home/Projects/Corps/HackTor/projects/FHack/test/1.txt",
-            "UseLocalDatabase": False
-        }):
-            try:
-                if item["response"]["result"]["url"] is not None:
-                    row_position = self.rowCount()
-                    self.insertRow(row_position)
+    def clear_all_rows(self):
+        row_counter = self.rowCount()
+        while self.rowCount() > 0:
+            self.removeRow(row_counter)
+            row_counter -= 1
 
-                    in_comingitem = QTableWidgetItem(item["response"]["result"]["url"])
-                    in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
-                    self.setItem(row_position, 0, in_comingitem)
+    def add_result_to_display(self, item):
+        try:
+            if item["response"]["result"]["url"] is not None:
+                row_position = self.rowCount()
+                self.insertRow(row_position)
 
-                    in_comingitem = QTableWidgetItem(str(item["response"]["result"]["code"]))
-                    in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
-                    self.setItem(row_position, 1, in_comingitem)
-            except Exception:
-                pass
+                in_comingitem = QTableWidgetItem(item["response"]["result"]["url"])
+                in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
+                self.setItem(row_position, 0, in_comingitem)
+
+                in_comingitem = QTableWidgetItem(str(item["response"]["result"]["code"]))
+                in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
+                self.setItem(row_position, 1, in_comingitem)
+        except Exception:
+            pass
 
     def set_data(self):
         # TODO: fix this section of code for handling the thread executors

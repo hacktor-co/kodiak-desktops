@@ -9,7 +9,7 @@
   "requirements": [],
   "assets": {
     "css": {
-        "border": "2px solid red",
+        "border": "2px solid yellow",
         "color": "#fff"
     }
   },

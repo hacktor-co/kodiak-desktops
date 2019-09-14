@@ -7,9 +7,9 @@
 main_window_style = """
     [accessibleName="QMainWindowStyle"] {
         background-color: #1f1f1f;
-        min-width: 1080px;
+        min-width: 1000px;
         min-height: 800px;
-        max-width: 1080px;
+        max-width: 1000px;
         max-height: 800px;
     }
 """
