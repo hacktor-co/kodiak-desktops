@@ -64,3 +64,21 @@ select_path_button_style = (
         }
     """
 )
+
+succeess_label_style = (
+    "succeess_label_style", """
+        [accessibleName="succeess_label_style"] {
+            color: lightgreen;
+            font-size: 15px;
+        }
+    """
+)
+
+failed_label_style = (
+    "failed_label_style", """
+        [accessibleName="failed_label_style"] {
+            color: red;
+            font-size: 15px;
+        }
+    """
+)

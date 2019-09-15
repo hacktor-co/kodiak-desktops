@@ -16,9 +16,20 @@ import threading
 
 class MainWindowHandler(QWidget):
 
+    export_path = str()
+
     def __init__(self, parent=None, parent_layout=None):
         super().__init__()
         self.__init_ui__()
+
+    def save_result_to_file(self, input: str):
+        try:
+            print(self.export_path)
+            with open(self.export_path, "w") as file:
+                file.write(input + "\n")
+                file.flush()
+        except Exception as error:
+            print(error)
 
     def __execute_tool__(self):
         counter = 0
@@ -28,25 +39,25 @@ class MainWindowHandler(QWidget):
 
         for item in execute_tool(message_pack={
             "Rhost": self.target_input.text(),
-            "ImportFilePath":
-                "../test/1.txt",
+            "ImportFilePath": self.file_path_edit_text_test_from_file.text(),
             "UseLocalDatabase": False
         }):
             try:
                 if item["response"]["result"]["code"] == 200:
                     success_url += 1
                     self.all_success_urls_label.setText("All success urls: " + str(success_url))
+                    self.save_result_to_file(item["response"]["result"]["url"])
                 else:
                     failed_url += 1
                     self.all_faild_urls_label.setText("All faild urls: " + str(failed_url))
             except Exception:
                 pass
-
             self.data_set.add_result_to_display(item)
             self.all_urls_label.setText("All urls: " + str(counter))
             counter += 1
 
     def run_tool(self):
+        self.export_path = self.path_export.text()
         thread = threading.Thread(target=self.__execute_tool__)
         thread.start()
 
@@ -60,10 +71,10 @@ class MainWindowHandler(QWidget):
             options |= QFileDialog.DontUseNativeDialog
             fileName, _ = QFileDialog.getOpenFileName(
                 parent, "QFileDialog.getOpenFileName()", "",
-                "TXT Files (*.txt);;CSV Files (*.csv);;HTML Files (*.html);", options=options
+                "All text files (*.txt)", options=options
             )
             if fileName:
-                parent.path_input.setText(fileName)
+                parent.path_export.setText(fileName)
 
         select_path_button = QPushButton()
         select_path_button.clicked.connect(partial(open_file, self))
@@ -73,11 +84,11 @@ class MainWindowHandler(QWidget):
 
         layout.addWidget(select_path_button)
 
-        self.path_input = QLineEdit()
-        self.path_input.setAccessibleName(target_input_line_edit[0])
-        self.path_input.setStyleSheet(target_input_line_edit[1])
+        self.path_export = QLineEdit()
+        self.path_export.setAccessibleName(target_input_line_edit[0])
+        self.path_export.setStyleSheet(target_input_line_edit[1])
 
-        layout.addWidget(self.path_input)
+        layout.addWidget(self.path_export)
 
         export_path_text = QLabel("Export path: ")
         export_path_text.setAccessibleName(all_labels[0])
@@ -129,10 +140,10 @@ class MainWindowHandler(QWidget):
             options |= QFileDialog.DontUseNativeDialog
             fileName, _ = QFileDialog.getOpenFileName(
                 parent, "QFileDialog.getOpenFileName()", "",
-                "All Files (*);;Python Files (*.py)", options=options
+                "All text (*.txt)", options=options
             )
             if fileName:
-                parent.file_path_edit_text.setText(fileName)
+                parent.file_path_edit_text_test_from_file.setText(fileName)
 
         open_file_dialog_btn = QPushButton("select")
         open_file_dialog_btn.setAccessibleName(open_file_dialog_btn_style[0])
@@ -140,10 +151,10 @@ class MainWindowHandler(QWidget):
         open_file_dialog_btn.clicked.connect(partial(open_file, self))
         file_option_layout.addWidget(open_file_dialog_btn)
 
-        self.file_path_edit_text = QLineEdit()
-        self.file_path_edit_text.setAccessibleName(file_path_edit_text_style[0])
-        self.file_path_edit_text.setStyleSheet(file_path_edit_text_style[1])
-        file_option_layout.addWidget(self.file_path_edit_text)
+        self.file_path_edit_text_test_from_file = QLineEdit()
+        self.file_path_edit_text_test_from_file.setAccessibleName(file_path_edit_text_style[0])
+        self.file_path_edit_text_test_from_file.setStyleSheet(file_path_edit_text_style[1])
+        file_option_layout.addWidget(self.file_path_edit_text_test_from_file)
 
         file_path_label = QLabel("File path: ")
         file_path_label.setAccessibleName(all_labels[0])
@@ -208,14 +219,14 @@ class MainWindowHandler(QWidget):
         layout.setContentsMargins(20, 10, 10, 10)
 
         self.all_success_urls_label = QLabel("All success urls: 0")
-        self.all_success_urls_label.setAccessibleName(all_labels[0])
-        self.all_success_urls_label.setStyleSheet(all_labels[1])
+        self.all_success_urls_label.setAccessibleName(succeess_label_style[0])
+        self.all_success_urls_label.setStyleSheet(succeess_label_style[1])
         self.all_success_urls_label.setContentsMargins(250, 0, 0, 0)
         layout.addWidget(self.all_success_urls_label)
 
         self.all_faild_urls_label = QLabel("All faild urls: 0")
-        self.all_faild_urls_label.setAccessibleName(all_labels[0])
-        self.all_faild_urls_label.setStyleSheet(all_labels[1])
+        self.all_faild_urls_label.setAccessibleName(failed_label_style[0])
+        self.all_faild_urls_label.setStyleSheet(failed_label_style[1])
         self.all_faild_urls_label.setContentsMargins(250, 0, 0, 0)
         layout.addWidget(self.all_faild_urls_label)
 
