@@ -1,3 +1,4 @@
+#!usr/bin/python3.7
 """
     - Created on Aug 1/2019 - mohammad javad ghasempour
     - email: topcodermc@gmail.com
@@ -5,8 +6,6 @@
 """
 
 import requests
-
-from multiprocessing import Pool, cpu_count
 from os import path
 
 from .common.constants import WEB_HEADERS
