@@ -32,6 +32,10 @@ open_file_dialog_btn_style = (
         [accessibleName="open_file_dialog_btn"] {
             min-height: 30px;
             max-height: 30px;
+            border: 2px solid lightblue;
+            color: white;
+            min-width: 70px;
+            max-width: 70px;
         }
     """
 )
@@ -51,7 +55,12 @@ start_btn_style = (
     "start_btn_style", """
         [accessibleName="start_btn_style"] {
             min-height: 30px;
-            max-height: 30px;            
+            max-height: 30px;
+            border: 2px solid lightgreen;
+            color: white;
+            min-width: 70px;
+            max-width: 70px;
+                       
         }
     """
 )
@@ -61,6 +70,10 @@ select_path_button_style = (
         [accessibleName="select_path_button"] {
             min-height: 30px;
             max-height: 30px;
+            border: 2px solid lightblue;
+            color: white;
+            min-width: 70px;
+            max-width: 70px;
         }
     """
 )

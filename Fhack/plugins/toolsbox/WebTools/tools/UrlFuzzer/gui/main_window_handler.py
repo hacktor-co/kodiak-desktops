@@ -126,7 +126,7 @@ class MainWindowHandler(QWidget):
     def __add_test_kind_section__(self):
         layout = QHBoxLayout()
         layout.addStretch()
-        layout.setContentsMargins(20, 10, 10, 100)
+        layout.setContentsMargins(20, 10, 10, 60)
 
         file_option_frame = QFrame()
         file_option_frame.setContentsMargins(65, 50, 0, 0)

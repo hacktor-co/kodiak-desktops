@@ -70,7 +70,7 @@ class ToolsScrollWidget(QWidget):
         # set icon's of all buttons that exist in assets of tool
         if path.exists("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg"):
             button_icon = QIcon("./plugins/toolsbox/" + box_name + "/tools/" + tool + "/assets/mainico.svg")
-            button.setIconSize(QSize(70, 70))
+            button.setIconSize(QSize(80, 80))
             button.setIcon(button_icon)
         else:
             button.setText(tool)
