@@ -9,11 +9,14 @@ import requests
 from os import path
 
 from .common.constants import WEB_HEADERS
+from .modules.database_handler import DataBaseHelper
 
 requests.packages.urllib3.disable_warnings()
 
 
 def start_test_with_local_db(rhost: str):
+    # for item in get_data_from_db():
+    #     pass
     pass
 
 
@@ -85,7 +88,6 @@ def main_handler(rhost: str, import_file_path: str = None, use_local_database: b
         })
 
     if is_rhost_up:
-
         if import_file_path is not None:
             for item in start_test_with_import_dict(rhost, import_file_path):
                 yield ({
@@ -93,11 +95,11 @@ def main_handler(rhost: str, import_file_path: str = None, use_local_database: b
                 })
 
         elif use_local_database is True:
+            start_test_with_local_db(rhost)
             # for item in start_test_with_local_db(rhost):
             #     yield ({
             #         "response": item
-            #     })
-            pass
+            #     })ßß
 
     else:
         return

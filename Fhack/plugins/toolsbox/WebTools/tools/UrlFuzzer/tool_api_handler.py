@@ -1,4 +1,3 @@
-#!usr/bin/python3.7
 """
     - Created on Aug 1/2019 - mohammad javad ghasempour
     - email: topcodermc@gmail.com
@@ -17,7 +16,7 @@ def execute_tool(message_pack: dict):
     :return: yeild all result from target
     """
     rhost = message_pack["Rhost"]
-    import_file_path = message_pack["ImportFilePath"]
+    import_file_path =  message_pack["ImportFilePath"] if len(message_pack["ImportFilePath"]) > 0 else None
     use_local_database = message_pack["UseLocalDatabase"]
 
     for item in main_handler(

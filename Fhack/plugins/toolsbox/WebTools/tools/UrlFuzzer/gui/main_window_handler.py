@@ -14,19 +14,21 @@ from .styles.main_window_handler_styles import *
 from functools import partial
 import threading
 
+
 class MainWindowHandler(QWidget):
 
     export_path = str()
+    use_tool_database = True
 
     def __init__(self, parent=None, parent_layout=None):
         super().__init__()
         self.__init_ui__()
 
-    def save_result_to_file(self, input: str):
+    def save_result_to_file(self, input_item: str):
         try:
             print(self.export_path)
             with open(self.export_path, "w") as file:
-                file.write(input + "\n")
+                file.write(input_item + "\n")
                 file.flush()
         except Exception as error:
             print(error)
@@ -40,7 +42,7 @@ class MainWindowHandler(QWidget):
         for item in execute_tool(message_pack={
             "Rhost": self.target_input.text(),
             "ImportFilePath": self.file_path_edit_text_test_from_file.text(),
-            "UseLocalDatabase": False
+            "UseLocalDatabase": self.use_tool_database
         }):
             try:
                 if item["response"]["result"]["code"] == 200:
@@ -173,19 +175,21 @@ class MainWindowHandler(QWidget):
         def check_file_test_type(parent):
             if parent.radio_btn_test_from_file.isChecked():
                 file_option_frame.show()
+                use_tool_database = False
 
         def check_database_test_type(parent):
             if parent.radio_btn_test_from_db.isChecked():
                 file_option_frame.hide()
+                use_tool_database = True
 
-        self.radio_btn_test_from_db = QRadioButton("Test from database")
+        self.radio_btn_test_from_db = QRadioButton("Use tool database")
         self.radio_btn_test_from_db.setLayoutDirection(Qt.LeftToRight)
         self.radio_btn_test_from_db.setChecked(True)
         self.radio_btn_test_from_db.setAccessibleName(all_radio_buttons[0])
         self.radio_btn_test_from_db.setStyleSheet(all_radio_buttons[1])
         self.radio_btn_test_from_db.clicked.connect(partial(check_database_test_type, self))
 
-        self.radio_btn_test_from_file = QRadioButton("Test from file")
+        self.radio_btn_test_from_file = QRadioButton("Use my file")
         self.radio_btn_test_from_file.setLayoutDirection(Qt.LeftToRight)
         self.radio_btn_test_from_file.setAccessibleName(all_radio_buttons[0])
         self.radio_btn_test_from_file.clicked.connect(partial(check_file_test_type, self))
