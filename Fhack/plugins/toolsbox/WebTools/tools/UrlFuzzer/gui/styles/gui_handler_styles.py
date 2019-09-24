@@ -13,3 +13,11 @@ main_window_style = """
         max-height: 800px;
     }
 """
+
+menubar_styles = (
+    "menubar", """    
+        [accessibleName="menubar"] {
+            background-color: #757575;
+        }
+    """
+)
