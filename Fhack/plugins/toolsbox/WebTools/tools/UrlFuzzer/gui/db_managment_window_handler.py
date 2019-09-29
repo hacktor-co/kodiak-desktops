@@ -1,20 +1,21 @@
 
 from PyQt5.QtWidgets import (
-    QMainWindow
+    QDialog
 )
 
-class MainWindow(QMainWindow):
+class MainWindow(QDialog):
 
     def __init__(self, parent):
         super(MainWindow, self).__init__(parent)
         self.setStyleSheet("""
-            min-width: 500px;
-            max-width: 500px;
-            min-height: 500px;
-            max-height: 500px;
+            min-width: 800px;
+            max-width: 800px;
+            background-color: #1f1f1f;
+            min-height: 600px;
+            max-height: 600px;
         """)
 
-        self.show()
+        self.exec()
 
         # AdminFinderModel.create(path="admin").save()
         # AdminFinderModel.create(path="admin").save()

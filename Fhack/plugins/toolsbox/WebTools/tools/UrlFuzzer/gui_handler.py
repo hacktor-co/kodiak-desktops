@@ -8,14 +8,14 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
     QMainWindow, QHBoxLayout, QWidget, QApplication,
-    QAction, QMenu
+    QAction
 )
 
+from .gui.db_managment_window_handler import MainWindow as DbManagmentWindow
 from .gui.main_window_handler import MainWindowHandler
 from .gui.styles.gui_handler_styles import *
-from .tool_api.modules.database_handler import DataBaseHelper
 from .tool_api.models.admin_finder_model import AdminFinderModel
-from .gui.db_managment_window_handler import MainWindow as DbManagmentWindow
+from .tool_api.modules.database_handler import DataBaseHelper
 
 
 class MainWindow(QMainWindow):
@@ -47,29 +47,41 @@ class MainWindow(QMainWindow):
         menubar.setLayoutDirection(Qt.LeftToRight)
         menubar.setAccessibleName(menubar_styles[0])
         menubar.setStyleSheet(menubar_styles[1])
+        self.__add_setting_menu_bar__(menubar)
+        self.__add__help_menu_bar__(menubar)
 
+        self.__add_widgets__()
+
+    def __add__help_menu_bar__(self, menubar):
+        help_menu = menubar.addMenu("Help")
+        help_menu.setAccessibleName(menubar_styles[0])
+        help_menu.setStyleSheet(menubar_styles[1])
+
+        help_help = QAction('Help', self)
+
+        help_update = QAction('Update', self)
+
+        help_about = QAction('About', self)
+
+        help_menu.addAction(help_help)
+        help_menu.addAction(help_update)
+        help_menu.addAction(help_about)
+
+    def __add_setting_menu_bar__(self, menubar):
         setting_menu = menubar.addMenu("Setting")
         setting_menu.setAccessibleName(menubar_styles[0])
         setting_menu.setStyleSheet(menubar_styles[1])
 
-        setting_update = QAction('update', self)
-
-        def send_update_db():
-            print("update")
-
-        setting_update.triggered.connect(send_update_db)
-
-        setting_manage_db = QAction('manage db', self)
+        setting_manage_db = QAction('Manage db', self)
 
         def on_manage_db():
-            DbManagmentWindow(parent=parent)
-
+            DbManagmentWindow(parent=self)
         setting_manage_db.triggered.connect(on_manage_db)
 
-        setting_menu.addAction(setting_update)
-        setting_menu.addAction(setting_manage_db)
+        setting_tool_config = QAction('Tool Config', self)
 
-        self.__add_widgets__()
+        setting_menu.addAction(setting_tool_config)
+        setting_menu.addAction(setting_manage_db)
 
     def __add_widgets__(self):
         widget = QWidget(self)
