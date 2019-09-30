@@ -11,4 +11,16 @@ table_view_show_result = (
     """
 )
 
+table_view_show_managmentdb_result = (
+    "table_view_show_managmentdb_result", """
+        [accessibleName="table_view_show_managmentdb_result"] {
+            background-color: white;
+            min-height: 250px;
+            max-height: 250px;
+            min-width: 800px;
+            max-width: 800px;
+        }
+    """
+)
+
 

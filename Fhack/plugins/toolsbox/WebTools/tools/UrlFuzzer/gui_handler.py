@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
     QAction
 )
 
-from .gui.db_managment_window_handler import MainWindow as DbManagmentWindow
+from .gui.dialogs.wdialog_db_managment_handler import DbManagmentWindow
 from .gui.main_window_handler import MainWindowHandler
 from .gui.styles.gui_handler_styles import *
 from .tool_api.models.admin_finder_model import AdminFinderModel

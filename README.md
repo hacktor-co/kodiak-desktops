@@ -21,6 +21,6 @@ coming soon.
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | supported | dependencies already installed |status |
 ----------|-------|------|------|-------|
-|Debian(8)|0|yes|yes|working|
-|MACOS|0|yes|yes|working|
-|WINDOWS|0|yes|yes|working|
+|Debian(8)|1|yes|yes|working|
+|MACOS|1|yes|yes|working|
+|WINDOWS|1|yes|yes|working|
