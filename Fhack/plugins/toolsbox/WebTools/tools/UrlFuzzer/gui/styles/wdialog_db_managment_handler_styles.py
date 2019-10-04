@@ -38,3 +38,27 @@ btn_run_query_style = (
     }    
 """
 )
+
+db_label_style = (
+    "db_label_style", """
+    [accessibleName="db_label_style"] {
+        color: white;
+    }
+"""
+)
+
+radio_buttons_style = (
+    "radio_buttons_style", """
+    [accessibleName="radio_buttons_style"] {
+        color: green;
+    }    
+"""
+)
+
+inclued_paths_section_style = (
+    "inclued_paths_section_style", """
+    [accessibleName="inclued_paths_section_style"] {
+        border: 1px solid gray;
+    }    
+"""
+)

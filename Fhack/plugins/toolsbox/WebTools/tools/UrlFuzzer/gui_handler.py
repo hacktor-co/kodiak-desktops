@@ -77,9 +77,9 @@ class MainWindow(QMainWindow):
             DbManagmentWindow(parent=self)
         setting_manage_db.triggered.connect(on_manage_db)
 
-        setting_tool_config = QAction('Tool Config', self)
-
-        setting_menu.addAction(setting_tool_config)
+        # setting_tool_config = QAction('Tool Config', self)
+        #
+        # setting_menu.addAction(setting_tool_config)
         setting_menu.addAction(setting_manage_db)
 
     def __add_widgets__(self):
