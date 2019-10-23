@@ -6,24 +6,32 @@
     - all style sheet value of tools box scroller of main window
 """
 
-main_widget_style = """
-    min-width: 200px;
-    max-width: 200px;
-"""
+main_widget_style = ("main_widget_style", """
+    [accessibleName="main_widget_style"] {
+        min-width: 200px;
+        max-width: 200px;
+    }
+""")
 
-tool_category_btn_style = """
-    background-color: #1F1F1F;
-    max-height: 134px;
-    min-height: 134px;
-    min-width: 170px;
-    max-width: 170px;
-"""
+tool_category_btn_style = ("tool_category_btn_style", """
+    [accessibleName="tool_category_btn_style"] {
+        background-color: #1F1F1F;
+        max-height: 134px;
+        min-height: 134px;
+        min-width: 170px;
+        max-width: 170px;
+    }
+""")
 
-group_box_style = """
-    border: none;    
-"""
+group_box_style = ("group_box_style", """
+    [accessibleName="group_box_style"] {
+        border: none;
+    }
+""")
 
-scroll_area_style = """
-    background-color: transparent;
-    border-left: 2px solid #10A1D7;
-"""
+scroll_area_style = ("scroll_area_style", """
+    [accessibleName="scroll_area_style"] {
+        background-color: transparent;
+        border-left: 2px solid #10A1D7;
+    }
+""")

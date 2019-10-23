@@ -31,20 +31,23 @@ class ToolsBoxScrollWidget(QWidget):
         self.toolbox_holder_widget = toolbox_holder
 
         if self.isHidden() is not True:
-            self.setStyleSheet(main_widget_style)
+            self.setStyleSheet(main_widget_style[0])
+            self.setStyleSheet(main_widget_style[1])
 
             form_layout = QFormLayout()
             form_layout.setAlignment(Qt.AlignLeft)
 
             group_box = QGroupBox()
-            group_box.setStyleSheet(group_box_style)
+            group_box.setAccessibleName(group_box_style[0])
+            group_box.setStyleSheet(group_box_style[1])
             group_box.setContentsMargins(0, 0, 0, 0)
 
             # other programmer that want's to write plugin on ToolBox package must create assets on each directory
             # and set image with svg format and same name as ToolBox's package
             for tool_category in get_all_directory(GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH, 0):
                 button = QPushButton()
-                button.setStyleSheet(tool_category_btn_style)
+                button.setAccessibleName(tool_category_btn_style[0])
+                button.setStyleSheet(tool_category_btn_style[1])
                 button.setContentsMargins(0, 0, 0, 0)
 
                 def selected_tools_box_widget(boxname, toolbox_holder_widgets):
@@ -66,7 +69,8 @@ class ToolsBoxScrollWidget(QWidget):
             group_box.setLayout(form_layout)
 
             scroll_area = QScrollArea()
-            scroll_area.setStyleSheet(scroll_area_style)
+            scroll_area.setAccessibleName(scroll_area_style[0])
+            scroll_area.setStyleSheet(scroll_area_style[1])
             scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
             scroll_area.setWidget(group_box)

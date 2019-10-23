@@ -33,21 +33,22 @@ class MainWindow(QMainWindow):
         main_layout.setSpacing(0)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.addStretch()
-        main_layout.setAlignment(Qt.AlignTop | Qt.AlignRight)
+
 
         sidebar_widget = SideBarWidget(self, main_layout)
-
         main_layout.addWidget(sidebar_widget)
 
         self.setCentralWidget(widget)
 
     def __init_ui__(self):
-        self.setStyleSheet(main_window_style)
+        self.setAccessibleName(mainq_window_style[0])
+        self.setStyleSheet(mainq_window_style[1])
+        self.setLayoutDirection(Qt.LeftToRight)
 
         screen_size = QApplication.desktop().geometry()
         self.setGeometry(
             # 1150 -> width of window
-            # 790  -> height og window
+            # 790  -> height of window
             int((screen_size.width() - 1150) / 2),
             int((screen_size.height() - 790) / 2),
             0, 0

@@ -58,11 +58,12 @@ class ToolsScrollWidget(QWidget):
 
     def __set_specific_style__(self, box_name: str, tool: str) -> str:
         with open(self.__get_wire__(box_name, tool), 'r') as file:
-            button_style = button_tool_style
+            button_style = button_tool_style[1][0: len(button_tool_style[1]) - 2]
             wire = json.load(file)
             for item in wire["assets"]:
                 for _ in wire["assets"][item]:
                     button_style += _ + ":" + wire["assets"][item][_] + ";"
+            button_style = button_style + "}"
             return button_style
 
     @staticmethod
@@ -78,7 +79,8 @@ class ToolsScrollWidget(QWidget):
     def generate_widget(self, list_tools_path, box_name):
 
         group_box = QGroupBox()
-        group_box.setStyleSheet(group_box_style)
+        group_box.setAccessibleName(group_box_style[0])
+        group_box.setStyleSheet(group_box_style[1])
         group_box.setContentsMargins(0, 0, 0, 0)
 
         layout = QHBoxLayout()
@@ -158,7 +160,8 @@ class ToolsScrollWidget(QWidget):
         group_box.setLayout(layout_v)
 
         scroll_area = QScrollArea()
-        scroll_area.setStyleSheet(scroll_area_style)
+        scroll_area.setAccessibleName(scroll_area_style[0])
+        scroll_area.setStyleSheet(scroll_area_style[1])
         scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         scroll_area.setWidget(group_box)

@@ -30,18 +30,18 @@ class SideBarWidget(QWidget):
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
         # end
         sidebar_layout = QVBoxLayout()
-        sidebar_layout.setSpacing(0)
+        sidebar_layout.addStretch()
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
-
-        self.setStyleSheet(main_widget_style)
+        self.setAccessibleName(main_widget_style[0])
+        self.setStyleSheet(main_widget_style[1])
 
         sidebar_layout.addWidget(self.__icon_holder_frame__())
         sidebar_layout.addWidget(self.__setting_menu_button__())
         sidebar_layout.addWidget(self.__tools_menu_button__())
         sidebar_layout.addWidget(self.__report_menu_button__())
-        sidebar_layout.addWidget(self.__extra_frame__())
+        sidebar_layout.addWidget(self.__blackbox_button__())
+        sidebar_layout.addWidget(self.__brain_button__())
 
-        sidebar_layout.addStretch()
         self.setLayout(sidebar_layout)
 
         main_layout.addWidget(self.tools_box_holder_widget)
@@ -49,6 +49,7 @@ class SideBarWidget(QWidget):
 
     @staticmethod
     def __icon_holder_frame__():
+
         icon_holder = QLabel()
 
         image = QPixmap('./gui/assets/fhack_main_ico.svg')
@@ -58,7 +59,9 @@ class SideBarWidget(QWidget):
         icon_holder.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
         icon_holder.setPixmap(image)
 
-        icon_holder.setStyleSheet(icon_holder_frame)
+        icon_holder.setAccessibleName(icon_holder_frame_style[0])
+        icon_holder.setStyleSheet(icon_holder_frame_style[1])
+        icon_holder.setContentsMargins(0, 0, 0, 0)
 
         return icon_holder
 
@@ -68,40 +71,86 @@ class SideBarWidget(QWidget):
         button.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
         button.setIconSize(QSize(70, 70))
 
-        button.setStyleSheet(selected_button)
+        button.setAccessibleName(selected_button[0])
+        button.setStyleSheet(selected_button[1])
 
         def create_tool_box_widget(tools_box_widget):
             if tools_box_widget.isHidden():
                 tools_box_widget.show()
+            print("Tools")
 
         button.clicked.connect(partial(create_tool_box_widget, self.tools_box_scroll_widget))
 
         return button
 
     @staticmethod
+    def __brain_button__():
+        button = QPushButton()
+        button.setAccessibleName(not_selected_button[0])
+        button.setStyleSheet(not_selected_button[1])
+
+        button.setIcon(QIcon('./gui/assets/brain_img_fade_icon.svg'))
+        button.setIconSize(QSize(70, 70))
+
+        def create_tool_box_widget():  # tools_box_widget):
+            # if tools_box_widget.isHidden():
+            #     tools_box_widget.show()
+            print("brain")
+
+        button.clicked.connect(partial(create_tool_box_widget))  # , self.tools_box_scroll_widget))
+
+        return button
+
+    @staticmethod
+    def __blackbox_button__():
+        button = QPushButton()
+        button.setAccessibleName(not_selected_button[0])
+        button.setStyleSheet(not_selected_button[1])
+
+        button.setIcon(QIcon('./gui/assets/black_box_img_fade_icon.svg'))
+        button.setIconSize(QSize(70, 70))
+
+        def create_tool_box_widget():  # tools_box_widget):
+            # if tools_box_widget.isHidden():
+            #     tools_box_widget.show()
+            print("black box")
+
+        button.clicked.connect(partial(create_tool_box_widget))  # , self.tools_box_scroll_widget))
+
+        return button
+
+    @staticmethod
     def __report_menu_button__():
         button = QPushButton()
-        button.setStyleSheet(not_selected_button)
+        button.setAccessibleName(not_selected_button[0])
+        button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/report_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
+
+        def create_tool_box_widget():#tools_box_widget):
+            # if tools_box_widget.isHidden():
+            #     tools_box_widget.show()
+            print("report")
+
+        button.clicked.connect(partial(create_tool_box_widget)) #, self.tools_box_scroll_widget))
 
         return button
 
     @staticmethod
     def __setting_menu_button__():
         button = QPushButton()
-        # todo => fix this button style sheet
-        button.setStyleSheet(not_selected_button)
+        button.setAccessibleName(not_selected_button[0])
+        button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
 
+        def create_tool_box_widget():#tools_box_widget):
+            # if tools_box_widget.isHidden():
+            #     tools_box_widget.show()
+            print("setting")
+
+        button.clicked.connect(partial(create_tool_box_widget)) #, self.tools_box_scroll_widget))
+
         return button
-
-    @staticmethod
-    def __extra_frame__():
-        frame = QFrame()
-        frame.setStyleSheet(extra_frame)
-
-        return frame
