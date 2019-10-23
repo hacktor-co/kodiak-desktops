@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.setWindowTitle("FHack")
+        self.setWindowTitle("Hyper")
 
         self.__add_widgets__()
         self.__init_ui__()
