@@ -8,4 +8,6 @@
 main_style = """
    min-width: 830px;
    max-width: 830px;
+   max-height: 790px;
+   min-height: 790px;
 """

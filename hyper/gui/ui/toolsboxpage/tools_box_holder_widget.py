@@ -29,6 +29,7 @@ class ToolsBoxHolderWidget(QWidget):
         super(ToolsBoxHolderWidget, self).__init__(parent)
 
         self.setStyleSheet(main_style)
+
         self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 
         self.layout = QVBoxLayout(self)

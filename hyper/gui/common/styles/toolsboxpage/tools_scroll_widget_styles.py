@@ -10,6 +10,7 @@ group_box_style = ("group_box_style", """
     [accessibleName="group_box_style"] {
         border: none;
         margin-top: 25px;
+        background-color: transparent;
     }
 """)
 

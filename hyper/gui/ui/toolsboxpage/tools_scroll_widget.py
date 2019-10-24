@@ -100,6 +100,7 @@ class ToolsScrollWidget(QWidget):
 
                 self.__set_tool_icon__(box_name, tool, button)
 
+                button.setAccessibleName(button_tool_style[0])
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(
@@ -127,6 +128,7 @@ class ToolsScrollWidget(QWidget):
 
                 self.__set_tool_icon__(box_name, tool, button)
 
+                button.setAccessibleName(button_tool_style[0])
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(
@@ -145,6 +147,7 @@ class ToolsScrollWidget(QWidget):
 
                 self.__set_tool_icon__(box_name, tool, button)
 
+                button.setAccessibleName(button_tool_style[0])
                 button.setStyleSheet(self.__set_specific_style__(box_name, tool))
                 button.clicked.connect(
                     partial(

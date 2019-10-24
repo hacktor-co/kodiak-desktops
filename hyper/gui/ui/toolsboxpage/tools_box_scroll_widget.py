@@ -31,11 +31,10 @@ class ToolsBoxScrollWidget(QWidget):
         self.toolbox_holder_widget = toolbox_holder
 
         if self.isHidden() is not True:
-            self.setStyleSheet(main_widget_style[0])
-            self.setStyleSheet(main_widget_style[1])
+            self.setStyleSheet(main_widget_style_tool_box)
 
             form_layout = QFormLayout()
-            form_layout.setAlignment(Qt.AlignLeft)
+            form_layout.setAlignment(Qt.AlignBottom)
 
             group_box = QGroupBox()
             group_box.setAccessibleName(group_box_style[0])
