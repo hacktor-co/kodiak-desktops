@@ -87,6 +87,8 @@ class MainWindowHandler(QWidget):
         layout.addWidget(select_path_button)
 
         self.path_export = QLineEdit()
+        self.path_export.setAttribute(Qt.WA_MacShowFocusRect, 0)
+
         self.path_export.setAccessibleName(target_input_line_edit[0])
         self.path_export.setStyleSheet(target_input_line_edit[1])
 
@@ -220,26 +222,61 @@ class MainWindowHandler(QWidget):
 
         layout = QHBoxLayout()
         layout.addStretch()
-        layout.setContentsMargins(20, 10, 10, 10)
+        layout.setContentsMargins(0, 0, 0, 0)
 
-        self.all_success_urls_label = QLabel("All success urls: 0")
-        self.all_success_urls_label.setAccessibleName(succeess_label_style[0])
-        self.all_success_urls_label.setStyleSheet(succeess_label_style[1])
-        self.all_success_urls_label.setContentsMargins(250, 0, 0, 0)
-        layout.addWidget(self.all_success_urls_label)
+        frame = QFrame()
+        v_label_layout = QVBoxLayout()
+        v_label_layout.setContentsMargins(320, 0, 0, 10)
+        v_label_layout.addStretch()
+        self.all_success_urls_label = QLabel("All urls: 100")
+        self.all_success_urls_label.setAccessibleName(all_urls_label_style[0])
+        self.all_success_urls_label.setStyleSheet(all_urls_label_style[1])
+        v_label_layout.addWidget(self.all_success_urls_label)
+        frame.setLayout(v_label_layout)
 
-        self.all_faild_urls_label = QLabel("All faild urls: 0")
-        self.all_faild_urls_label.setAccessibleName(failed_label_style[0])
-        self.all_faild_urls_label.setStyleSheet(failed_label_style[1])
-        self.all_faild_urls_label.setContentsMargins(250, 0, 0, 0)
-        layout.addWidget(self.all_faild_urls_label)
+        layout.addWidget(frame)
 
-        self.all_urls_label = QLabel("All urls: 0")
-        self.all_urls_label.setAccessibleName(all_labels[0])
-        self.all_urls_label.setStyleSheet(all_labels[1])
-        layout.addWidget(self.all_urls_label)
+        def open_file(parent):
+            options = QFileDialog.Options()
+            options |= QFileDialog.DontUseNativeDialog
+            file_name, _ = QFileDialog.getOpenFileName(
+                parent, "QFileDialog.getOpenFileName()", "",
+                "All text files (*.txt)", options=options
+            )
+            if file_name:
+                parent.path_export.setText(file_name)
+
+        select_path_button = QPushButton()
+        select_path_button.clicked.connect(partial(open_file, self))
+        select_path_button.setText("Select")
+        select_path_button.setAccessibleName(select_path_button_style[0])
+        select_path_button.setStyleSheet(select_path_button_style[1])
+
+        layout.addWidget(select_path_button)
+
+        self.path_export = QLineEdit()
+        self.path_export.setAttribute(Qt.WA_MacShowFocusRect, 0)
+        self.path_export.setContentsMargins(47, 0, 0, 0)
+        self.path_export.setPlaceholderText("Export path")
+        self.path_export.setAccessibleName(target_input_line_edit[0])
+        self.path_export.setStyleSheet(target_input_line_edit[1])
+
+        layout.addWidget(self.path_export)
 
         self.main_layout.addLayout(layout)
+
+        # self.all_faild_urls_label = QLabel("All faild urls: 0")
+        # self.all_faild_urls_label.setAccessibleName(failed_label_style[0])
+        # self.all_faild_urls_label.setStyleSheet(failed_label_style[1])
+        # self.all_faild_urls_label.setContentsMargins(250, 0, 0, 0)
+        # layout.addWidget(self.all_faild_urls_label)
+        #
+        # self.all_urls_label = QLabel("All urls: 0")
+        # self.all_urls_label.setAccessibleName(all_labels[0])
+        # self.all_urls_label.setStyleSheet(all_labels[1])
+        # layout.addWidget(self.all_urls_label)
+        #
+        # self.main_layout.addLayout(layout)
 
     def __init_ui__(self):
         self.main_layout = QVBoxLayout()

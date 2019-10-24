@@ -1,9 +1,12 @@
+
 from PyQt5.QtWidgets import (
     QTableWidget, QTableWidgetItem, QHeaderView
 )
 from PyQt5.QtCore import (Qt, pyqtSignal)
 
-from ..styles.custom_widgets_styles import table_view_show_result
+from ..styles.custom_widgets_styles import (
+    table_view_show_result, table_view_show_result_horizontal_header
+)
 from ...tool_api_handler import execute_tool
 
 import threading
@@ -20,6 +23,8 @@ class TableViewShowResult(QTableWidget):
         self.setColumnCount(2)
 
         self.setHorizontalHeaderItem(0, QTableWidgetItem("Url"))
+        self.horizontalHeader().setAccessibleName(table_view_show_result_horizontal_header[0])
+        self.horizontalHeader().setStyleSheet(table_view_show_result_horizontal_header[1])
         self.setHorizontalHeaderItem(1, QTableWidgetItem("Status"))
         header = self.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.Stretch)

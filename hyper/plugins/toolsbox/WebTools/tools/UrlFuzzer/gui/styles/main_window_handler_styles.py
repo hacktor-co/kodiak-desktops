@@ -43,10 +43,15 @@ open_file_dialog_btn_style = (
 target_input_line_edit = (
     "target_input_line_edit", """
         [accessibleName="target_input_line_edit"] {
-            min-width: 280px;
-            max-width: 280px;
-            min-height: 30px;
-            max-height: 30px;
+            min-width: 375px;
+            max-width: 375px;
+            min-height: 40px;
+            max-height: 40px;
+            color: white;
+            padding-right: 10px;
+            border-radius: 20px;
+            background-color: #3E3E3E;
+            border: 1px solid #C9C9C9;
         }
     """
 )
@@ -68,12 +73,13 @@ start_btn_style = (
 select_path_button_style = (
     "select_path_button", """
         [accessibleName="select_path_button"] {
-            min-height: 30px;
-            max-height: 30px;
-            border: 2px solid lightblue;
-            color: white;
-            min-width: 70px;
-            max-width: 70px;
+            min-height: 40px;
+            max-height: 40px;
+            border: 1px solid #C9C9C9;
+            color: #6AEBEB;
+            min-width: 110px;
+            border-radius: 20px;
+            max-width: 110px;
         }
     """
 )
@@ -92,6 +98,22 @@ failed_label_style = (
         [accessibleName="failed_label_style"] {
             color: red;
             font-size: 15px;
+        }
+    """
+)
+
+all_urls_label_style = (
+    "all_urls_label_style", """
+        [accessibleName="all_urls_label_style"] {
+            border-radius: 24px;
+            padding: 10px;
+            min-width: 200px;
+            min-height: 30px;
+            max-width: 200px;
+            max-height: 30px;  
+            background-color: #3E3E3E;
+            color: #6AEB6A;
+            border: 1px solid #C9C9C9;
         }
     """
 )
