@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         menubar.setLayoutDirection(Qt.LeftToRight)
         menubar.setAccessibleName(menubar_styles[0])
         menubar.setStyleSheet(menubar_styles[1])
-        self.__add_setting_menu_bar__(menubar)
+        # self.__add_setting_menu_bar__(menubar)
         self.__add__help_menu_bar__(menubar)
 
         self.__add_widgets__()
@@ -57,9 +57,7 @@ class MainWindow(QMainWindow):
         help_menu.setStyleSheet(menubar_styles[1])
 
         help_help = QAction('Help', self)
-
         help_update = QAction('Update', self)
-
         help_about = QAction('About', self)
 
         help_menu.addAction(help_help)

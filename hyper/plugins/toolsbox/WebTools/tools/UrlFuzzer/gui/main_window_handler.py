@@ -71,12 +71,12 @@ class MainWindowHandler(QWidget):
         def open_file(parent):
             options = QFileDialog.Options()
             options |= QFileDialog.DontUseNativeDialog
-            fileName, _ = QFileDialog.getOpenFileName(
+            file_name, _ = QFileDialog.getOpenFileName(
                 parent, "QFileDialog.getOpenFileName()", "",
                 "All text files (*.txt)", options=options
             )
-            if fileName:
-                parent.path_export.setText(fileName)
+            if file_name:
+                parent.path_export.setText(file_name)
 
         select_path_button = QPushButton()
         select_path_button.clicked.connect(partial(open_file, self))
@@ -140,12 +140,12 @@ class MainWindowHandler(QWidget):
         def open_file(parent):
             options = QFileDialog.Options()
             options |= QFileDialog.DontUseNativeDialog
-            fileName, _ = QFileDialog.getOpenFileName(
+            file_name, _ = QFileDialog.getOpenFileName(
                 parent, "QFileDialog.getOpenFileName()", "",
                 "All text (*.txt)", options=options
             )
-            if fileName:
-                parent.file_path_edit_text_test_from_file.setText(fileName)
+            if file_name:
+                parent.file_path_edit_text_test_from_file.setText(file_name)
 
         open_file_dialog_btn = QPushButton("select")
         open_file_dialog_btn.setAccessibleName(open_file_dialog_btn_style[0])

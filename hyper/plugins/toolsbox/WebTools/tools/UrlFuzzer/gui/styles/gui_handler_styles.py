@@ -17,7 +17,9 @@ main_window_style = """
 menubar_styles = (
     "menubar", """    
         [accessibleName="menubar"] {
-            background-color: #757575;
+            background-color: #1f1f1f;
+            color: #eaeaea;
+            border-bottom: 1px solid #3e3e3e;
         }
     """
 )
