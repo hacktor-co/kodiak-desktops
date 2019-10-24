@@ -28,7 +28,16 @@ person_btn = """
     max-width: 30px;
     min-height: 30px;
     max-height: 30px;
-    margin-right: 150px;
     border: none;
+    background-color: transparent;
+"""
+
+bell_notification_style = """
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    border: none;
+    margin-right: 150px;
     background-color: transparent;
 """

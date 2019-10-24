@@ -40,6 +40,12 @@ class TopToolBar(QWidget):
         button.setIconSize(QSize(30, 30))
         layout_main.addWidget(button)
 
+        button = QPushButton()
+        button.setStyleSheet(bell_notification_style)
+        button.setIcon(QIcon('./gui/assets/bell_notification_icon.svg'))
+        button.setIconSize(QSize(30, 30))
+        layout_main.addWidget(button)
+
         app_location_holder = AppLocationHolder(self, path=location_path)
         layout_main.addWidget(app_location_holder)
 

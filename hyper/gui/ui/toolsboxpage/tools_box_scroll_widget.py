@@ -71,7 +71,7 @@ class ToolsBoxScrollWidget(QWidget):
             scroll_area.setAccessibleName(scroll_area_style[0])
             scroll_area.setStyleSheet(scroll_area_style[1])
             scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+            scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             scroll_area.setWidget(group_box)
 
             layout = QVBoxLayout(self)
