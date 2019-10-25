@@ -53,6 +53,34 @@ target_input_line_edit = (
             background-color: #3E3E3E;
             border: 1px solid #C9C9C9;
         }
+        [accessibleName="target_input_line_edit"]:hover {
+            border-color: #00FFEB;
+        }
+        [accessibleName="target_input_line_edit"]:focus {
+            border-color: #00FFEB;
+        }
+    """
+)
+
+myfile_input_line_edit = (
+    "myfile_input_line_edit", """
+        [accessibleName="myfile_input_line_edit"] {
+            min-width: 355px;
+            max-width: 355px;
+            min-height: 40px;
+            max-height: 40px;
+            color: white;
+            padding-right: 10px;
+            border-radius: 20px;
+            background-color: #3E3E3E;
+            border: 1px solid #C9C9C9;
+        }
+        [accessibleName="myfile_input_line_edit"]:hover {
+            border-color: #00FFEB;
+        }
+        [accessibleName="myfile_input_line_edit"]:focus {
+            border-color: #00FFEB;
+        }
     """
 )
 
@@ -80,6 +108,26 @@ select_path_button_style = (
             min-width: 110px;
             border-radius: 20px;
             max-width: 110px;
+        }
+        [accessibleName="select_path_button"]:hover {
+            border-color: #00FFEB;
+        }
+    """
+)
+
+start_button_style = (
+    "start_button_style", """
+        [accessibleName="start_button_style"] {
+            min-height: 40px;
+            max-height: 40px;
+            border: 1px solid #C9C9C9;
+            color: #F5FF03;
+            min-width: 110px;
+            border-radius: 20px;
+            max-width: 110px;
+        }
+        [accessibleName="start_button_style"]:hover {
+            border-color: #00FFEB;
         }
     """
 )
@@ -113,6 +161,22 @@ all_urls_label_style = (
             max-height: 30px;  
             background-color: #3E3E3E;
             color: #6AEB6A;
+            border: 1px solid #C9C9C9;
+        }
+    """
+)
+
+all_failed_urls_label_style = (
+    "all_urls_label_style", """
+        [accessibleName="all_urls_label_style"] {
+            border-radius: 24px;
+            padding: 10px;
+            min-width: 200px;
+            min-height: 30px;
+            max-width: 200px;
+            max-height: 30px;  
+            background-color: #3E3E3E;
+            color: #E65757;
             border: 1px solid #C9C9C9;
         }
     """

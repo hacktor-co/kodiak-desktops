@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (
     QLineEdit, QFileDialog
 )
 from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtGui import QPixmap, QIcon
 
 from .custom_widgets.table_view_result_show import TableViewShowResult
 from ..tool_api_handler import execute_tool
@@ -63,44 +64,6 @@ class MainWindowHandler(QWidget):
         thread = threading.Thread(target=self.__execute_tool__)
         thread.start()
 
-    def __add_export_section__(self):
-        layout = QHBoxLayout()
-        layout.addStretch()
-        layout.setContentsMargins(39, 0, 0, 20)
-
-        def open_file(parent):
-            options = QFileDialog.Options()
-            options |= QFileDialog.DontUseNativeDialog
-            file_name, _ = QFileDialog.getOpenFileName(
-                parent, "QFileDialog.getOpenFileName()", "",
-                "All text files (*.txt)", options=options
-            )
-            if file_name:
-                parent.path_export.setText(file_name)
-
-        select_path_button = QPushButton()
-        select_path_button.clicked.connect(partial(open_file, self))
-        select_path_button.setText("select")
-        select_path_button.setAccessibleName(select_path_button_style[0])
-        select_path_button.setStyleSheet(select_path_button_style[1])
-
-        layout.addWidget(select_path_button)
-
-        self.path_export = QLineEdit()
-        self.path_export.setAttribute(Qt.WA_MacShowFocusRect, 0)
-
-        self.path_export.setAccessibleName(target_input_line_edit[0])
-        self.path_export.setStyleSheet(target_input_line_edit[1])
-
-        layout.addWidget(self.path_export)
-
-        export_path_text = QLabel("Export path: ")
-        export_path_text.setAccessibleName(all_labels[0])
-        export_path_text.setStyleSheet(all_labels[1])
-        layout.addWidget(export_path_text)
-
-        self.main_layout.addLayout(layout)
-
     def __add_input_target_url__(self):
         layout = QHBoxLayout()
         layout.addStretch()
@@ -127,48 +90,39 @@ class MainWindowHandler(QWidget):
 
         self.main_layout.addLayout(layout)
 
+    def __add_icons_section__(self):
+        layout = QHBoxLayout()
+        layout.addStretch()
+        layout.setContentsMargins(240, 0, 0, 20)
+
+        file_label = QLabel()
+        image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/folder.svg')
+        file_label.setContentsMargins(100, 0, 0, 0)
+        image.scaled(10, 10)
+
+        file_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        file_label.setPixmap(image)
+
+        layout.addWidget(file_label)
+
+        db_label = QLabel()
+        image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/database.svg')
+
+        image.scaled(10, 10)
+
+        db_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        db_label.setPixmap(image)
+
+        layout.addWidget(db_label)
+
+        self.main_layout.addLayout(layout)
+
     def __add_test_kind_section__(self):
         layout = QHBoxLayout()
         layout.addStretch()
-        layout.setContentsMargins(20, 10, 10, 60)
+        layout.setContentsMargins(200, 0, 0, 40)
 
-        file_option_frame = QFrame()
-        file_option_frame.setContentsMargins(65, 50, 0, 0)
-        file_option_layout = QHBoxLayout()
-        file_option_layout.addStretch()
-        file_option_frame.setLayout(file_option_layout)
-        file_option_frame.hide()
-
-        def open_file(parent):
-            options = QFileDialog.Options()
-            options |= QFileDialog.DontUseNativeDialog
-            file_name, _ = QFileDialog.getOpenFileName(
-                parent, "QFileDialog.getOpenFileName()", "",
-                "All text (*.txt)", options=options
-            )
-            if file_name:
-                parent.file_path_edit_text_test_from_file.setText(file_name)
-
-        open_file_dialog_btn = QPushButton("select")
-        open_file_dialog_btn.setAccessibleName(open_file_dialog_btn_style[0])
-        open_file_dialog_btn.setStyleSheet(open_file_dialog_btn_style[1])
-        open_file_dialog_btn.clicked.connect(partial(open_file, self))
-        file_option_layout.addWidget(open_file_dialog_btn)
-
-        self.file_path_edit_text_test_from_file = QLineEdit()
-        self.file_path_edit_text_test_from_file.setAccessibleName(file_path_edit_text_style[0])
-        self.file_path_edit_text_test_from_file.setStyleSheet(file_path_edit_text_style[1])
-        file_option_layout.addWidget(self.file_path_edit_text_test_from_file)
-
-        file_path_label = QLabel("File path: ")
-        file_path_label.setAccessibleName(all_labels[0])
-        file_path_label.setStyleSheet(all_labels[1])
-
-        file_option_layout.addWidget(file_path_label)
-
-        layout.addWidget(file_option_frame)
-
-        radio_btns_vlayout = QVBoxLayout()
+        radio_btns_vlayout = QHBoxLayout()
         radio_btns_vlayout.addStretch()
         radio_btns_vlayout.setContentsMargins(0, 0, 0, 0)
 
@@ -218,6 +172,60 @@ class MainWindowHandler(QWidget):
 
         self.main_layout.addLayout(tool_bar_layout)
 
+    def __add_myfile_selector_section__(self):
+        layout = QHBoxLayout()
+        layout.addStretch()
+        layout.setContentsMargins(0, 0, 0, 0)
+
+        frame = QFrame()
+        v_label_layout = QVBoxLayout()
+        v_label_layout.setContentsMargins(339, 0, 0, 0)
+        v_label_layout.addStretch()
+        self.all_success_urls_label = QLabel("Failed url: 99")
+        self.all_success_urls_label.setAccessibleName(all_failed_urls_label_style[0])
+        self.all_success_urls_label.setStyleSheet(all_failed_urls_label_style[1])
+        v_label_layout.addWidget(self.all_success_urls_label)
+        frame.setLayout(v_label_layout)
+        layout.addWidget(frame)
+
+        def open_file(parent):
+            options = QFileDialog.Options()
+            options |= QFileDialog.DontUseNativeDialog
+            file_name, _ = QFileDialog.getOpenFileName(
+                parent, "QFileDialog.getOpenFileName()", "",
+                "All text files (*.txt)", options=options
+            )
+
+            if file_name:
+                parent.myfile_path.setText(file_name)
+
+        hlayout_control = QHBoxLayout()
+        hlayout_control.setContentsMargins(0, 0, 0, 0)
+        hlayout_control.addStretch()
+        hframe = QFrame()
+        hframe.setDisabled(True)
+
+        select_path_button = QPushButton()
+        select_path_button.clicked.connect(partial(open_file, self))
+        select_path_button.setText("Select")
+        select_path_button.setAccessibleName(select_path_button_style[0])
+        select_path_button.setStyleSheet(select_path_button_style[1])
+
+        hlayout_control.addWidget(select_path_button)
+
+        self.myfile_path = QLineEdit()
+        self.myfile_path.setAttribute(Qt.WA_MacShowFocusRect, 0)
+        self.myfile_path.setContentsMargins(47, 0, 0, 0)
+        self.myfile_path.setPlaceholderText("File path")
+        self.myfile_path.setAccessibleName(myfile_input_line_edit[0])
+        self.myfile_path.setStyleSheet(myfile_input_line_edit[1])
+
+        hlayout_control.addWidget(self.myfile_path)
+        hframe.setLayout(hlayout_control)
+        layout.addWidget(hframe)
+
+        self.main_layout.addLayout(layout)
+
     def __add_counter_status_section__(self):
 
         layout = QHBoxLayout()
@@ -226,15 +234,23 @@ class MainWindowHandler(QWidget):
 
         frame = QFrame()
         v_label_layout = QVBoxLayout()
-        v_label_layout.setContentsMargins(320, 0, 0, 10)
+        v_label_layout.setContentsMargins(210, 0, 0, 10)
         v_label_layout.addStretch()
         self.all_success_urls_label = QLabel("All urls: 100")
         self.all_success_urls_label.setAccessibleName(all_urls_label_style[0])
         self.all_success_urls_label.setStyleSheet(all_urls_label_style[1])
         v_label_layout.addWidget(self.all_success_urls_label)
         frame.setLayout(v_label_layout)
-
         layout.addWidget(frame)
+
+        start_btn = QPushButton()
+        start_btn.setText("Start")
+        start_btn.setContentsMargins(20, 0, 0, 0)
+        start_btn.setAccessibleName(start_button_style[0])
+        start_btn.setStyleSheet(start_button_style[1])
+        start_btn.clicked.connect(self.run_tool)
+
+        layout.addWidget(start_btn)
 
         def open_file(parent):
             options = QFileDialog.Options()
@@ -256,7 +272,7 @@ class MainWindowHandler(QWidget):
 
         self.path_export = QLineEdit()
         self.path_export.setAttribute(Qt.WA_MacShowFocusRect, 0)
-        self.path_export.setContentsMargins(47, 0, 0, 0)
+        self.path_export.setContentsMargins(47, 0, 20, 0)
         self.path_export.setPlaceholderText("Export path")
         self.path_export.setAccessibleName(target_input_line_edit[0])
         self.path_export.setStyleSheet(target_input_line_edit[1])
@@ -270,7 +286,7 @@ class MainWindowHandler(QWidget):
         # self.all_faild_urls_label.setStyleSheet(failed_label_style[1])
         # self.all_faild_urls_label.setContentsMargins(250, 0, 0, 0)
         # layout.addWidget(self.all_faild_urls_label)
-        #
+
         # self.all_urls_label = QLabel("All urls: 0")
         # self.all_urls_label.setAccessibleName(all_labels[0])
         # self.all_urls_label.setStyleSheet(all_labels[1])
@@ -283,9 +299,10 @@ class MainWindowHandler(QWidget):
         self.main_layout.addStretch()
         self.main_layout.setContentsMargins(0, 0, 0, 0)
 
-        self.__add_export_section__()
         self.__add_input_target_url__()
+        self.__add_icons_section__()
         self.__add_test_kind_section__()
+        self.__add_myfile_selector_section__()
         self.__add_counter_status_section__()
         self.__add_table_view__()
 
