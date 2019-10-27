@@ -42,7 +42,7 @@ class MainWindowHandler(QWidget):
 
         for item in execute_tool(message_pack={
             "Rhost": self.target_input.text(),
-            "ImportFilePath": self.file_path_edit_text_test_from_file.text(),
+            "ImportFilePath": self.myfile_path.text(),
             "UseLocalDatabase": self.use_tool_database
         }):
             try:
@@ -69,45 +69,30 @@ class MainWindowHandler(QWidget):
         layout.addStretch()
         layout.setContentsMargins(40, 0, 0, 20)
 
-        start_button = QPushButton()
-        start_button.setText("start")
-        start_button.setAccessibleName(start_btn_style[0])
-        start_button.setStyleSheet(start_btn_style[1])
-
-        start_button.clicked.connect(self.run_tool)
-
-        layout.addWidget(start_button)
-
         self.target_input = QLineEdit()
+        self.target_input.setAttribute(Qt.WA_MacShowFocusRect, 0)
         self.target_input.setAccessibleName(target_input_line_edit[0])
         self.target_input.setStyleSheet(target_input_line_edit[1])
+        self.target_input.setPlaceholderText("Target url")
         layout.addWidget(self.target_input)
 
-        target_url_text = QLabel("Target url: ")
-        target_url_text.setAccessibleName(all_labels[0])
-        target_url_text.setStyleSheet(all_labels[1])
-        layout.addWidget(target_url_text)
+        icon_label = QLabel()
+        image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/www_icon.svg')
+        image.scaled(10, 10)
+        icon_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        icon_label.setPixmap(image)
+        layout.addWidget(icon_label)
 
         self.main_layout.addLayout(layout)
 
     def __add_icons_section__(self):
         layout = QHBoxLayout()
         layout.addStretch()
-        layout.setContentsMargins(240, 0, 0, 20)
-
-        file_label = QLabel()
-        image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/folder.svg')
-        file_label.setContentsMargins(100, 0, 0, 0)
-        image.scaled(10, 10)
-
-        file_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-        file_label.setPixmap(image)
-
-        layout.addWidget(file_label)
+        layout.setContentsMargins(240, 0, 0, 0)
 
         db_label = QLabel()
         image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/database.svg')
-
+        db_label.setContentsMargins(100, 0, 0, 0)
         image.scaled(10, 10)
 
         db_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
@@ -115,28 +100,38 @@ class MainWindowHandler(QWidget):
 
         layout.addWidget(db_label)
 
+        file_label = QLabel()
+        image = QPixmap('./plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/folder.svg')
+
+        image.scaled(10, 10)
+
+        file_label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        file_label.setPixmap(image)
+
+        layout.addWidget(file_label)
+
         self.main_layout.addLayout(layout)
 
     def __add_test_kind_section__(self):
         layout = QHBoxLayout()
         layout.addStretch()
-        layout.setContentsMargins(200, 0, 0, 40)
+        layout.setContentsMargins(200, 0, 0, 00)
 
         radio_btns_vlayout = QHBoxLayout()
         radio_btns_vlayout.addStretch()
-        radio_btns_vlayout.setContentsMargins(0, 0, 0, 0)
+        radio_btns_vlayout.setContentsMargins(0, 5, 0, 0)
 
         radio_groups = QButtonGroup()
 
         def check_file_test_type(parent):
             if parent.radio_btn_test_from_file.isChecked():
-                file_option_frame.show()
-                use_tool_database = False
+                parent.h_myfile_select_frame.setEnabled(True)
+                parent.use_tool_database = False
 
         def check_database_test_type(parent):
             if parent.radio_btn_test_from_db.isChecked():
-                file_option_frame.hide()
-                use_tool_database = True
+                parent.h_myfile_select_frame.setEnabled(False)
+                parent.use_tool_database = True
 
         self.radio_btn_test_from_db = QRadioButton("Use tool database")
         self.radio_btn_test_from_db.setLayoutDirection(Qt.LeftToRight)
@@ -162,6 +157,25 @@ class MainWindowHandler(QWidget):
 
         self.main_layout.addLayout(layout)
 
+    def __add_all_urls_section__(self):
+
+        layout = QHBoxLayout()
+        layout.addStretch()
+        layout.setContentsMargins(0, 0, 0, 0)
+
+        frame = QFrame()
+        v_label_layout = QVBoxLayout()
+        v_label_layout.setContentsMargins(842, 0, 0, 0)
+        v_label_layout.addStretch()
+        self.all_urls_label = QLabel("All urls: 0")
+        self.all_urls_label.setAccessibleName(all_urls_label[0])
+        self.all_urls_label.setStyleSheet(all_urls_label[1])
+        v_label_layout.addWidget(self.all_urls_label)
+        frame.setLayout(v_label_layout)
+        layout.addWidget(frame)
+
+        self.main_layout.addLayout(layout)
+
     def __add_table_view__(self):
         self.data_set = TableViewShowResult()
 
@@ -181,10 +195,10 @@ class MainWindowHandler(QWidget):
         v_label_layout = QVBoxLayout()
         v_label_layout.setContentsMargins(339, 0, 0, 0)
         v_label_layout.addStretch()
-        self.all_success_urls_label = QLabel("Failed url: 99")
-        self.all_success_urls_label.setAccessibleName(all_failed_urls_label_style[0])
-        self.all_success_urls_label.setStyleSheet(all_failed_urls_label_style[1])
-        v_label_layout.addWidget(self.all_success_urls_label)
+        self.all_faild_urls_label = QLabel("Failed url: 0")
+        self.all_faild_urls_label.setAccessibleName(all_failed_urls_label_style[0])
+        self.all_faild_urls_label.setStyleSheet(all_failed_urls_label_style[1])
+        v_label_layout.addWidget(self.all_faild_urls_label)
         frame.setLayout(v_label_layout)
         layout.addWidget(frame)
 
@@ -202,8 +216,8 @@ class MainWindowHandler(QWidget):
         hlayout_control = QHBoxLayout()
         hlayout_control.setContentsMargins(0, 0, 0, 0)
         hlayout_control.addStretch()
-        hframe = QFrame()
-        hframe.setDisabled(True)
+        self.h_myfile_select_frame = QFrame()
+        self.h_myfile_select_frame.setDisabled(True)
 
         select_path_button = QPushButton()
         select_path_button.clicked.connect(partial(open_file, self))
@@ -221,8 +235,8 @@ class MainWindowHandler(QWidget):
         self.myfile_path.setStyleSheet(myfile_input_line_edit[1])
 
         hlayout_control.addWidget(self.myfile_path)
-        hframe.setLayout(hlayout_control)
-        layout.addWidget(hframe)
+        self.h_myfile_select_frame.setLayout(hlayout_control)
+        layout.addWidget(self.h_myfile_select_frame)
 
         self.main_layout.addLayout(layout)
 
@@ -236,7 +250,7 @@ class MainWindowHandler(QWidget):
         v_label_layout = QVBoxLayout()
         v_label_layout.setContentsMargins(210, 0, 0, 10)
         v_label_layout.addStretch()
-        self.all_success_urls_label = QLabel("All urls: 100")
+        self.all_success_urls_label = QLabel("Success urls: 0")
         self.all_success_urls_label.setAccessibleName(all_urls_label_style[0])
         self.all_success_urls_label.setStyleSheet(all_urls_label_style[1])
         v_label_layout.addWidget(self.all_success_urls_label)
@@ -281,19 +295,6 @@ class MainWindowHandler(QWidget):
 
         self.main_layout.addLayout(layout)
 
-        # self.all_faild_urls_label = QLabel("All faild urls: 0")
-        # self.all_faild_urls_label.setAccessibleName(failed_label_style[0])
-        # self.all_faild_urls_label.setStyleSheet(failed_label_style[1])
-        # self.all_faild_urls_label.setContentsMargins(250, 0, 0, 0)
-        # layout.addWidget(self.all_faild_urls_label)
-
-        # self.all_urls_label = QLabel("All urls: 0")
-        # self.all_urls_label.setAccessibleName(all_labels[0])
-        # self.all_urls_label.setStyleSheet(all_labels[1])
-        # layout.addWidget(self.all_urls_label)
-        #
-        # self.main_layout.addLayout(layout)
-
     def __init_ui__(self):
         self.main_layout = QVBoxLayout()
         self.main_layout.addStretch()
@@ -302,6 +303,7 @@ class MainWindowHandler(QWidget):
         self.__add_input_target_url__()
         self.__add_icons_section__()
         self.__add_test_kind_section__()
+        self.__add_all_urls_section__()
         self.__add_myfile_selector_section__()
         self.__add_counter_status_section__()
         self.__add_table_view__()

@@ -13,17 +13,8 @@ from PyQt5.QtWidgets import (
 from .gui.dialogs.wdialog_db_managment_handler import DbManagmentWindow
 from .gui.main_window_handler import MainWindowHandler
 from .gui.styles.gui_handler_styles import *
-from .tool_api.models.admin_finder_model import AdminFinderModel
-from .tool_api.modules.database_handler import DataBaseHelper
-
 
 class MainWindow(QMainWindow):
-
-    @staticmethod
-    def init_db():
-        DataBaseHelper().connect()
-        DataBaseHelper().db_main.create_tables([AdminFinderModel])
-        DataBaseHelper().close()
 
     def init(self, parent):
         super().__init__()
@@ -96,5 +87,4 @@ class MainWindow(QMainWindow):
 
     def execute_app(self, parent=None):
         self.init(parent)
-        self.init_db()
         self.show()

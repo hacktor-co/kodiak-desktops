@@ -3,11 +3,11 @@ from peewee import (
     DateField
 )
 
-from ..modules.database_handler import DataBaseHelper
+from ..modules.database_handler import DataBaseHandler
 
 
 class AdminFinderModel(Model):
     path = CharField(max_length=512)
 
     class Meta:
-        database = DataBaseHelper.db_main
+        database = DataBaseHandler.db_main

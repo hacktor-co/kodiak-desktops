@@ -22,9 +22,6 @@ class DbManagmentWindow(QDialog):
         self.__init_ui__()
         self.exec()
 
-        # AdminFinderModel.create(path="admin").save()
-        # AdminFinderModel.create(path="admin").save()
-        # DataBaseHelper().close()
     def __add_inclued_paths_layout__(self):
         frame = QFrame()
         frame.setAccessibleName(inclued_paths_section_style[0])

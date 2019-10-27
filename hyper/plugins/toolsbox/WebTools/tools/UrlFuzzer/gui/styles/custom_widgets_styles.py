@@ -7,6 +7,7 @@ table_view_show_result = (
             min-width: 1000px;
             max-width: 1000px;
             max-height: 360px;
+            color: white;
         }
     """
 )

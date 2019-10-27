@@ -3,7 +3,7 @@ from peewee import SqliteDatabase
 
 from os import getcwd
 
-class DataBaseHelper:
+class DataBaseHandler:
     db_path = getcwd() + "/plugins/toolsbox/WebTools/tools/UrlFuzzer/assets/data.db"
     db_main = SqliteDatabase(db_path)
 

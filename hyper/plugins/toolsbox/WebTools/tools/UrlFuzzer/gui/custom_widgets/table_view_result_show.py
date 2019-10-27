@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import (
     QTableWidget, QTableWidgetItem, QHeaderView
 )
 from PyQt5.QtCore import (Qt, pyqtSignal)
+from PyQt5.QtGui import QColor
 
 from ..styles.custom_widgets_styles import (
     table_view_show_result, table_view_show_result_horizontal_header
@@ -46,9 +47,16 @@ class TableViewShowResult(QTableWidget):
 
                 in_comingitem = QTableWidgetItem(item["response"]["result"]["url"])
                 in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
+
                 self.setItem(row_position, 0, in_comingitem)
 
                 in_comingitem = QTableWidgetItem(str(item["response"]["result"]["code"]))
+
+                if item["response"]["result"]["code"] != 200:
+                    in_comingitem.setBackground(QColor(205, 0, 0))
+                elif item["response"]["result"]["code"] == 200:
+                    in_comingitem.setBackground(QColor(0, 229, 0))
+
                 in_comingitem.setFlags(Qt.ItemIsEnabled | Qt.ItemIsSelectable | Qt.ItemIsDragEnabled)
                 self.setItem(row_position, 1, in_comingitem)
         except Exception:

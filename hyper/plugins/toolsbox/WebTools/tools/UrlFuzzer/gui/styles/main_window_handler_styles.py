@@ -179,5 +179,18 @@ all_failed_urls_label_style = (
             color: #E65757;
             border: 1px solid #C9C9C9;
         }
-    """
-)
+""")
+
+all_urls_label = ("all_urls_label", """
+    [accessibleName="all_urls_label"] {
+        border-radius: 24px;
+        padding: 10px;
+        min-width: 200px;
+        min-height: 30px;
+        max-width: 200px;
+        max-height: 30px;  
+        background-color: #3E3E3E;
+        color: white;
+        border: 1px solid #C9C9C9;
+    }
+""")

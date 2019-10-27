@@ -8,15 +8,28 @@ import requests
 from os import path
 
 from .common.constants import WEB_HEADERS
-from .modules.database_handler import DataBaseHelper
+from .modules.database_helper import DataBaseHelper
 
 requests.packages.urllib3.disable_warnings()
 
 
 def start_test_with_local_db(rhost: str):
-    # for item in get_data_from_db():
-    #     pass
-    pass
+
+    if rhost.endswith("/") is False:
+        rhost = rhost + "/"
+
+    for item in DataBaseHelper().get_all():
+        url_directory = rhost + item
+
+        response_code = requests.get(
+            url=url_directory, headers=WEB_HEADERS,
+            verify=False
+        ).status_code
+
+        yield ({
+            "code": response_code,
+            "url": url_directory
+        })
 
 
 def start_test_with_import_dict(rhost: str, file_path: str):
@@ -94,11 +107,10 @@ def main_handler(rhost: str, import_file_path: str = None, use_local_database: b
                 })
 
         elif use_local_database is True:
-            start_test_with_local_db(rhost)
-            # for item in start_test_with_local_db(rhost):
-            #     yield ({
-            #         "response": item
-            #     })ßß
+            for item in start_test_with_local_db(rhost):
+                yield ({
+                    "result": item
+                })
 
     else:
         return
