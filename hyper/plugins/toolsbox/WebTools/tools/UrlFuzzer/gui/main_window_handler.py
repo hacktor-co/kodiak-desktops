@@ -165,7 +165,7 @@ class MainWindowHandler(QWidget):
 
         frame = QFrame()
         v_label_layout = QVBoxLayout()
-        v_label_layout.setContentsMargins(842, 0, 0, 0)
+        v_label_layout.setContentsMargins(827, 0, 0, 0)
         v_label_layout.addStretch()
         self.all_urls_label = QLabel("All urls: 0")
         self.all_urls_label.setAccessibleName(all_urls_label[0])
