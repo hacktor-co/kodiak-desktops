@@ -9,6 +9,7 @@ import os
 
 GET_CWD = os.getcwd()  # current working directory
 
+
 def get_all_directory(path, level: int = 0) -> list:
     """
     get all directory that exist in path

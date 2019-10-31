@@ -22,6 +22,7 @@ from common.utils.pwd_helper import (
 from common.constants.consts import (
     DEFINE_PLUGIN_TOOLSBOX_PATH, DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH
 )
+from common.utils.os_helper import get_os_info
 
 
 class ToolsBoxScrollWidget(QWidget):
@@ -31,7 +32,11 @@ class ToolsBoxScrollWidget(QWidget):
         self.toolbox_holder_widget = toolbox_holder
 
         if self.isHidden() is not True:
-            self.setStyleSheet(main_widget_style_tool_box)
+
+            if get_os_info()["os"] == "Windows":
+                self.setStyleSheet(main_widget_style_tool_box_windows)
+            else:
+                self.setStyleSheet(main_widget_style_tool_box)
 
             form_layout = QFormLayout()
             form_layout.setAlignment(Qt.AlignBottom)

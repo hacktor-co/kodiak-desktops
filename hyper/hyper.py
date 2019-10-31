@@ -11,6 +11,7 @@
 from sys import argv
 
 from common.constants.console_color import ConsoleColor
+from common.utils.os_helper import get_os_info
 
 
 def main():
@@ -34,9 +35,11 @@ def main():
                 """ + ConsoleColor.WHITE
             )
         else:
+            from gui.gui_base import main as gui_main
             gui_main()
 
     except IndexError:
+        from gui.gui_base import main as gui_main
         gui_main()
 
 

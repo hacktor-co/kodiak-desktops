@@ -34,7 +34,6 @@ class MainWindow(QMainWindow):
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.addStretch()
 
-
         sidebar_widget = SideBarWidget(self, main_layout)
         main_layout.addWidget(sidebar_widget)
 

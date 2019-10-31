@@ -11,3 +11,11 @@ main_style = """
    max-height: 790px;
    min-height: 790px;
 """
+
+main_style_windows = """
+   min-width: 830px;
+   max-width: 830px;
+   max-height: 830px;
+   min-height: 830px;
+   border: none;
+"""

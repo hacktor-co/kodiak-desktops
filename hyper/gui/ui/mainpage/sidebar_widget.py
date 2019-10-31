@@ -19,6 +19,8 @@ from gui.common.styles.mainpage.sidebar_widget_styles import *
 from gui.ui.toolsboxpage.tools_box_scroll_widget import ToolsBoxScrollWidget
 from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
 from common.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
+from common.utils.os_helper import get_os_info
+
 
 class SideBarWidget(QWidget):
 
@@ -31,7 +33,9 @@ class SideBarWidget(QWidget):
         # end
         sidebar_layout = QVBoxLayout()
         sidebar_layout.addStretch()
+        sidebar_layout.addSpacing(0)
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
+
         self.setAccessibleName(main_widget_style[0])
         self.setStyleSheet(main_widget_style[1])
 
@@ -60,7 +64,11 @@ class SideBarWidget(QWidget):
         icon_holder.setPixmap(image)
 
         icon_holder.setAccessibleName(icon_holder_frame_style[0])
-        icon_holder.setStyleSheet(icon_holder_frame_style[1])
+        if get_os_info()["os"] == "Windows":
+            icon_holder.setStyleSheet(icon_holder_frame_style_windows[1])
+        else:
+            icon_holder.setStyleSheet(icon_holder_frame_style[1])
+
         icon_holder.setContentsMargins(0, 0, 0, 0)
 
         return icon_holder
@@ -70,14 +78,16 @@ class SideBarWidget(QWidget):
         button = QPushButton()
         button.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
         button.setIconSize(QSize(70, 70))
-
         button.setAccessibleName(selected_button[0])
-        button.setStyleSheet(selected_button[1])
+
+        if get_os_info()["os"] == "Windows":
+            button.setStyleSheet(selected_button_windows[1])
+        else:
+            button.setStyleSheet(selected_button[1])
 
         def create_tool_box_widget(tools_box_widget):
             if tools_box_widget.isHidden():
                 tools_box_widget.show()
-            print("Tools")
 
         button.clicked.connect(partial(create_tool_box_widget, self.tools_box_scroll_widget))
 
@@ -87,7 +97,11 @@ class SideBarWidget(QWidget):
     def __brain_button__():
         button = QPushButton()
         button.setAccessibleName(not_selected_button[0])
-        button.setStyleSheet(not_selected_button[1])
+
+        if get_os_info()["os"] == "Windows":
+            button.setStyleSheet(not_selected_button_windows[1])
+        else:
+            button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/brain_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
@@ -105,7 +119,11 @@ class SideBarWidget(QWidget):
     def __blackbox_button__():
         button = QPushButton()
         button.setAccessibleName(not_selected_button[0])
-        button.setStyleSheet(not_selected_button[1])
+
+        if get_os_info()["os"] == "Windows":
+            button.setStyleSheet(not_selected_button_windows[1])
+        else:
+            button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/black_box_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
@@ -123,7 +141,11 @@ class SideBarWidget(QWidget):
     def __report_menu_button__():
         button = QPushButton()
         button.setAccessibleName(not_selected_button[0])
-        button.setStyleSheet(not_selected_button[1])
+
+        if get_os_info()["os"] == "Windows":
+            button.setStyleSheet(not_selected_button_windows[1])
+        else:
+            button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/report_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
@@ -141,7 +163,11 @@ class SideBarWidget(QWidget):
     def __setting_menu_button__():
         button = QPushButton()
         button.setAccessibleName(not_selected_button[0])
-        button.setStyleSheet(not_selected_button[1])
+
+        if get_os_info()["os"] == "Windows":
+            button.setStyleSheet(not_selected_button_windows[1])
+        else:
+            button.setStyleSheet(not_selected_button[1])
 
         button.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))

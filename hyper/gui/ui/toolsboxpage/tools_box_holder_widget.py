@@ -22,13 +22,17 @@ from common.utils.pwd_helper import (
 )
 from gui.ui.toolsboxpage.tools_scroll_widget import ToolsScrollWidget
 from gui.common.styles.toolsboxpage.tools_box_holder_widget_styles import *
+from common.utils.os_helper import get_os_info
 
 
 class ToolsBoxHolderWidget(QWidget):
     def __init__(self, parent=None, boxname: str = ""):
         super(ToolsBoxHolderWidget, self).__init__(parent)
 
-        self.setStyleSheet(main_style)
+        if get_os_info()["os"] == "Windows":
+            self.setStyleSheet(main_style_windows)
+        else:
+            self.setStyleSheet(main_style)
 
         self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 

@@ -14,6 +14,15 @@ main_widget_style_tool_box = """
     padding-left: 5px;
 """
 
+main_widget_style_tool_box_windows = """
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 850px;
+    max-height: 850px;
+    padding-left: 5px;
+    border: none;
+"""
+
 tool_category_btn_style = ("tool_category_btn_style", """
     [accessibleName="tool_category_btn_style"] {
         background-color: #1F1F1F;
