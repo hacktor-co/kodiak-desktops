@@ -65,8 +65,8 @@ target_input_line_edit = (
 myfile_input_line_edit = (
     "myfile_input_line_edit", """
         [accessibleName="myfile_input_line_edit"] {
-            min-width: 355px;
-            max-width: 355px;
+            min-width: 380px;
+            max-width: 380px;
             min-height: 40px;
             max-height: 40px;
             color: white;
@@ -182,6 +182,20 @@ all_failed_urls_label_style = (
 """)
 
 all_urls_label = ("all_urls_label", """
+    [accessibleName="all_urls_label"] {
+        border-radius: 24px;
+        padding: 10px;
+        min-width: 200px;
+        min-height: 30px;
+        max-width: 200px;
+        max-height: 30px;  
+        background-color: #3E3E3E;
+        color: white;
+        border: 1px solid #C9C9C9;
+    }
+""")
+
+all_urls_label_windows = ("all_urls_label", """
     [accessibleName="all_urls_label"] {
         border-radius: 24px;
         padding: 10px;

@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
         menubar.setAccessibleName(menubar_styles[0])
         menubar.setStyleSheet(menubar_styles[1])
         # self.__add_setting_menu_bar__(menubar)
-        #self.__add__help_menu_bar__(menubar)
+        # self.__add__help_menu_bar__(menubar)
 
         self.__add_widgets__()
 

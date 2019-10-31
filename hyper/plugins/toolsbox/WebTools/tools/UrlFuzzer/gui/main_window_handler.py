@@ -11,6 +11,7 @@ from PyQt5.QtGui import QPixmap, QIcon
 from .custom_widgets.table_view_result_show import TableViewShowResult
 from ..tool_api_handler import execute_tool
 from .styles.main_window_handler_styles import *
+from ..modules.utils import get_os_info
 
 from functools import partial
 import threading
@@ -165,11 +166,17 @@ class MainWindowHandler(QWidget):
 
         frame = QFrame()
         v_label_layout = QVBoxLayout()
-        v_label_layout.setContentsMargins(827, 0, 0, 0)
+
+        if get_os_info()["os"] == "Windows":
+            v_label_layout.setContentsMargins(776, 0, 0, 0)
+        else:
+            v_label_layout.setContentsMargins(827, 0, 0, 0)
+
         v_label_layout.addStretch()
         self.all_urls_label = QLabel("All urls: 0")
         self.all_urls_label.setAccessibleName(all_urls_label[0])
         self.all_urls_label.setStyleSheet(all_urls_label[1])
+
         v_label_layout.addWidget(self.all_urls_label)
         frame.setLayout(v_label_layout)
         layout.addWidget(frame)
@@ -193,7 +200,12 @@ class MainWindowHandler(QWidget):
 
         frame = QFrame()
         v_label_layout = QVBoxLayout()
-        v_label_layout.setContentsMargins(339, 0, 0, 0)
+
+        if get_os_info()["os"] == "Windows":
+            v_label_layout.setContentsMargins(260, 0, 0, 0)
+        else:
+            v_label_layout.setContentsMargins(339, 0, 0, 0)
+
         v_label_layout.addStretch()
         self.all_faild_urls_label = QLabel("Failed url: 0")
         self.all_faild_urls_label.setAccessibleName(all_failed_urls_label_style[0])
@@ -229,7 +241,7 @@ class MainWindowHandler(QWidget):
 
         self.myfile_path = QLineEdit()
         self.myfile_path.setAttribute(Qt.WA_MacShowFocusRect, 0)
-        self.myfile_path.setContentsMargins(47, 0, 0, 0)
+        self.myfile_path.setContentsMargins(47, 0, 20, 0)
         self.myfile_path.setPlaceholderText("File path")
         self.myfile_path.setAccessibleName(myfile_input_line_edit[0])
         self.myfile_path.setStyleSheet(myfile_input_line_edit[1])
@@ -248,7 +260,11 @@ class MainWindowHandler(QWidget):
 
         frame = QFrame()
         v_label_layout = QVBoxLayout()
-        v_label_layout.setContentsMargins(210, 0, 0, 10)
+        if get_os_info()["os"] == "Windows":
+            v_label_layout.setContentsMargins(150, 0, 0, 10)
+        else:
+            v_label_layout.setContentsMargins(210, 0, 0, 10)
+
         v_label_layout.addStretch()
         self.all_success_urls_label = QLabel("Success urls: 0")
         self.all_success_urls_label.setAccessibleName(all_urls_label_style[0])
