@@ -4,30 +4,30 @@
     - Created on jun 5/2019 - hacktorco
     - All rights reserved for hacktor team
 
-    - This package hanle Fhack application that user select which kind of
+    - This package handle hyper application that user select which kind of
         application want to run, gui base or console base
 """
 
 from sys import argv
 
 from common.constants.console_color import ConsoleColor
-from console.console_base import main as console_main
-from gui.gui_base import main as gui_main
 
 
 def main():
     try:
 
         if str(argv[1]).lower() == "-c":
+            from console.console_base import main as console_main
             console_main()
         elif str(argv[1]).lower() == "-g":
+            from gui.gui_base import main as gui_main
             gui_main()
         elif str(argv[1]).lower() == "-h":
             print(
                ConsoleColor.MAGENTA + """
-                Thank you for using fhack => Fhack arguments is
-                    -c : for console base fhack
-                    -g : for gui base fhack
+                Thank you for using hyper => Hyper arguments is
+                    -c : for console base hyper
+                    -g : for gui base hyper
                     -h : for see this text
                 
                 @ http://hacktor.co
