@@ -22,8 +22,8 @@ setting_category_btn_style = ("setting_category_btn_style", """
         background-color: #1F1F1F;
         max-height: 134px;
         min-height: 134px;
-        min-width: 170px;
-        max-width: 170px;
+        min-width: 200px;
+        max-width: 200px;
         border: none;
     }
 """)

@@ -47,6 +47,8 @@ class SettingBoxScrollWidget(QWidget):
             group_box.setContentsMargins(0, 0, 0, 0)
 
             form_layout.addRow(self.__button_general_setting__())
+            form_layout.addRow(self.__button_services_setting__())
+            form_layout.addRow(self.__button_me_setting__())
 
             group_box.setLayout(form_layout)
 
@@ -70,6 +72,30 @@ class SettingBoxScrollWidget(QWidget):
         button.setContentsMargins(0, 0, 0, 0)
 
         button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/general_setting_btn_icon.svg")
+        button.setIconSize(QSize(70, 70))
+        button.setIcon(button_icon)
+
+        return button
+
+    def __button_services_setting__(self):
+        button = QPushButton()
+        button.setAccessibleName(setting_category_btn_style[0])
+        button.setStyleSheet(setting_category_btn_style[1])
+        button.setContentsMargins(0, 0, 0, 0)
+
+        button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/services_setting_btn_icon.svg")
+        button.setIconSize(QSize(70, 70))
+        button.setIcon(button_icon)
+
+        return button
+
+    def __button_me_setting__(self):
+        button = QPushButton()
+        button.setAccessibleName(setting_category_btn_style[0])
+        button.setStyleSheet(setting_category_btn_style[1])
+        button.setContentsMargins(0, 0, 0, 0)
+
+        button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/me_setting_btn_icon.svg")
         button.setIconSize(QSize(70, 70))
         button.setIcon(button_icon)
 
