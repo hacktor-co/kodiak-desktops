@@ -21,6 +21,7 @@ from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
 from common.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
 from common.utils.os_helper import get_os_info
 from gui.ui.settingpages.setting_box_scroll_widget import SettingBoxScrollWidget
+from gui.ui.settingpages.setting_page_menu_holder_widget import SettingPageMenuHolderWidget
 
 
 class SideBarWidget(QWidget):
@@ -33,7 +34,9 @@ class SideBarWidget(QWidget):
         self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname=DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW)
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
 
-        self.setting_box_scroll_widget = SettingBoxScrollWidget(parent)
+        self.setting_page_holder_widget = SettingPageMenuHolderWidget(parent)
+        self.setting_box_scroll_widget = SettingBoxScrollWidget(parent, setting_page_holder=self.setting_page_holder_widget)
+        self.setting_page_holder_widget.set_hide(True)
         self.setting_box_scroll_widget.set_hide(True)
         # end
 
@@ -54,6 +57,7 @@ class SideBarWidget(QWidget):
 
         self.setLayout(sidebar_layout)
 
+        self.main_layout.addWidget(self.setting_page_holder_widget)
         self.main_layout.addWidget(self.setting_box_scroll_widget)
         self.main_layout.addWidget(self.tools_box_holder_widget)
         self.main_layout.addWidget(self.tools_box_scroll_widget)
@@ -182,6 +186,7 @@ class SideBarWidget(QWidget):
             self.tools_box_scroll_widget.set_hide(True)
             self.tools_box_holder_widget.set_hide(True)
 
+            self.setting_page_holder_widget.set_hide(False)
             self.setting_box_scroll_widget.set_hide(False)
 
             if get_os_info()["os"] == "Windows":
@@ -207,6 +212,7 @@ class SideBarWidget(QWidget):
 
         elif button_name == "btn_toolbox_sidebar":
             self.setting_box_scroll_widget.set_hide(True)
+            self.setting_page_holder_widget.set_hide(True)
 
             self.tools_box_scroll_widget.set_hide(False)
             self.tools_box_holder_widget.set_hide(False)

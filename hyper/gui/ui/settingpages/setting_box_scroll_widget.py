@@ -26,10 +26,11 @@ from common.utils.os_helper import get_os_info
 
 
 class SettingBoxScrollWidget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, setting_page_holder=None):
         super(SettingBoxScrollWidget, self).__init__(parent)
 
         if self.isHidden() is not True:
+            self.setting_page_holder = setting_page_holder
 
             self.setLayoutDirection(Qt.RightToLeft)
 
@@ -75,6 +76,12 @@ class SettingBoxScrollWidget(QWidget):
         button.setIconSize(QSize(70, 70))
         button.setIcon(button_icon)
 
+        def show_general_setting_menus(parent):
+            parent.setting_page_holder.set_hide(False)
+            parent.setting_page_holder.create_widget("general")
+
+        button.clicked.connect(partial(show_general_setting_menus, self))
+
         return button
 
     def __button_services_setting__(self):
@@ -87,6 +94,12 @@ class SettingBoxScrollWidget(QWidget):
         button.setIconSize(QSize(70, 70))
         button.setIcon(button_icon)
 
+        def show_services_setting_menus(parent):
+            parent.setting_page_holder.set_hide(False)
+            parent.setting_page_holder.create_widget("services")
+
+        button.clicked.connect(partial(show_services_setting_menus, self))
+
         return button
 
     def __button_me_setting__(self):
@@ -98,6 +111,12 @@ class SettingBoxScrollWidget(QWidget):
         button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/me_setting_btn_icon.svg")
         button.setIconSize(QSize(70, 70))
         button.setIcon(button_icon)
+
+        def show_me_setting_menus(parent):
+            parent.setting_page_holder.set_hide(True)
+            parent.setting_page_holder.create_widget("me")
+
+        button.clicked.connect(partial(show_me_setting_menus, self))
 
         return button
 
