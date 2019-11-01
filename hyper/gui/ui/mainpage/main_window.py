@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
     - Created on jun 5/2019 - hacktorco
     - All rights reserved for hacktor team
@@ -11,9 +10,11 @@ from PyQt5.QtWidgets import (
     QMainWindow, QApplication, QHBoxLayout,
     QSizePolicy, QWidget
 )
+from PyQt5.QtGui import QIcon
 
 from gui.common.styles.mainpage.main_window_styles import *
 from gui.ui.mainpage.sidebar_widget import SideBarWidget
+from common.constants.consts import HYPER_GUI_ASSET_PATH
 
 
 class MainWindow(QMainWindow):
@@ -21,7 +22,7 @@ class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setWindowTitle("Hyper")
-
+        self.setWindowIcon(QIcon(HYPER_GUI_ASSET_PATH + "/main_logo.png"))
         self.__add_widgets__()
         self.__init_ui__()
 

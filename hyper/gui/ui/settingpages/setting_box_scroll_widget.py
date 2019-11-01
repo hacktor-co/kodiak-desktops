@@ -34,9 +34,9 @@ class SettingBoxScrollWidget(QWidget):
             self.setLayoutDirection(Qt.RightToLeft)
 
             if get_os_info()["os"] == "Windows":
-                self.setStyleSheet(main_widget_style_setting_box)
-            else:
                 self.setStyleSheet(main_widget_style_setting_box_windows)
+            else:
+                self.setStyleSheet(main_widget_style_setting_box)
 
             form_layout = QFormLayout()
             form_layout.setAlignment(Qt.AlignBottom)
