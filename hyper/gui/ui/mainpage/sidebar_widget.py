@@ -20,6 +20,7 @@ from gui.ui.toolsboxpage.tools_box_scroll_widget import ToolsBoxScrollWidget
 from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
 from common.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
 from common.utils.os_helper import get_os_info
+from gui.ui.settingpages.setting_box_scroll_widget import SettingBoxScrollWidget
 
 
 class SideBarWidget(QWidget):
@@ -30,7 +31,11 @@ class SideBarWidget(QWidget):
         # init all boxes layout
         self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname=DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW)
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
+
+        self.setting_box_scroll_widget = SettingBoxScrollWidget(parent)
+        self.setting_box_scroll_widget.set_hide(True)
         # end
+
         sidebar_layout = QVBoxLayout()
         sidebar_layout.addStretch()
         sidebar_layout.addSpacing(0)
@@ -75,23 +80,22 @@ class SideBarWidget(QWidget):
 
     def __tools_menu_button__(self):
 
-        button = QPushButton()
-        button.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
-        button.setIconSize(QSize(70, 70))
-        button.setAccessibleName(selected_button[0])
+        self.button_toolbox_page = QPushButton()
+        self.button_toolbox_page.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
+        self.button_toolbox_page.setIconSize(QSize(70, 70))
+        self.button_toolbox_page.setAccessibleName(selected_button[0])
 
         if get_os_info()["os"] == "Windows":
-            button.setStyleSheet(selected_button_windows[1])
+            self.button_toolbox_page.setStyleSheet(selected_button_windows[1])
         else:
-            button.setStyleSheet(selected_button[1])
+            self.button_toolbox_page.setStyleSheet(selected_button[1])
 
-        def create_tool_box_widget(tools_box_widget):
-            if tools_box_widget.isHidden():
-                tools_box_widget.show()
+        self.button_toolbox_page.setObjectName("btn_toolbox_sidebar")
+        self.button_toolbox_page.clicked.connect(
+            partial(self.set_style_onselected_button, self.button_toolbox_page.objectName())
+        )
 
-        button.clicked.connect(partial(create_tool_box_widget, self.tools_box_scroll_widget))
-
-        return button
+        return self.button_toolbox_page
 
     @staticmethod
     def __brain_button__():
@@ -106,12 +110,10 @@ class SideBarWidget(QWidget):
         button.setIcon(QIcon('./gui/assets/brain_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
 
-        def create_tool_box_widget():  # tools_box_widget):
-            # if tools_box_widget.isHidden():
-            #     tools_box_widget.show()
-            print("brain")
+        def create_tool_box_widget():
+            pass
 
-        button.clicked.connect(partial(create_tool_box_widget))  # , self.tools_box_scroll_widget))
+        button.clicked.connect(partial(create_tool_box_widget))
 
         return button
 
@@ -128,12 +130,10 @@ class SideBarWidget(QWidget):
         button.setIcon(QIcon('./gui/assets/black_box_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
 
-        def create_tool_box_widget():  # tools_box_widget):
-            # if tools_box_widget.isHidden():
-            #     tools_box_widget.show()
-            print("black box")
+        def create_tool_box_widget():
+            pass
 
-        button.clicked.connect(partial(create_tool_box_widget))  # , self.tools_box_scroll_widget))
+        button.clicked.connect(partial(create_tool_box_widget))
 
         return button
 
@@ -150,33 +150,83 @@ class SideBarWidget(QWidget):
         button.setIcon(QIcon('./gui/assets/report_img_fade_icon.svg'))
         button.setIconSize(QSize(70, 70))
 
-        def create_tool_box_widget():#tools_box_widget):
-            # if tools_box_widget.isHidden():
-            #     tools_box_widget.show()
+        def create_tool_box_widget():
             print("report")
 
-        button.clicked.connect(partial(create_tool_box_widget)) #, self.tools_box_scroll_widget))
+        button.clicked.connect(partial(create_tool_box_widget))
 
         return button
 
-    @staticmethod
-    def __setting_menu_button__():
-        button = QPushButton()
-        button.setAccessibleName(not_selected_button[0])
+    def __setting_menu_button__(self):
+        self.button_setting_page = QPushButton()
+        self.button_setting_page.setAccessibleName(not_selected_button[0])
+        self.button_setting_page.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
+        self.button_setting_page.setIconSize(QSize(70, 70))
 
         if get_os_info()["os"] == "Windows":
-            button.setStyleSheet(not_selected_button_windows[1])
+            self.button_setting_page.setStyleSheet(not_selected_button_windows[1])
         else:
-            button.setStyleSheet(not_selected_button[1])
+            self.button_setting_page.setStyleSheet(not_selected_button[1])
 
-        button.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
-        button.setIconSize(QSize(70, 70))
+        self.button_setting_page.setObjectName("btn_setting_sidebar")
+        self.button_setting_page.clicked.connect(
+            partial(self.set_style_onselected_button, self.button_setting_page.objectName())
+        )
 
-        def create_tool_box_widget():#tools_box_widget):
-            # if tools_box_widget.isHidden():
-            #     tools_box_widget.show()
-            print("setting")
+        return self.button_setting_page
 
-        button.clicked.connect(partial(create_tool_box_widget)) #, self.tools_box_scroll_widget))
+    def set_style_onselected_button(self, button_name):
+        if button_name == "btn_setting_sidebar":
+            self.tools_box_scroll_widget.set_hide(True)
+            self.tools_box_holder_widget.set_hide(True)
 
-        return button
+            self.setting_box_scroll_widget.set_hide(False)
+
+            if get_os_info()["os"] == "Windows":
+                self.button_setting_page.setAccessibleName(selected_button[0])
+                self.button_setting_page.setStyleSheet(selected_button_windows[1])
+
+                self.button_toolbox_page.setAccessibleName(not_selected_button[0])
+                self.button_toolbox_page.setStyleSheet(not_selected_button_windows[1])
+
+            else:
+                self.button_setting_page.setAccessibleName(selected_button[0])
+                self.button_setting_page.setStyleSheet(selected_button[1])
+
+                self.button_toolbox_page.setAccessibleName(not_selected_button[0])
+                self.button_toolbox_page.setStyleSheet(not_selected_button[1])
+
+            self.button_setting_page.setIcon(QIcon('./gui/assets/setting_img_icon.svg'))
+            self.button_setting_page.setIconSize(QSize(70, 70))
+
+            # set other icon to fade
+            self.button_toolbox_page.setIcon(QIcon('./gui/assets/tools_img_fade_icon.svg'))
+            self.button_toolbox_page.setIconSize(QSize(70, 70))
+
+        elif button_name == "btn_toolbox_sidebar":
+            self.setting_box_scroll_widget.set_hide(True)
+
+            self.tools_box_scroll_widget.set_hide(False)
+            self.tools_box_holder_widget.set_hide(False)
+
+            if get_os_info()["os"] == "Windows":
+                self.button_toolbox_page.setAccessibleName(selected_button[0])
+                self.button_toolbox_page.setStyleSheet(selected_button_windows[1])
+
+                self.button_setting_page.setAccessibleName(not_selected_button[0])
+                self.button_setting_page.setStyleSheet(not_selected_button_windows[1])
+
+            else:
+                self.button_toolbox_page.setAccessibleName(selected_button[0])
+                self.button_toolbox_page.setStyleSheet(selected_button[1])
+
+                self.button_setting_page.setAccessibleName(not_selected_button[0])
+                self.button_setting_page.setStyleSheet(not_selected_button[1])
+
+            self.button_toolbox_page.setIcon(QIcon('./gui/assets/tools_img_icon.svg'))
+            self.button_toolbox_page.setIconSize(QSize(70, 70))
+
+            # set other icon to fade
+            self.button_setting_page.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
+            self.button_setting_page.setIconSize(QSize(70, 70))
+

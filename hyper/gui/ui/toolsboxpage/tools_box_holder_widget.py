@@ -29,18 +29,20 @@ class ToolsBoxHolderWidget(QWidget):
     def __init__(self, parent=None, boxname: str = ""):
         super(ToolsBoxHolderWidget, self).__init__(parent)
 
-        if get_os_info()["os"] == "Windows":
-            self.setStyleSheet(main_style_windows)
-        else:
-            self.setStyleSheet(main_style)
+        if self.isHidden() == False:
 
-        self.tools_scroll_widget = ToolsScrollWidget(parent=self)
+            if get_os_info()["os"] == "Windows":
+                self.setStyleSheet(main_style_windows)
+            else:
+                self.setStyleSheet(main_style)
 
-        self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(0, 0, 0, 0)
-        self.layout.addStretch()
+            self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 
-        self.create_widget(boxname)
+            self.layout = QVBoxLayout(self)
+            self.layout.setContentsMargins(0, 0, 0, 0)
+            self.layout.addStretch()
+
+            self.create_widget(boxname)
 
     def create_widget(self, boxname):
 
@@ -57,3 +59,9 @@ class ToolsBoxHolderWidget(QWidget):
             tools_list_path.append(tool)
 
         self.tools_scroll_widget.generate_widget(tools_list_path, box_name=boxname)
+
+    def set_hide(self, hide):
+        if hide:
+            self.hide()
+        else:
+            self.show()

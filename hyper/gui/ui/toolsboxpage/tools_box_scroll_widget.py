@@ -84,3 +84,14 @@ class ToolsBoxScrollWidget(QWidget):
             layout.addStretch()
 
             layout.addWidget(scroll_area)
+
+    def set_hide(self, hide):
+        if hide == True:
+            self.isvisible = False
+            self.hide()
+        else:
+            self.isvisible = True
+            self.show()
+
+    def get_visible_status(self):
+        return self.isvisible
