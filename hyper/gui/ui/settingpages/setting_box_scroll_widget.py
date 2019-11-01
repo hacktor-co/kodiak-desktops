@@ -2,7 +2,7 @@
     - Created on Nov 1/2019 - hacktorco
     - All rights reserved for hacktor team
 
-    - scroll bar for setting box widget to show all title menu of settings
+    - scroll bar for tools box widget to show all tool headers
 """
 
 from functools import partial
@@ -20,72 +20,63 @@ from common.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
 from common.constants.consts import (
-    DEFINE_PLUGIN_TOOLSBOX_PATH, DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH
+    HYPER_GUI_ASSET_PATH
 )
 from common.utils.os_helper import get_os_info
 
 
 class SettingBoxScrollWidget(QWidget):
-
-    def __init__(self, parent=None, settingbox_holder=None):
+    def __init__(self, parent=None):
         super(SettingBoxScrollWidget, self).__init__(parent)
-        # self.settingbox_holder = settingbox_holder
+
         if self.isHidden() is not True:
 
+            self.setLayoutDirection(Qt.RightToLeft)
+
             if get_os_info()["os"] == "Windows":
-                self.setStyleSheet(main_widget_style_setting_box_windows)
-            else:
                 self.setStyleSheet(main_widget_style_setting_box)
+            else:
+                self.setStyleSheet(main_widget_style_setting_box_windows)
 
-            # form_layout = QFormLayout()
-            # form_layout.setAlignment(Qt.AlignBottom)
-            #
-            # group_box = QGroupBox()
-            # group_box.setAccessibleName(group_box_style[0])
-            # group_box.setStyleSheet(group_box_style[1])
-            # group_box.setContentsMargins(0, 0, 0, 0)
-            #
-            # button = QPushButton("General")
-            # button.setAccessibleName(tool_category_btn_style[0])
-            # button.setStyleSheet(tool_category_btn_style[1])
-            # button.setContentsMargins(0, 0, 0, 0)
+            form_layout = QFormLayout()
+            form_layout.setAlignment(Qt.AlignBottom)
 
-            # def selected_tools_box_widget(boxname, toolbox_holder_widgets):
-            #     toolbox_holder_widgets.create_widget(boxname)
+            group_box = QGroupBox()
+            group_box.setAccessibleName(setting_groupbox_style[0])
+            group_box.setStyleSheet(setting_groupbox_style[1])
+            group_box.setContentsMargins(0, 0, 0, 0)
 
-            # asset_path = (
-            #         GET_CWD + DEFINE_PLUGIN_TOOLSBOX_PATH + '/' +
-            #         tool_category + DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH + "/"
-            # )
-            #
-            # button_icon = QIcon(asset_path + tool_category)  # set icon's of all buttons that exist in toolboxs
-            # button.setIconSize(QSize(70, 70))
-            # button.setIcon(button_icon)
+            form_layout.addRow(self.__button_general_setting__())
 
-            # button.clicked.connect(partial(selected_tools_box_widget, tool_category, self.toolbox_holder_widget))
+            group_box.setLayout(form_layout)
 
-            # form_layout.addRow(button)
-            #
-            # group_box.setLayout(form_layout)
-            #
-            # scroll_area = QScrollArea()
-            # scroll_area.setAccessibleName(scroll_area_style[0])
-            # scroll_area.setStyleSheet(scroll_area_style[1])
-            # scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            # scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-            # scroll_area.setWidget(group_box)
-            #
-            # layout = QVBoxLayout(self)
-            # layout.setContentsMargins(0, 0, 0, 0)
-            # layout.addStretch()
-            #
-            # layout.addWidget(scroll_area)
+            scroll_area = QScrollArea()
+            scroll_area.setAccessibleName(setting_scroll_area_style[0])
+            scroll_area.setStyleSheet(setting_scroll_area_style[1])
+            scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            scroll_area.setWidget(group_box)
+
+            layout = QVBoxLayout(self)
+            layout.setContentsMargins(0, 0, 0, 0)
+            layout.addStretch()
+
+            layout.addWidget(scroll_area)
+
+    def __button_general_setting__(self):
+        button = QPushButton()
+        button.setAccessibleName(setting_category_btn_style[0])
+        button.setStyleSheet(setting_category_btn_style[1])
+        button.setContentsMargins(0, 0, 0, 0)
+
+        button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/general_setting_btn_icon.svg")
+        button.setIconSize(QSize(70, 70))
+        button.setIcon(button_icon)
+
+        return button
 
     def set_hide(self, hide):
-        if hide == True:
+        if hide:
             self.hide()
         else:
             self.show()
-
-    def get_visible_status(self):
-        return self.isHidden()

@@ -28,6 +28,7 @@ class SideBarWidget(QWidget):
     def __init__(self, parent=None, main_layout=None):
         super(SideBarWidget, self).__init__(parent)
 
+        self.main_layout = main_layout
         # init all boxes layout
         self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname=DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW)
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
@@ -53,8 +54,9 @@ class SideBarWidget(QWidget):
 
         self.setLayout(sidebar_layout)
 
-        main_layout.addWidget(self.tools_box_holder_widget)
-        main_layout.addWidget(self.tools_box_scroll_widget)
+        self.main_layout.addWidget(self.setting_box_scroll_widget)
+        self.main_layout.addWidget(self.tools_box_holder_widget)
+        self.main_layout.addWidget(self.tools_box_scroll_widget)
 
     @staticmethod
     def __icon_holder_frame__():
@@ -229,4 +231,3 @@ class SideBarWidget(QWidget):
             # set other icon to fade
             self.button_setting_page.setIcon(QIcon('./gui/assets/setting_img_fade_icon.svg'))
             self.button_setting_page.setIconSize(QSize(70, 70))
-
