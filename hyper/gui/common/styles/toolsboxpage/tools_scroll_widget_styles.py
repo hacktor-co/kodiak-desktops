@@ -23,7 +23,7 @@ scroll_area_style = ("scroll_area_style", """
 button_tool_style = ("button_tool_style", """
     [accessibleName="button_tool_style"] {
         min-width: 150px;
-        max-width: 15px;
+        max-width: 150px;
         min-height: 150px;
         max-height: 150px;
         background-color: #272E39;

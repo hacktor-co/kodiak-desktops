@@ -78,7 +78,7 @@ class SettingBoxScrollWidget(QWidget):
 
         def show_general_setting_menus(parent):
             parent.setting_page_holder.set_hide(False)
-            parent.setting_page_holder.create_widget("general")
+            parent.setting_page_holder.create_widget("General")
 
         button.clicked.connect(partial(show_general_setting_menus, self))
 

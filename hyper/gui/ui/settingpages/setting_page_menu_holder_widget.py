@@ -30,6 +30,8 @@ class SettingPageMenuHolderWidget(QWidget):
     def __init__(self, parent=None):
         super(SettingPageMenuHolderWidget, self).__init__(parent)
 
+        self.parent = parent
+
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
@@ -49,9 +51,12 @@ class SettingPageMenuHolderWidget(QWidget):
             else:
                 self.setStyleSheet(main_style)
 
-            b = QPushButton(boxname)
+            if boxname == "General":
+                from gui.ui.settingpages.general_setting_pages.main_handler_widget_general_setting import \
+                    MainHandlerWidgetGeneralSetting
 
-            self.layout.addWidget(b)
+                widget_add = MainHandlerWidgetGeneralSetting(self.parent)
+                self.layout.addWidget(widget_add)
 
     def set_hide(self, hide):
         if hide:
