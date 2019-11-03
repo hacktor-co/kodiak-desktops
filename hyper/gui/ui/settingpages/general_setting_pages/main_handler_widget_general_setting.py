@@ -8,7 +8,7 @@
 from functools import partial
 
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import (
     QWidget, QHBoxLayout, QLabel, QScrollArea,
     QPushButton, QFormLayout, QGroupBox, QVBoxLayout
@@ -41,18 +41,20 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.addStretch()
 
+        icon_holder = QLabel()
+        image = QPixmap('./gui/assets/general_setting_header_label_icon.svg')
+
+        icon_holder.setPixmap(image)
+        icon_holder.setAccessibleName(general_setting_label[0])
+        icon_holder.setStyleSheet(general_setting_label[1])
+
+        self.layout.addWidget(icon_holder)
 
         self.layout.addLayout(self.__add_menu_items__())
 
         self.setLayout(self.layout)
 
-
-    def __add_menu_items__(self):
-        menu_items_layout = QHBoxLayout()
-
-        menu_items_layout.addStretch()
-        menu_items_layout.setContentsMargins(0, 0, 0, 0)
-
+    def __add_list_header_section__(self) -> QVBoxLayout:
         menu_list_header_layout = QVBoxLayout()
         menu_list_header_layout.addStretch()
         menu_list_header_layout.setContentsMargins(0, 0, 0, 0)
@@ -65,12 +67,16 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         group_box.setStyleSheet(menu_general_setting_header_list_group_style[1])
         group_box.setContentsMargins(0, 0, 0, 0)
 
-        for item in range(0, 15):
-            button = QPushButton("Plugins " + str(item))
-            button.setAccessibleName(menu_general_setting_header_list_btn_style[0])
-            button.setStyleSheet(menu_general_setting_header_list_btn_style[1])
-            button.setContentsMargins(0, 0, 0, 0)
-            form_layout.addRow(button)
+        btn_plugin_manager = QPushButton("Plugins")
+        btn_plugin_manager.setAccessibleName(menu_general_setting_header_list_btn_style[0])
+        btn_plugin_manager.setStyleSheet(menu_general_setting_header_list_btn_style[1])
+
+        def show_plugins_setting_widgets():
+            print("page")
+
+        btn_plugin_manager.clicked.connect(show_plugins_setting_widgets)
+
+        form_layout.addWidget(btn_plugin_manager)
 
         group_box.setLayout(form_layout)
 
@@ -85,5 +91,47 @@ class MainHandlerWidgetGeneralSetting(QWidget):
 
         menu_list_header_layout.addWidget(scroll_area)
 
-        menu_items_layout.addLayout(menu_list_header_layout)
+        return menu_list_header_layout
+
+    def __add_selected_page_menu_items__(self) -> QVBoxLayout:
+
+        menu_list_header_layout = QVBoxLayout()
+        menu_list_header_layout.addStretch()
+        menu_list_header_layout.setContentsMargins(0, 0, 0, 0)
+
+        form_layout = QFormLayout()
+        form_layout.setAlignment(Qt.AlignBottom)
+
+        group_box = QGroupBox()
+        group_box.setAccessibleName(menu_general_setting_header_list_group_style[0])
+        group_box.setStyleSheet(menu_general_setting_header_list_group_style[1])
+        group_box.setContentsMargins(0, 0, 0, 0)
+
+
+
+        group_box.setLayout(form_layout)
+
+        scroll_area = QScrollArea()
+        scroll_area.setContentsMargins(0, 0, 0, 0)
+        scroll_area.setAccessibleName(menu_general_setting_selectedmenu_list_style[0])
+        scroll_area.setStyleSheet(menu_general_setting_selectedmenu_list_style[1])
+
+        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scroll_area.setWidget(group_box)
+
+        menu_list_header_layout.addWidget(scroll_area)
+
+        return menu_list_header_layout
+
+
+    def __add_menu_items__(self):
+        menu_items_layout = QHBoxLayout()
+
+        menu_items_layout.addStretch()
+        menu_items_layout.setContentsMargins(0, 0, 0, 0)
+
+        menu_items_layout.addLayout(self.__add_selected_page_menu_items__())
+        menu_items_layout.addLayout(self.__add_list_header_section__())
+
         return menu_items_layout

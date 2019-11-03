@@ -40,8 +40,8 @@ scroll_area_menu_general_list_header_style = ("scroll_area_menu_general_list_hea
 menu_general_setting_header_list_btn_style = ("menu_general_setting_header_list_btn_style", """
     [accessibleName="menu_general_setting_header_list_btn_style"] {
         color: #D1D6DB;
-        min-width: 120px;
-        max-width: 120px;
+        min-width: 130px;
+        max-width: 130px;
         min-height: 40px;
         max-height: 40px;
         background-color: #484848;
@@ -52,8 +52,32 @@ menu_general_setting_header_list_btn_style = ("menu_general_setting_header_list_
 menu_general_setting_header_list_group_style = ("menu_general_setting_header_list_group_style", """
     [accessibleName="menu_general_setting_header_list_group_style"] {
         background-color: transparent;
-        padding-left: 45px;
-        padding-right: 25px;
+        padding-left: 30px;
+        padding-right: 20px;
         border: none;
+    }
+""")
+
+menu_general_setting_selectedmenu_list_style = ("menu_general_setting_selectedmenu_list_style", """
+    [accessibleName="menu_general_setting_selectedmenu_list_style"] {
+        margin-Top:5px;
+        max-width: 520px;
+        min-width: 520px;
+        min-height: 700px;
+        max-height: 700px;
+        background-color: #292929;
+        border-radius: 10px;        
+        border: 1px solid #ACACAC;
+    }
+""")
+
+general_setting_label = ("general_setting_label", """
+    [accessibleName="general_setting_label"] {
+        min-width: 100px;
+        max-width: 100px;
+        padding-left: 310px;
+        min-height: 20px;
+        max-height: 20px;
+        color: white;
     }
 """)
