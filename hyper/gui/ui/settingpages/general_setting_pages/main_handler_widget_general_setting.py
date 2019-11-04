@@ -41,10 +41,7 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         self.layout.setContentsMargins(20, 0, 20, 27)
         self.layout.addStretch()
 
-        icon_holder = QLabel()
-        image = QPixmap('./gui/assets/general_setting_header_label_icon.svg')
-
-        icon_holder.setPixmap(image)
+        icon_holder = QLabel("General")
         icon_holder.setAccessibleName(general_setting_label[0])
         icon_holder.setStyleSheet(general_setting_label[1])
 
