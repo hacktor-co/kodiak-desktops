@@ -66,15 +66,15 @@ menu_general_setting_list_group_style = ("menu_general_setting_list_group_style"
         min-height: 700px;
         max-height: 700px;
         background-color: #292929;
-        border-radius: 10px;        
+        border-radius: 10px;
         border: 1px solid #ACACAC;
     }
 """)
 
 general_setting_label = ("general_setting_label", """
     [accessibleName="general_setting_label"] {
-        min-width: 150px;
-        max-width: 150px;
+        min-width: 300px;
+        max-width: 300px;
         padding-left: 310px;
         min-height: 30px;
         max-height: 30px;
