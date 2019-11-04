@@ -58,9 +58,9 @@ menu_general_setting_header_list_group_style = ("menu_general_setting_header_lis
     }
 """)
 
-menu_general_setting_selectedmenu_list_style = ("menu_general_setting_selectedmenu_list_style", """
-    [accessibleName="menu_general_setting_selectedmenu_list_style"] {
-        margin-Top:5px;
+menu_general_setting_list_group_style = ("menu_general_setting_list_group_style", """
+    [accessibleName="menu_general_setting_list_group_style"] {
+        margin-Top: 5px;
         max-width: 520px;
         min-width: 520px;
         min-height: 700px;
@@ -76,8 +76,8 @@ general_setting_label = ("general_setting_label", """
         min-width: 100px;
         max-width: 100px;
         padding-left: 310px;
-        min-height: 20px;
-        max-height: 20px;
+        min-height: 30px;
+        max-height: 30px;
         color: white;
     }
 """)
