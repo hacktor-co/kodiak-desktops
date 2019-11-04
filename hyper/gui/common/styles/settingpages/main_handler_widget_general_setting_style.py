@@ -3,7 +3,7 @@
     - All rights reserved for hacktor team
 """
 
-main_widget_style = ("main_widget_style","""
+main_widget_style = ("main_widget_style", """
     [accessibleName="main_widget_style"] {
        min-width: 773px;
        max-width: 773px;
@@ -13,7 +13,7 @@ main_widget_style = ("main_widget_style","""
     }
 """)
 
-main_widget_style_windows = ("main_widget_style","""
+main_widget_style_windows = ("main_widget_style", """
     [accessibleName="main_widget_style"] {
         min-width: 773px;
         max-width: 773px;

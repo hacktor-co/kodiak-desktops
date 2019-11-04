@@ -1,5 +1,8 @@
 """
+    - Created on Nov 4/2019 - hacktorco
+    - All rights reserved for hacktor team
 
+    - this package handle general page setting controls and widgets
 """
 
 from PyQt5.QtCore import Qt, QSize
@@ -33,7 +36,7 @@ class PluginManagerGeneralSetting:
         button_addplugin.setAccessibleName(plugin_manager_general_setting_btn_add_plugin_style[0])
         button_addplugin.setStyleSheet(plugin_manager_general_setting_btn_add_plugin_style[1])
         button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/add_plugin_general_setting_icon.svg")
-        button_addplugin.setIconSize(QSize(70, 70))
+        button_addplugin.setIconSize(QSize(100, 100))
         button_addplugin.setIcon(button_icon)
 
         h_box_layout.addWidget(button_addplugin)
@@ -69,5 +72,3 @@ class PluginManagerGeneralSetting:
 
     def get_layout(self):
         return self.layout
-
-
