@@ -83,8 +83,13 @@ class MainHandlerWidgetGeneralSetting(QWidget):
 
         scroll_area = QScrollArea()
         scroll_area.setContentsMargins(0, 0, 0, 0)
-        scroll_area.setAccessibleName(scroll_area_menu_general_list_header_style[0])
-        scroll_area.setStyleSheet(scroll_area_menu_general_list_header_style[1])
+
+        if get_os_info()["os"] == "Windows":
+            scroll_area.setAccessibleName(scroll_area_menu_general_list_header_style_windows[0])
+            scroll_area.setStyleSheet(scroll_area_menu_general_list_header_style_windows[1])
+        else:
+            scroll_area.setAccessibleName(scroll_area_menu_general_list_header_style[0])
+            scroll_area.setStyleSheet(scroll_area_menu_general_list_header_style[1])
 
         scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -102,8 +107,13 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         menu_list_header_layout.setAlignment(Qt.AlignTop)
 
         fram_layout = QFrame()
-        fram_layout.setAccessibleName(menu_general_setting_list_group_style[0])
-        fram_layout.setStyleSheet(menu_general_setting_list_group_style[1])
+        if get_os_info()["os"] == "Windows":
+            fram_layout.setAccessibleName(menu_general_setting_list_group_style_windows[0])
+            fram_layout.setStyleSheet(menu_general_setting_list_group_style_windows[1])
+        else:
+            fram_layout.setAccessibleName(menu_general_setting_list_group_style[0])
+            fram_layout.setStyleSheet(menu_general_setting_list_group_style[1])
+
         fram_layout.setContentsMargins(0, 0, 0, 0)
         fram_layout.setLayoutDirection(Qt.LeftToRight)
 

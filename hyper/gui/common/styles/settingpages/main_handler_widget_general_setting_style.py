@@ -37,6 +37,19 @@ scroll_area_menu_general_list_header_style = ("scroll_area_menu_general_list_hea
     }
 """)
 
+scroll_area_menu_general_list_header_style_windows = ("scroll_area_menu_general_list_header_style_windows", """
+    [accessibleName="scroll_area_menu_general_list_header_style_windows"] {
+        margin-Top: 5px;
+        max-width: 200px;
+        min-width: 200px;
+        min-height: 750px;
+        max-height: 750px;
+        background-color: #292929;
+        border-radius: 10px;        
+        border: 1px solid #ACACAC;
+    }
+""")
+
 menu_general_setting_header_list_btn_style = ("menu_general_setting_header_list_btn_style", """
     [accessibleName="menu_general_setting_header_list_btn_style"] {
         color: #D1D6DB;
@@ -65,6 +78,19 @@ menu_general_setting_list_group_style = ("menu_general_setting_list_group_style"
         min-width: 520px;
         min-height: 700px;
         max-height: 700px;
+        background-color: #292929;
+        border-radius: 10px;
+        border: 1px solid #ACACAC;
+    }
+""")
+
+menu_general_setting_list_group_style_windows = ("menu_general_setting_list_group_style_windows", """
+    [accessibleName="menu_general_setting_list_group_style_windows"] {
+        margin-Top: 5px;
+        max-width: 520px;
+        min-width: 520px;
+        min-height: 750px;
+        max-height: 750px;
         background-color: #292929;
         border-radius: 10px;
         border: 1px solid #ACACAC;
