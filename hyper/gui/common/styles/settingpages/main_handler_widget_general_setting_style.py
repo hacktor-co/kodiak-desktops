@@ -73,8 +73,8 @@ menu_general_setting_list_group_style = ("menu_general_setting_list_group_style"
 
 general_setting_label = ("general_setting_label", """
     [accessibleName="general_setting_label"] {
-        min-width: 100px;
-        max-width: 100px;
+        min-width: 150px;
+        max-width: 150px;
         padding-left: 310px;
         min-height: 30px;
         max-height: 30px;
