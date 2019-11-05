@@ -1,6 +1,7 @@
 {
   "name": "Directory finder",
   "version": "1.0.0.0",
+  "category": "WebTools",
   "author": {
     "name": "mohammad javad ghasempour",
     "country": "Iran",
@@ -13,5 +14,6 @@
         "color": "#fff"
     }
   },
-  "tool_tip": "find all directory that exist in web app"
+  "tool_tip": "find all directory that exist in web app",
+  "Description": ""
 }

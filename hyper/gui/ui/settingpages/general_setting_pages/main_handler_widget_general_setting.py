@@ -30,6 +30,8 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         super(MainHandlerWidgetGeneralSetting, self).__init__(parent)
         self.setAccessibleName(main_widget_style[0])
 
+        self.super_parent = parent
+
         self.setLayoutDirection(Qt.RightToLeft)
 
         if get_os_info()["os"] == "Windows":
@@ -51,6 +53,30 @@ class MainHandlerWidgetGeneralSetting(QWidget):
 
         self.setLayout(self.layout)
 
+        # show this section of setting in first action of this page
+        from gui.ui.settingpages.general_setting_pages.general_setting_plugin_manager \
+            import PluginManagerGeneralSetting
+        plugin_manager_page = PluginManagerGeneralSetting(self.super_parent)
+        self.selected_form_layout.addLayout(plugin_manager_page.get_layout())
+
+    def delete_items_of_layout(self, layout):
+        if layout is not None:
+            while layout.count():
+                item = layout.takeAt(0)
+                widget = item.widget()
+                if widget is not None:
+                    widget.setParent(None)
+                else:
+                    self.delete_items_of_layout(item.layout())
+
+    def box_delete(self, layout):
+        for i in range(layout.count()):
+            layout_item = layout.itemAt(i)
+            # if layout_item.layout() == box:
+            self.delete_items_of_layout(layout_item.layout())
+            # self.vlayout.removeItem(layout_item)
+            # break
+
     def __add_list_header_section__(self) -> QVBoxLayout:
         menu_list_header_layout = QVBoxLayout()
         menu_list_header_layout.addStretch()
@@ -69,10 +95,12 @@ class MainHandlerWidgetGeneralSetting(QWidget):
         btn_plugin_manager.setStyleSheet(menu_general_setting_header_list_btn_style[1])
 
         def show_plugins_setting_widgets(parent):
+            parent.box_delete(parent.selected_form_layout)
+
             from gui.ui.settingpages.general_setting_pages.general_setting_plugin_manager \
                 import PluginManagerGeneralSetting
 
-            plugin_manager_page = PluginManagerGeneralSetting()
+            plugin_manager_page = PluginManagerGeneralSetting(parent.super_parent)
             parent.selected_form_layout.addLayout(plugin_manager_page.get_layout())
 
         btn_plugin_manager.clicked.connect(partial(show_plugins_setting_widgets, self))

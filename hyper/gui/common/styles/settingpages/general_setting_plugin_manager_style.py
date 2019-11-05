@@ -21,5 +21,6 @@ plugin_manager_general_labels_style = ("plugin_manager_general_labels_style", ""
         max-width: 100px;
         min-height: 20px;
         max-height: 20px;
+        font-size: 15px;
     }
 """)

@@ -44,8 +44,7 @@ class SettingPageMenuHolderWidget(QWidget):
                 break
             self.layout.itemAt(i).widget().deleteLater()
 
-        if self.isHidden() == False:
-
+        if not self.isHidden():
             if get_os_info()["os"] == "Windows":
                 self.setStyleSheet(main_style_windows)
             else:

@@ -32,6 +32,9 @@ class SettingBoxScrollWidget(QWidget):
         if self.isHidden() is not True:
             self.setting_page_holder = setting_page_holder
 
+            self.setting_page_holder.set_hide(False)
+            self.setting_page_holder.create_widget("General")
+
             self.setLayoutDirection(Qt.RightToLeft)
 
             if get_os_info()["os"] == "Windows":

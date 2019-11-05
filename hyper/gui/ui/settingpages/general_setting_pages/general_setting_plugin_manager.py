@@ -3,13 +3,17 @@
     - All rights reserved for hacktor team
 
     - this package handle general page setting controls and widgets
+        on this page hyper will add plugin that user download it from
+        third paraty programmer.
 """
+
+from functools import partial
 
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import (
     QWidget, QHBoxLayout, QLabel, QScrollArea, QFrame,
-    QPushButton, QFormLayout, QGroupBox, QVBoxLayout,
+    QPushButton, QFormLayout, QVBoxLayout, QFileDialog
 )
 
 from common.constants.consts import (
@@ -19,12 +23,29 @@ from gui.common.styles.settingpages.general_setting_plugin_manager_style import 
 
 
 class PluginManagerGeneralSetting:
-    def __init__(self):
+    def __init__(self, parent=None):
+        # super(PluginManagerGeneralSetting, self).__init__(parent)
+        self.parent = parent
+
         self.layout = QVBoxLayout()
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.addStretch()
 
         self.__add_items__()
+
+    def __get_plugin_from_user__(self):
+        pass
+
+    def __clicked_btn_add_plugin__(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_name, _ = QFileDialog.getOpenFileName(
+            self.parent, "Select plugin", "",
+            "All zip files (*.zip)", options=options
+        )
+
+        if file_name:
+            print(file_name)
 
     def __add_items__(self):
 
@@ -38,6 +59,7 @@ class PluginManagerGeneralSetting:
         button_icon = QIcon(HYPER_GUI_ASSET_PATH + "/add_plugin_general_setting_icon.svg")
         button_addplugin.setIconSize(QSize(70, 70))
         button_addplugin.setIcon(button_icon)
+        button_addplugin.clicked.connect(partial(self.__clicked_btn_add_plugin__))
 
         h_box_layout.addWidget(button_addplugin)
 
@@ -65,6 +87,13 @@ class PluginManagerGeneralSetting:
         plugin_author.setStyleSheet(plugin_manager_general_labels_style[1])
 
         v_plugin_info_layout.addWidget(plugin_author)
+
+        category_label = QLabel("Category: ")
+        category_label.setContentsMargins(0, 0, 0, 0)
+        category_label.setAccessibleName(plugin_manager_general_labels_style[0])
+        category_label.setStyleSheet(plugin_manager_general_labels_style[1])
+
+        v_plugin_info_layout.addWidget(category_label)
 
         h_box_layout.addLayout(v_plugin_info_layout)
 
