@@ -23,6 +23,7 @@ from common.constants.consts import (
     HYPER_GUI_ASSET_PATH
 )
 from gui.common.styles.settingpages.general_setting_plugin_manager_style import *
+from common.utils.os_helper import get_os_info
 
 
 class PluginManagerGeneralSetting:
@@ -149,7 +150,10 @@ class PluginManagerGeneralSetting:
         self.text_line = QTextEdit()
         self.text_line.setReadOnly(True)
         self.text_line.setAccessibleName(text_description_style[0])
-        self.text_line.setStyleSheet(text_description_style[1])
+        if get_os_info()["os"] == "Windows":
+            self.text_line.setStyleSheet(text_description_style_windows[1])
+        else:
+            self.text_line.setStyleSheet(text_description_style[1])
 
         h_box_layout.addWidget(self.text_line)
 

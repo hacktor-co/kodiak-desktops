@@ -53,6 +53,21 @@ text_description_style = ("text_description_style", """
         color: #ddffff;
         min-width: 470px;
         max-width: 470px;
+        min-height: 360px;
+        max-height: 360px;
+        font-size: 15px;
+        border: 1px solid #707070;
+        background-color: #2e2631;
+        padding: 5px;
+        border-radius: 15px;
+    }
+""")
+
+text_description_style_windows = ("text_description_style", """
+    [accessibleName="text_description_style"] {
+        color: #ddffff;
+        min-width: 470px;
+        max-width: 470px;
         min-height: 400px;
         max-height: 400px;
         font-size: 15px;
