@@ -24,7 +24,7 @@ class AppLocationHolder(QWidget):
         layout_main.setContentsMargins(0, 0, 0, 5)
         layout_main.addStretch()
         self.setStyleSheet(main_style)
-
+        path = path.split('Tool')[0]
         location_holder = QLabel(path)
         location_holder.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
         location_holder.setStyleSheet(label_location_holder)

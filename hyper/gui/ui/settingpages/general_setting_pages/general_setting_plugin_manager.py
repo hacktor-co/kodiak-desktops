@@ -16,7 +16,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import (
     QWidget, QHBoxLayout, QLabel, QFrame, QTextEdit,
     QPushButton, QFormLayout, QVBoxLayout, QFileDialog,
-    QProgressBar
+    QProgressBar, QMessageBox
 )
 
 from common.constants.consts import (
@@ -24,6 +24,7 @@ from common.constants.consts import (
 )
 from gui.common.styles.settingpages.general_setting_plugin_manager_style import *
 from common.utils.os_helper import get_os_info
+from gui.ui.components.custom_widgets.message_boxs import message_box_error, message_box_information
 
 
 class PluginManagerGeneralSetting:
@@ -40,20 +41,35 @@ class PluginManagerGeneralSetting:
         self.__add_submit_section__()
 
     def __btn_extract_plugin_clicked__(self):
-        with zipfile.ZipFile(self.file_name, 'r') as zip_file:
-            with zip_file.open(self.zip_name + "/wire.json", "r") as wire_file:
-                wire = json_load(wire_file.read())
-                zip_file.extractall("./plugins/toolsbox/" + str(wire["category"]) + "/tools/")
-        del self.zip_name, self.file_name
+        try:
+            with zipfile.ZipFile(self.file_name, 'r') as zip_file:
+                with zip_file.open(self.zip_name + "/wire.json", "r") as wire_file:
+                    self.progress_bar.show()
+                    counts = len([file_ for file_ in zip_file.filelist])
+                    file_counter = counts / 100
+                    percent = 0
+                    wire = json_load(wire_file.read())
+                    for item in zip_file.infolist():
+                        zip_file.extract(item, "./plugins/toolsbox/" + str(wire["category"]) + "/tools/")
+                        percent += file_counter
+                        self.progress_bar.setValue(percent)
+                        # if percent == 100 or percent > 100:
+                        #     message_box_information("Information", "Done", "Plugin successfully added to huper")
+                        #     break
+
+            del self.zip_name, self.file_name
+        except Exception:
+            message_box_error("Error", "Error", "Please select your plugin first")
 
     def __get_plugin_from_user__(self, file_path, zip_name):
         with zipfile.ZipFile(file_path, 'r') as zip_file:
+            zip_kb = float(sum([zinfo.file_size for zinfo in zip_file.filelist])) / 1000
             with zip_file.open(zip_name + "/wire.json", "r") as wire_file:
                 wire = json_load(wire_file.read())
                 self.category_label.setText("Category: " + str(wire["category"]))
                 self.version_label.setText("Version: " + str(wire["version"]))
                 self.plugin_author.setText("Author: " + str(wire["author"]["name"]))
-                self.plugin_size.setText("Size: " + str(465))
+                self.plugin_size.setText("Size: " + str(zip_kb) + " KB")
                 self.plugin_name.setText("Name: " + str(wire["name"]))
                 self.text_line.setText(str(wire["description"]))
 
@@ -172,11 +188,13 @@ class PluginManagerGeneralSetting:
 
         h_box_layout.addWidget(submit_button)
 
-        progress_bar = QProgressBar()
-        progress_bar.setAccessibleName(progress_bar_add_plugin_setting_style[0])
-        progress_bar.setStyleSheet(progress_bar_add_plugin_setting_style[1])
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setAccessibleName(progress_bar_add_plugin_setting_style[0])
+        self.progress_bar.setStyleSheet(progress_bar_add_plugin_setting_style[1])
+        self.progress_bar.setAlignment(Qt.AlignCenter)
+        self.progress_bar.hide()
 
-        h_box_layout.addWidget(progress_bar)
+        h_box_layout.addWidget(self.progress_bar)
 
         self.layout.addLayout(h_box_layout)
 

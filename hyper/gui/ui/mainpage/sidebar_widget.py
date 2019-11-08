@@ -30,6 +30,8 @@ class SideBarWidget(QWidget):
 
         self.main_layout = main_layout
         # init all boxes layout
+        self.parent = parent
+
         self.tools_box_holder_widget = ToolsBoxHolderWidget(parent, boxname=DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW)
         self.tools_box_scroll_widget = ToolsBoxScrollWidget(parent, toolbox_holder=self.tools_box_holder_widget)
 
