@@ -51,8 +51,8 @@ class SettingBoxScrollWidget(QWidget):
             group_box.setContentsMargins(0, 0, 0, 0)
 
             form_layout.addRow(self.__button_general_setting__())
-            form_layout.addRow(self.__button_services_setting__())
-            form_layout.addRow(self.__button_me_setting__())
+            # form_layout.addRow(self.__button_services_setting__())
+            # form_layout.addRow(self.__button_me_setting__())
 
             group_box.setLayout(form_layout)
 

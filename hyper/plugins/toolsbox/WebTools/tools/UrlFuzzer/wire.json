@@ -1,0 +1,19 @@
+{
+  "name": "Directory finder",
+  "version": "1.0.0.0",
+  "category": "WebTools",
+  "author": {
+    "name": "mohammad javad ghasempour",
+    "country": "Iran",
+    "email": "topcodermc@gmail.com"
+  },
+  "requirements": [],
+  "assets": {
+    "css": {
+        "border": "2px solid yellow",
+        "color": "#fff"
+    }
+  },
+  "tool_tip": "find all directory that exist in web app",
+  "description": "with this tools you can find all posible url that web site has."
+}
