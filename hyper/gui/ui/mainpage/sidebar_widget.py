@@ -17,8 +17,8 @@ from PyQt5.QtWidgets import (
 from gui.common.styles.mainpage.sidebar_widget_styles import *
 from gui.ui.toolsboxpage.tools_box_scroll_widget import ToolsBoxScrollWidget
 from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
-from common.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
-from common.utils.os_helper import get_os_info
+from incommon.constants.consts import DEFINE_FIRST_TOOLBOX_PACKAGE_TO_SHOW
+from incommon.utils.os_helper import get_os_info
 from gui.ui.settingpages.setting_box_scroll_widget import SettingBoxScrollWidget
 from gui.ui.settingpages.setting_page_menu_holder_widget import SettingPageMenuHolderWidget
 

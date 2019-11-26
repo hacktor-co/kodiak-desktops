@@ -14,7 +14,7 @@ from PyQt5.QtGui import QIcon
 
 from gui.common.styles.mainpage.main_window_styles import *
 from gui.ui.mainpage.sidebar_widget import SideBarWidget
-from common.constants.consts import HYPER_GUI_ASSET_PATH
+from incommon.constants.consts import HYPER_GUI_ASSET_PATH
 
 
 class MainWindow(QMainWindow):

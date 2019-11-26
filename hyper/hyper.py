@@ -10,8 +10,8 @@
 
 from sys import argv
 
-from common.constants.console_color import ConsoleColor
-from common.utils.os_helper import get_os_info
+from incommon.constants.console_color import ConsoleColor
+from incommon.utils.os_helper import get_os_info
 
 
 def main():

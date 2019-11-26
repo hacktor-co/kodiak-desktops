@@ -19,11 +19,11 @@ from PyQt5.QtWidgets import (
     QProgressBar, QMessageBox
 )
 
-from common.constants.consts import (
+from incommon.constants.consts import (
     HYPER_GUI_ASSET_PATH
 )
 from gui.common.styles.settingpages.general_setting_plugin_manager_style import *
-from common.utils.os_helper import get_os_info
+from incommon.utils.os_helper import get_os_info
 from gui.ui.components.custom_widgets.message_boxs import message_box_error, message_box_information
 
 

@@ -16,13 +16,13 @@ from PyQt5.QtWidgets import (
 
 from gui.common.styles.settingpages.setting_box_scroll_widget_style import *
 from gui.ui.toolsboxpage.tools_box_holder_widget import ToolsBoxHolderWidget
-from common.utils.pwd_helper import (
+from incommon.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
-from common.constants.consts import (
+from incommon.constants.consts import (
     HYPER_GUI_ASSET_PATH
 )
-from common.utils.os_helper import get_os_info
+from incommon.utils.os_helper import get_os_info
 
 
 class SettingBoxScrollWidget(QWidget):
