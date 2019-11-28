@@ -42,7 +42,7 @@ you need to install your own plugin.
 |hacktor|creator and programmer|hacktor@hacktor.co
 
 # SUPPORTED DISTRIBUTIONS
-|Distribution | Version Check | supported | builded |status |
+|Distribution | Version Check | released | builded |status |
 ----------|-------|------|------|-------|
 |Linux|1.0.0.0-alpha|Yes|Yes|working|
 |OSx|1.0.0.0-alpha|No|Yes|working|
