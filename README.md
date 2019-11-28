@@ -9,7 +9,7 @@
 (Hyper motor for desktops) this application is main service for hyper-x core.
 
 <p align="center">
-  <img src="./pics/main.png" alt="Size Limit CLI" width="738">
+  <img src="./pics/main.png" width="738">
 </p>
 
 # Community
