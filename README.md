@@ -19,7 +19,7 @@ computer systems and services all over the world.
 Even network engineers and network security engineers can test the 
 security of their systems with a few clicks to install security AddOn.
 This app is written in a plugin and you can download it from the link 
-<a href="(https://github.com/hacktor-co/hyper-plugins.git)"> here </a>
+(https://github.com/hacktor-co/hyper-plugins.git)
 Install it and use it in your Hyper-X You will automatically be added to 
 all your user platforms by installing the plugin if it has the ability 
 to support web and mobile.
