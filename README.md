@@ -1,4 +1,4 @@
-#Hyper-Desktop
+# Hyper-x Desktop
 
 ![CORE](https://img.shields.io/badge/core-0.0.1.25-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.7-green.svg)
@@ -7,6 +7,10 @@
 # ABOUT.
 
 (Hyper motor for desktops) this application is main service for hyper-x core.
+
+<p align="center">
+  <img src="./pics/main.png" alt="Size Limit CLI" width="738">
+</p>
 
 # Community
 
@@ -20,3 +24,10 @@
 |Linux|1|Yes|Yes|working|
 |OSx|1|No|Yes|working|
 |Windows|1|No|Yes|working|
+
+### Linux platforms
+
+Last release = 1.0.0.0-alpha
+
+How to install Hyper-X on linux platforms
+	Download it from hacktor.co or from here then double click on hyper then use it.
