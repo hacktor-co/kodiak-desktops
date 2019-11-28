@@ -19,11 +19,11 @@
 |hacktor|creator and programmer|hacktor@hacktor.co
 
 # SUPPORTED DISTRIBUTIONS
-|Distribution | Version Check | supported | dependencies already installed |status |
+|Distribution | Version Check | supported | builded |status |
 ----------|-------|------|------|-------|
-|Linux|1|Yes|Yes|working|
-|OSx|1|No|Yes|working|
-|Windows|1|No|Yes|working|
+|Linux|1.0.0.0-alpha|Yes|Yes|working|
+|OSx|1.0.0.0-alpha|No|Yes|working|
+|Windows|1.0.0.0-alpha|No|No|working|
 
 ### Linux platforms
 
