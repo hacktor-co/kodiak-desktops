@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./pics/logo.png">
+</p>
+
 # Hyper-x Desktop
 
 ![CORE](https://img.shields.io/badge/core-0.0.1.25-green.svg)
