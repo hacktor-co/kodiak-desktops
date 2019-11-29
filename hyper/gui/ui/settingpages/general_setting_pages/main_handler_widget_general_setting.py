@@ -23,6 +23,7 @@ from incommon.utils.pwd_helper import (
 from gui.ui.toolsboxpage.tools_scroll_widget import ToolsScrollWidget
 from gui.common.styles.settingpages.main_handler_widget_general_setting_style import *
 from incommon.utils.os_helper import get_os_info
+from incommon.utils.widget_helper import box_delete
 
 
 class MainHandlerWidgetGeneralSetting(QWidget):
