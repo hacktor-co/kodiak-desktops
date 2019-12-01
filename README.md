@@ -53,8 +53,9 @@ you need to install your own plugin.
 |Windows|1.0.0.0-alpha|No|No|working|
 
 ### Linux platforms
-
-Last release = 1.0.0.0-alpha
-
 How to install Hyper-X on linux platforms
-	Download it from hacktor.co or from here then double click on hyper then use it.
+        Download it from hacktor.co or from here then double click on hyper then use it.
+
+### OSx platforms
+How to install Hyper-X on Mac Os
+        Dowload it from hacktor.co or from here then got to directory with terminal and execute this command line => ./hyper
