@@ -20,6 +20,15 @@ scroll_area_style = ("scroll_area_style", """
     }
 """)
 
+scroll_area_style_windows = ("scroll_area_style", """
+    [accessibleName="scroll_area_style"] {
+        background-color: transparent;
+        border: none;
+        max-height: 830px;
+        min-height: 830px;
+    }
+""")
+
 button_tool_style = ("button_tool_style", """
     [accessibleName="button_tool_style"] {
         min-width: 150px;

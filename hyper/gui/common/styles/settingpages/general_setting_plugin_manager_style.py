@@ -101,6 +101,5 @@ progress_bar_add_plugin_setting_style = ("progress_bar_add_plugin_setting_style"
         font-size: 15px;
         border: 1px solid #707070;
         background-color: #fff;
-        border-radius: 15px;
     }
 """)
