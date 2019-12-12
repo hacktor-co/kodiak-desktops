@@ -4,7 +4,7 @@
 
 # Hyper-x Desktop
 
-![CORE](https://img.shields.io/badge/core-0.0.1.25-green.svg)
+![CORE](https://img.shields.io/badge/core-0.0.1.26-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.7-green.svg)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-green.svg)
 
@@ -39,23 +39,21 @@ you need to install your own plugin.
   <img src="./pics/main.png" width="738">
 </p>
 
-# Community
-
-|name | post | Email |
-----------|------------|-------|
-|hacktor|creator and programmer|hacktor@hacktor.co
-
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | released | builded |status |
 ----------|-------|------|------|-------|
 |Linux|1.0.0.0-alpha|Yes|Yes|working|
 |OSx|1.0.0.0-alpha|Yes|Yes|working|
-|Windows|1.0.0.0-alpha|No|No|working|
+|Windows|1.0.0.0-alpha|Yes|Yes|working|
 
 ### Linux platforms
 How to install Hyper-X on linux platforms
-        Download it from hacktor.co or from here then double click on hyper then use it.
+        Download it from hacktor.co web site or from here then double click on hyper then use it.
 
 ### OSx platforms
 How to install Hyper-X on Mac Os
-        Dowload it from hacktor.co or from here then got to directory with terminal and execute this command line => ./hyper
+        Dowload it from hacktor.co web site or from here then got to directory with terminal and execute this command line => ./hyper
+
+### Windows platforms
+How to run Hyper-X on Windows
+        Download it from hacktor.co web site or from here then double click on hyper.exe then use it.
