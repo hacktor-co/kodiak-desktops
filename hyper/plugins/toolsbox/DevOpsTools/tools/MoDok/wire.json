@@ -1,0 +1,19 @@
+{
+  "name": "MoDok",
+  "version": "1.0.0.0",
+  "category": "DevOpsTools",
+  "author": {
+    "name": "mohammad javad ghasempour",
+    "country": "Iran",
+    "email": "topcodermc@gmail.com"
+  },
+  "requirements": [],
+  "assets": {
+    "css": {
+        "border": "2px solid #FFE400",
+        "color": "#fff"
+    }
+  },
+  "tool_tip": "montoring you all docker systems",
+  "description": "By this tool you can monitoring you all dockerize systems and you even can change it configs remove."
+}
