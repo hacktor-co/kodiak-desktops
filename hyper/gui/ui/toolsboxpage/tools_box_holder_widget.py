@@ -29,12 +29,13 @@ class ToolsBoxHolderWidget(QWidget):
     def __init__(self, parent=None, boxname: str = ""):
         super(ToolsBoxHolderWidget, self).__init__(parent)
 
-        if self.isHidden() == False:
+        if not self.isHidden():
 
+            self.setAccessibleName(main_style[0])
             if get_os_info()["os"] == "Windows":
-                self.setStyleSheet(main_style_windows)
+                self.setStyleSheet(main_style_windows[1])
             else:
-                self.setStyleSheet(main_style)
+                self.setStyleSheet(main_style[1])
 
             self.tools_scroll_widget = ToolsScrollWidget(parent=self)
 

@@ -18,12 +18,11 @@ from PyQt5.QtWidgets import (
     QPushButton, QGroupBox
 )
 
-from gui.common.styles.toolsboxpage.tools_scroll_widget_styles import (
-    button_tool_style, scroll_area_style, group_box_style
-)
+from gui.common.styles.toolsboxpage.tools_scroll_widget_styles import *
 from incommon.utils.pwd_helper import (
     get_all_directory, GET_CWD
 )
+from incommon.utils.os_helper import get_os_info
 from incommon.constants.consts import (
     DEFINE_PLUGIN_TOOLSBOX_PATH, DEFINE_PLUGIN_TOOLSBOX_ASSET_PATH
 )
@@ -164,7 +163,12 @@ class ToolsScrollWidget(QWidget):
 
         scroll_area = QScrollArea()
         scroll_area.setAccessibleName(scroll_area_style[0])
-        scroll_area.setStyleSheet(scroll_area_style[1])
+
+        if get_os_info()["os"] == "Windows":
+            scroll_area.setStyleSheet(scroll_area_style_windows[1])
+        else:
+            scroll_area.setStyleSheet(scroll_area_style[1])
+
         scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         scroll_area.setWidget(group_box)
