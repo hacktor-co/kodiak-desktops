@@ -17,12 +17,6 @@ group_box_style = ("group_box_style", """
 scroll_area_style = ("scroll_area_style", """
     [accessibleName="scroll_area_style"] {
         background-color: transparent;
-    }
-""")
-
-scroll_area_style_windows = ("scroll_area_style", """
-    [accessibleName="scroll_area_style"] {
-        background-color: transparent;
         border: none;
         max-height: 830px;
         min-height: 830px;
