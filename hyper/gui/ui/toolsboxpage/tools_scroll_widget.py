@@ -46,7 +46,7 @@ class ToolsScrollWidget(QWidget):
         )
 
         plugin_module = import_module(plugin_module_path, ".")
-        plugin = plugin_module.MainWindow()
+        plugin = plugin_module.GUIHandler()
 
         return plugin.execute_app
 
