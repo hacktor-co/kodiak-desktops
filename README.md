@@ -40,9 +40,9 @@ HyperX easy access to information systems.
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | released | builded |status |
 ----------|-------|------|------|-------|
-|Linux|1.0.0.0-alpha|Yes|Yes|working|
-|OSx|1.0.0.0-alpha|Yes|Yes|working|
-|Windows|1.0.0.0-alpha|Yes|Yes|working|
+|Linux|1.0.0.1-alpha|Yes|Yes|working|
+|OSx|1.0.0.1-alpha|Yes|Yes|working|
+|Windows|1.0.0.1-alpha|Yes|Yes|working|
 
 ### Linux platforms
 How to install Hyper-X on linux platforms
