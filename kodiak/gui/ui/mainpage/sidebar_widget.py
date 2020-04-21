@@ -68,9 +68,7 @@ class SideBarWidget(QWidget):
 
         icon_holder = QLabel()
 
-        image = QPixmap('./gui/assets/fhack_main_ico.svg')
-
-        image.scaled(10, 10)
+        image = QPixmap('./gui/assets/kodiak_holder_icon.svg')
 
         icon_holder.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
         icon_holder.setPixmap(image)

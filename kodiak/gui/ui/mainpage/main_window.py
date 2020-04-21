@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        self.setWindowTitle("Hyper")
+        self.setWindowTitle("Kodiak")
         self.setWindowIcon(QIcon(HYPER_GUI_ASSET_PATH + "/main_logo.png"))
         self.__add_widgets__()
         self.__init_ui__()
