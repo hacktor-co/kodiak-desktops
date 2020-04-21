@@ -16,9 +16,7 @@ from gui.ui.mainpage.main_window import MainWindow
 
 def main():
     app = QApplication(sys.argv)
-
-    hwnd_main = MainWindow()
-
+    MainWindow()
     sys.exit(app.exec_())
 
 
