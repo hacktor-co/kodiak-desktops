@@ -32,7 +32,7 @@ KodiakX easy access to information systems.
 
 
 <p align="center">
-  <img src="./pics/main.png" width="738">
+  <img src="./pics/main.jpg" width="738">
 </p>
 
 # SUPPORTED DISTRIBUTIONS
