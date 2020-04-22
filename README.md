@@ -4,9 +4,7 @@
 
 # Hyper-x Desktop
 
-![CORE](https://img.shields.io/badge/core-0.0.1.26-green.svg)
-![Python](https://img.shields.io/badge/Python-3.7-green.svg)
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-green.svg)
+![CORE](https://img.shields.io/badge/core-0.0.1.27-green.svg)
 
 # ABOUT.
 
@@ -40,9 +38,9 @@ HyperX easy access to information systems.
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | released | builded |status |
 ----------|-------|------|------|-------|
-|Linux|1.0.0.0-alpha|Yes|Yes|working|
-|OSx|1.0.0.0-alpha|Yes|Yes|working|
-|Windows|1.0.0.0-alpha|Yes|Yes|working|
+|Linux|1.0.0.1-alpha|Yes|Yes|working|
+|OSx|1.0.0.1-alpha|Yes|Yes|working|
+|Windows|1.0.0.1-alpha|Yes|Yes|working|
 
 ### Linux platforms
 How to install Hyper-X on linux platforms
