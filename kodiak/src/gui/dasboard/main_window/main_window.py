@@ -60,8 +60,8 @@ class DashboardMainWindow(QMainWindow):
         self.containers.setLineWidth(0)
         #Add Navigation
         self.navigation_menu = QFrame(self.containers)
-        self.navigation_menu.setObjectName("navigation_menu")
-        self.navigation_menu.setStyleSheet(DashboardMainWindowStyles.navigation_menu_style)
+        self.navigation_menu.setObjectName(DashboardMainWindowStyles.navigation_menu_style[0])
+        self.navigation_menu.setStyleSheet(DashboardMainWindowStyles.navigation_menu_style[1])
         self.navigation_menu.setGeometry(QRect(1275, -10, 71, 948))
         self.navigation_menu.setFrameShape(QFrame.StyledPanel)
         self.navigation_menu.setFrameShadow(QFrame.Raised)
@@ -74,15 +74,15 @@ class DashboardMainWindow(QMainWindow):
         #Add LblTime
         self.lbl_time = QLabel(self.navigation_menu)
         self.lbl_time.setGeometry(QRect(0, 120, 69, 20))
-        self.lbl_time.setStyleSheet(DashboardMainWindowStyles.lbl_time_style)
+        self.lbl_time.setObjectName(DashboardMainWindowStyles.lbl_time_style[0])
+        self.lbl_time.setStyleSheet(DashboardMainWindowStyles.lbl_time_style[1])
         self.lbl_time.setAlignment(Qt.AlignCenter)
-        self.lbl_time.setObjectName("lbl_time")
         #Add lblDate
         self.lbl_date = QLabel(self.navigation_menu)
         self.lbl_date.setGeometry(QRect(0, 140, 71, 21))
-        self.lbl_date.setStyleSheet(DashboardMainWindowStyles.lbl_date_style)
+        self.lbl_date.setObjectName(DashboardMainWindowStyles.lbl_date_style[0])
+        self.lbl_date.setStyleSheet(DashboardMainWindowStyles.lbl_date_style[1])
         self.lbl_date.setAlignment(Qt.AlignCenter)
-        self.lbl_date.setObjectName("lbl_date")
 
         self.verticalLayoutWidget = QWidget(self.navigation_menu)
         self.verticalLayoutWidget.setGeometry(QRect(0, 290, 64, 431))
@@ -171,46 +171,46 @@ class DashboardMainWindow(QMainWindow):
         self.location_box =  QLabel(self.containers)
         self.location_box.setGeometry(QRect(488, 22, 370, 33))
         self.location_box.setCursor(QCursor(Qt.PointingHandCursor))
-        self.location_box.setStyleSheet(DashboardMainWindowStyles.search_box_style)
+        self.location_box.setObjectName(DashboardMainWindowStyles.search_box_style[0])
+        self.location_box.setStyleSheet(DashboardMainWindowStyles.search_box_style[1])
         self.location_box.setAlignment(Qt.AlignCenter)
         self.location_box.setOpenExternalLinks(False)
-        self.location_box.setObjectName("location_box")
-       
+        #icon in location box
         self.icon_location_box = QLabel(self.containers)
         self.icon_location_box.setGeometry(QRect(490, 25, 31, 31))
         self.icon_location_box.setCursor(QCursor(Qt.PointingHandCursor))
-        self.icon_location_box.setStyleSheet(DashboardMainWindowStyles.icon_location_box_style)
-    
+        self.icon_location_box.setObjectName("icon_location_box")
+        self.icon_location_box.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)    
         self.icon_location_box.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/location_logo.svg"))
         self.icon_location_box.setAlignment(Qt.AlignCenter)
         self.icon_location_box.setOpenExternalLinks(False)
-        self.icon_location_box.setObjectName("icon_location_box")
+        
         #----------------------------------------------end_location_box------------------------------------------
         #----------------------------------------------setup_notify_message--------------------------------------
         self.notify_box_message = QLabel(self.containers)
         self.notify_box_message.setGeometry(QRect(136, 15, 34, 34))
         self.notify_box_message.setCursor(QCursor(Qt.PointingHandCursor))
+        self.notify_box_message.setObjectName("notify_box_message")
         self.notify_box_message.setStyleSheet(DashboardMainWindowStyles.notify_box_style)
-        
         self.notify_box_message.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/notify_box.svg"))
         self.notify_box_message.setAlignment(Qt.AlignCenter)
-        self.notify_box_message.setObjectName("notify_box_message")
+
         self.notify_box_notification = QLabel(self.containers)
         self.notify_box_notification.setGeometry(QRect(85, 15, 34, 34))
         self.notify_box_notification.setCursor(QCursor(Qt.PointingHandCursor))
+        self.notify_box_notification.setObjectName("notify_box_notification")
         self.notify_box_notification.setStyleSheet(DashboardMainWindowStyles.notify_box_style)
-        
         self.notify_box_notification.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/notify_box.svg"))
         self.notify_box_notification.setAlignment(Qt.AlignCenter)
-        self.notify_box_notification.setObjectName("notify_box_notification")
+        
         self.lbl_number_of_message = QLabel(self.containers)
         self.lbl_number_of_message.setGeometry(QRect(140, 20, 31, 21))
-        self.lbl_number_of_message.setStyleSheet(DashboardMainWindowStyles.notify_number_of_box_style)
         self.lbl_number_of_message.setObjectName("lbl_number_of_message")
+        self.lbl_number_of_message.setStyleSheet(DashboardMainWindowStyles.notify_number_of_box_style)
         self.lbl_number_of_notification = QLabel(self.containers)
         self.lbl_number_of_notification.setGeometry(QRect(90, 20, 31, 21))
-        self.lbl_number_of_notification.setStyleSheet(DashboardMainWindowStyles.notify_number_of_box_style)
         self.lbl_number_of_notification.setObjectName("lbl_number_of_notification")
+        self.lbl_number_of_notification.setStyleSheet(DashboardMainWindowStyles.notify_number_of_box_style)
       #----------------------------------------------end_notify_message--------------------------------------
       #----------------------------------------------setup_frame_setting-------------------------------------
         self.frame_concat_to_frame_setting = QFrame(self.containers)
@@ -235,7 +235,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_plugin_logo = QLabel(self.frame_concat_to_frame_setting)
         self.pic_plugin_logo.setGeometry(QRect(55, 5, 41, 31))
         self.pic_plugin_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_plugin_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_plugin_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.pic_plugin_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/plugin_icon.svg"))
         self.pic_plugin_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -247,9 +247,9 @@ class DashboardMainWindow(QMainWindow):
 
         self.frame_setting.setFrameShape(QFrame.StyledPanel)
         self.frame_setting.setFrameShadow(QFrame.Raised)
-        self.frame_setting.setObjectName("frame_setting")
         self.lbl_setting = QLabel(self.frame_setting)
         self.lbl_setting.setGeometry(QRect(0, 27, 91, 21))
+        self.frame_setting.setObjectName("frame_setting")
         self.lbl_setting.setStyleSheet(DashboardMainWindowStyles.lbl_frames_style)
         self.lbl_setting.setAlignment(Qt.AlignCenter)
         self.lbl_setting.setObjectName("lbl_setting")
@@ -258,7 +258,7 @@ class DashboardMainWindow(QMainWindow):
         self.lbl_ellipes_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
         self.lbl_ellipes_setting.setAlignment(Qt.AlignCenter)
         self.lbl_ellipes_setting.setObjectName("lbl_ellipes_setting")
-        self.lbl_ellipes_setting.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.lbl_ellipes_setting.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         #-------------------------------------------------------------------------------------FrameTools
 
         self.frame_tools = QFrame(self.containers)
@@ -274,7 +274,7 @@ class DashboardMainWindow(QMainWindow):
         self.lbl_tools.setObjectName("lbl_tools")
         self.lbl_ellipse_tools = QLabel(self.frame_tools)
         self.lbl_ellipse_tools.setGeometry(QRect(0, 43, 91, 21))
-        self.lbl_ellipse_tools.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.lbl_ellipse_tools.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.lbl_ellipse_tools.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
         self.lbl_ellipse_tools.setAlignment(Qt.AlignCenter)
@@ -300,7 +300,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_forensic = QLabel(self.frame_concat_to_frame_tools)
         self.pic_forensic.setGeometry(QRect(40, 10, 41, 31))
         self.pic_forensic.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_forensic.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_forensic.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.pic_forensic.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/forensic_logo.svg"))
         self.pic_forensic.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -314,7 +314,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_lot_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_lot_logo.setGeometry(QRect(126, 10, 41, 31))
         self.pic_lot_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_lot_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_lot_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.pic_lot_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window//lot_logo.svg"))
         self.pic_lot_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -328,7 +328,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_Network_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_Network_logo.setGeometry(QRect(300, 10, 41, 31))
         self.pic_Network_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_Network_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_Network_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
     
         self.pic_Network_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/network_logo.svg"))
         self.pic_Network_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -342,7 +342,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_dev_ops_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_dev_ops_logo.setGeometry(QRect(215, 10, 41, 31))
         self.pic_dev_ops_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_dev_ops_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_dev_ops_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
 
         self.pic_dev_ops_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/dev_ops_logo.svg"))
         self.pic_dev_ops_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -356,7 +356,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_monitoring_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_monitoring_logo.setGeometry(QRect(388, 90, 41, 31))
         self.pic_monitoring_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_monitoring_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_monitoring_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.pic_monitoring_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/monitoring_logo.svg"))
         self.pic_monitoring_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -370,7 +370,7 @@ class DashboardMainWindow(QMainWindow):
         self.pic_web_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_web_logo.setGeometry(QRect(388, 10, 41, 31))
         self.pic_web_logo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pic_web_logo.setStyleSheet(DashboardMainWindowStyles.alpha_style)
+        self.pic_web_logo.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         
         self.pic_web_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window//web_logo.svg"))
         self.pic_web_logo.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31" height="26" viewBox="0 0 31 26">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="31" height="26" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Repeat_Grid_1" data-name="Repeat Grid 1" clip-path="url(#clip-path)">
+    <g id="Group_9186" data-name="Group 9186" transform="translate(-1852 -158)">
+      <rect id="Rectangle_763" data-name="Rectangle 763" width="31" height="26" rx="13" transform="translate(1852 158)" fill="#ff3a47"/>
+      <text id="_99" data-name="+99" transform="translate(1856 176)" fill="#f1f1f1" font-size="12" font-family="CaviarDreams-Bold, Caviar Dreams" font-weight="700"><tspan x="0" y="0">+99</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -12,5 +12,5 @@ from os import getcwd
 
 class AppPaths:
 
-    GUI_ASSETS_ICONS_PATH: str = getcwd() + "/gui/assets/img/icons"
+    GUI_ASSETS_ICONS_PATH: str = getcwd() + "/gui/assets/imgs/icons"
 
