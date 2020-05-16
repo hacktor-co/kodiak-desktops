@@ -6,6 +6,8 @@
         dependencies
 """
 
+from .ioc_containers.ioc_application import Application
+
 
 class StartUp:
     
@@ -13,5 +15,5 @@ class StartUp:
         super(StartUp, self).__init__()
 
     def start_app(self):
-        pass
+        Application.main()
 
