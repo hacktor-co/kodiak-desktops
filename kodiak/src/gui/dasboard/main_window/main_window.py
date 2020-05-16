@@ -253,12 +253,12 @@ class DashboardMainWindow(QMainWindow):
         self.lbl_setting.setStyleSheet(DashboardMainWindowStyles.lbl_frames_style)
         self.lbl_setting.setAlignment(Qt.AlignCenter)
         self.lbl_setting.setObjectName("lbl_setting")
-        self.lbl_ellipes_setting = QLabel(self.frame_setting)
-        self.lbl_ellipes_setting.setGeometry(QRect(0, 43, 91, 21))
-        self.lbl_ellipes_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
-        self.lbl_ellipes_setting.setAlignment(Qt.AlignCenter)
-        self.lbl_ellipes_setting.setObjectName("lbl_ellipes_setting")
-        self.lbl_ellipes_setting.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
+        self.lbl_ellipse_setting = QLabel(self.frame_setting)
+        self.lbl_ellipse_setting.setGeometry(QRect(0, 43, 91, 21))
+        self.lbl_ellipse_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
+        self.lbl_ellipse_setting.setAlignment(Qt.AlignCenter)
+        self.lbl_ellipse_setting.setObjectName("lbl_ellipse_setting")
+        self.lbl_ellipse_setting.setStyleSheet(DashboardMainWindowStyles.transparent_color_style)
         #-------------------------------------------------------------------------------------FrameTools
 
         self.frame_tools = QFrame(self.containers)
