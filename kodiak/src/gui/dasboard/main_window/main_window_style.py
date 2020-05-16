@@ -23,4 +23,10 @@ class DashboardMainWindowStyles:
         margin: 0;
         padding: 0;
     """
+    
+    main_window_containers_style: str = ("main_window_containers_style", """
+        #main_window_containers_style {
+            
+        }
+    """)
 

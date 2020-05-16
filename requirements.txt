@@ -6,3 +6,4 @@ pyinstaller
 PyQt5
 PyQt5-stubs
 peewee
+dependency_injector
