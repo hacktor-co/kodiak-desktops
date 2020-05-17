@@ -24,7 +24,7 @@ class Application(DI_DeclarativeContainer):
 
     def __run_app__(self):
         app = QApplication(argv)
-        main=DashboardMainWindow()
+        main = DashboardMainWindow()
         main.show()
         sys_exit(app.exec_())
 
