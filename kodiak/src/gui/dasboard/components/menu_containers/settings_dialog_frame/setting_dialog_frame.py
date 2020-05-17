@@ -3,11 +3,12 @@
 """
 
 from PyQt5.QtWidgets import (QFrame, QLabel)
-from PyQt5.QtCore import (Qt, QRect)
+from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
 from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .setting_dialog_frame_styles import SettingDialogFrameStyles
+from  .....utils.utils_clicked_event import UtilsClick
 
 
 class SettingDialogFrame:
@@ -29,6 +30,7 @@ class SettingDialogFrame:
 
         self.lbl_close_frame_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/close_logo.svg"))
         self.lbl_close_frame_setting.setObjectName("lbl_close_frame_setting")
+        UtilsClick.clickable(self.lbl_close_frame_setting).connect(lambda : self.set_visibility_effect(True, False, True))
 
         self.card_plugin = QLabel(self.frame_concat_to_frame_setting)
         self.card_plugin.setText("Add Plugin")
@@ -66,3 +68,60 @@ class SettingDialogFrame:
         self.lbl_ellipse_setting.setAlignment(Qt.AlignCenter)
         self.lbl_ellipse_setting.setObjectName("lbl_ellipse_setting")
         self.lbl_ellipse_setting.setStyleSheet(SettingDialogFrameStyles.transparent_color_style)
+
+    def set_visibility_effect(self, visibility: bool, is_anime: bool, is_close: bool = False):
+        """this method for set visibility  frame setting
+
+        Arguments:
+            visibility {bool} -- [this argument show status visibility frame ]
+            is_anime {bool} -- [this argument show anime effect]
+
+        Keyword Arguments:
+            is_close {bool} -- [this argument when you want close frame] (default: {False})   
+        """
+
+        if visibility and is_anime :
+            self.do_anim_frame_setting(self.frame_setting, QRect(1240, 360, 91, 78), QRect(1240, 280, 91, 78))
+            self.do_anim_concat_frame_setting(self.frame_concat_to_frame_setting, QRect(770, 360, 481, 168), QRect(1120, 280, 161, 78))
+
+        if is_close:
+            self.do_anim_frame_setting(self.frame_setting, QRect(1240, 280, 91, 78), QRect(1440, 280, 91, 78))
+            self.do_anim_concat_frame_setting(self.frame_concat_to_frame_setting, QRect(1120, 280, 161, 78), QRect(1420, 280, 161, 78))
+
+        self.frame_setting.setVisible(visibility)
+        self.frame_concat_to_frame_setting.setVisible(visibility)
+
+    def do_anim_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
+
+        """this method for do animation frame setting
+
+        Arguments:
+            obj {QFrame} -- [object must be do animation effect]
+            start_location {QRect} -- [start location for anime]
+            end_location {QRect} -- [end location for anime]
+        """
+        self.anim = QPropertyAnimation(obj, b"geometry")
+        self.anim.setDuration(100)
+        self.anim.setStartValue(start_location)
+        self.anim.setEndValue(end_location)
+        self.anim.start()
+
+    def do_anim_concat_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
+
+        """this method for do animation frame concat to frame setting
+
+        Arguments:
+            obj {QFrame} -- [object must be do animation effect]
+            start_location {QRect} -- [start location for anime]
+            end_location {QRect} -- [end location for anime]
+        """
+        self.anim_2 = QPropertyAnimation(obj, b"geometry")
+        self.anim_2.setDuration(100)
+        self.anim_2.setStartValue(start_location)
+        self.anim_2.setEndValue(end_location)
+        self.anim_2.start()
+    
+
+        
+
+    

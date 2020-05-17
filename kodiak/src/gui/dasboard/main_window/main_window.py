@@ -112,6 +112,9 @@ class DashboardMainWindow(QMainWindow):
         self.__retranslateUi__()
 
     def __retranslateUi__(self):
+        """
+            this method for retranslate data in UI
+        """
         _translate = QCoreApplication.translate
         self.setWindowTitle(_translate("MainWindow", "Kodiak"))
         self.lbl_time.setText("04:20")

@@ -3,12 +3,12 @@
 """
 
 from PyQt5.QtWidgets import (QFrame, QLabel)
-from PyQt5.QtCore import (Qt, QRect)
+from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
 from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .tool_dialog_frame_styles import ToolDialogFrameStyles
-
+from  .....utils.utils_clicked_event import UtilsClick
 
 class ToolDialogFrame:
 
@@ -23,6 +23,7 @@ class ToolDialogFrame:
         self.frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_tools.setObjectName("frame_tools")
+
         self.lbl_tools = QLabel(self.frame_tools)
         self.lbl_tools.setText("Tools")
         self.lbl_tools.setGeometry(QRect(0, 27, 91, 21))
@@ -48,6 +49,7 @@ class ToolDialogFrame:
 
         self.lbl_close_frame_tools.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/close_logo.svg"))
         self.lbl_close_frame_tools.setObjectName("lbl_close_frame_tools")
+        UtilsClick.clickable(self.lbl_close_frame_tools).connect(lambda : self.set_visibility_effect(True, False, True))
 
         self.card_forensic = QLabel(self.frame_concat_to_frame_tools)
         self.card_forensic.setText("Forensic")
@@ -144,3 +146,54 @@ class ToolDialogFrame:
         self.pic_web_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/web_logo.svg"))
         self.pic_web_logo.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.pic_web_logo.setObjectName("pic_web_logo")
+
+    def set_visibility_effect(self, visibility: bool,is_anime: bool, is_close: bool = False ):
+        """this method for set visibility  frame tools
+
+        Arguments:
+            visibility {bool} -- [this argument show status visibility frame ]
+            is_anime {bool} -- [this argument show anime effect]
+
+        Keyword Arguments:
+            is_close {bool} -- [this argument when you want close frame] (default: {False})            
+        """
+
+        if visibility and is_anime:
+            self.do_anim_frame_tools(self.frame_tools,QRect(1240, 280, 91, 78),QRect(1240, 360, 91, 78))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 280, 161, 78), QRect(770, 360, 481, 168))
+        
+        if is_close:
+            self.do_anim_frame_tools(self.frame_tools,QRect(1240, 360, 91, 78),QRect(1440, 360, 91, 78))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 360, 161, 78), QRect(1420, 360, 161, 78))
+    
+        self.frame_tools.setVisible(visibility)
+        self.frame_concat_to_frame_tools.setVisible(visibility)
+
+    def do_anim_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
+        """this method for do animation frame tools
+
+        Arguments:
+            obj {QFrame} -- [object must be do animation effect]
+            start_location {QRect} -- [start location for anime]
+            end_location {QRect} -- [end location for anime]
+        """
+        self.anim = QPropertyAnimation(obj, b"geometry")
+        self.anim.setDuration(100)
+        self.anim.setStartValue(start_location)
+        self.anim.setEndValue(end_location)
+        self.anim.start()
+
+    def do_anim_concat_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
+        """this method for do animation frame concat to frame tools tools
+
+        Arguments:
+            obj {QFrame} -- [object must be do animation effect]
+            start_location {QRect} -- [start location for anime]
+            end_location {QRect} -- [end location for anime]
+        """
+
+        self.anim_2 = QPropertyAnimation(obj, b"geometry")
+        self.anim_2.setDuration(100)
+        self.anim_2.setStartValue(start_location)
+        self.anim_2.setEndValue(end_location)
+        self.anim_2.start()
