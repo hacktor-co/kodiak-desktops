@@ -1,5 +1,6 @@
 """
-
+    - Created on May 18/2020 - hacktorco
+    - All rights reserved for hacktor team
 """
 
 from PyQt5.QtWidgets import (QFrame, QLabel)

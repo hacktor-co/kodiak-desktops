@@ -40,6 +40,7 @@ class DashboardMainWindowStyles:
 
     main_page_style: tuple = ("main_page_style", """
         #main_page_style {
+            border-radius:20px;
             font: 8pt "Roboto";
             background-color: rgb(22, 22, 21);
             color: rgb(255, 255, 255);
@@ -57,6 +58,8 @@ class DashboardMainWindowStyles:
 
     navigation_menu_style: tuple = ("navigation_menu_style", """
         #navigation_menu_style {
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
             background-color: rgb(38, 38, 38);
             color: rgb(255, 255, 255);
             font: 8pt "Roboto";

@@ -1,4 +1,9 @@
 
+"""
+    - Created on May 17/2020 - hacktorco
+    - All rights reserved for hacktor team
+"""
+
 from PyQt5.QtCore import (
     QEvent, pyqtSignal,
     QObject
@@ -7,6 +12,16 @@ from PyQt5.QtCore import (
 class UtilsClick:
     @staticmethod
     def clickable(widget): 
+
+        """this class for when object clicked 
+
+        Arguments:
+            widget {Qobject}
+
+        Returns:
+            [filter]
+        """
+        
         class Filter(QObject):
             clicked =pyqtSignal()  
             def eventFilter(self, obj, event):

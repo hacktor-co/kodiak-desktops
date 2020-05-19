@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     - Created on May 15/2020 - hacktorco
     - All rights reserved for hacktor team
@@ -31,7 +30,6 @@ class DashboardMainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(DashboardMainWindow, self).__init__(parent)
         self.__setup_ui__()
-
     def __setup_ui__(self):
         self.setObjectName(DashboardMainWindowStyles.main_page_style[0])
         self.setWindowModality(Qt.ApplicationModal)
@@ -63,26 +61,34 @@ class DashboardMainWindow(QMainWindow):
         self.navigation_menu = QFrame(self.containers)
         self.navigation_menu.setObjectName(DashboardMainWindowStyles.navigation_menu_style[0])
         self.navigation_menu.setStyleSheet(DashboardMainWindowStyles.navigation_menu_style[1])
-        self.navigation_menu.setGeometry(QRect(1275, -10, 71, 948))
+        self.navigation_menu.setGeometry(QRect(1275, 0, 71, 928))
         self.navigation_menu.setFrameShape(QFrame.StyledPanel)
         self.navigation_menu.setFrameShadow(QFrame.Raised)
 
+        #Add container items selection
+
+        self.containers_item_selection = QFrame(self.containers)
+        self.containers_item_selection.setObjectName("containers_item_selection")
+        self.containers_item_selection.setGeometry(QRect(10, 100, 1224, 750))
+        self.containers_item_selection.setFrameShape(QFrame.StyledPanel)
+        self.containers_item_selection.setFrameShadow(QFrame.Raised)
+
         # Add pic_main_logo
         self.pic_main_logo = QLabel(self.navigation_menu)
-        self.pic_main_logo.setGeometry(QRect(13, 40, 44, 71))
+        self.pic_main_logo.setGeometry(QRect(13, 58, 44, 71))
         self.pic_main_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/kodiak_icon.svg"))
         self.pic_main_logo.setObjectName("pic_main_logo")
 
         # Add LblTime
         self.lbl_time = QLabel(self.navigation_menu)
-        self.lbl_time.setGeometry(QRect(0, 120, 69, 20))
+        self.lbl_time.setGeometry(QRect(0, 140, 69, 20))
         self.lbl_time.setObjectName(DashboardMainWindowStyles.lbl_time_style[0])
         self.lbl_time.setStyleSheet(DashboardMainWindowStyles.lbl_time_style[1])
         self.lbl_time.setAlignment(Qt.AlignCenter)
 
         # Add lblDate
         self.lbl_date = QLabel(self.navigation_menu)
-        self.lbl_date.setGeometry(QRect(0, 140, 71, 21))
+        self.lbl_date.setGeometry(QRect(0, 155, 71, 21))
         self.lbl_date.setObjectName(DashboardMainWindowStyles.lbl_date_style[0])
         self.lbl_date.setStyleSheet(DashboardMainWindowStyles.lbl_date_style[1])
         self.lbl_date.setAlignment(Qt.AlignCenter)
@@ -90,9 +96,17 @@ class DashboardMainWindow(QMainWindow):
         self.verticalLayoutWidget = QWidget(self.navigation_menu)
         self.verticalLayoutWidget.setGeometry(QRect(0, 290, 64, 431))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-
+        
+        
+        #set li_hacktor_logo
+        self.li_hacktor = QLabel(self.navigation_menu)
+        self.li_hacktor.setAccessibleName("hacktor_logo")
+        self.li_hacktor.setGeometry(QRect(25, 880, 22, 33))
+        self.li_hacktor.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/hacktor_logo.svg"))
+        self.li_hacktor.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        
         from ..components.menu_containers.menu_containers import MenuContainers
-        MenuContainers().setup_ui(verticalLayoutWidget=self.verticalLayoutWidget, containers=self.containers)
+        MenuContainers().setup_ui(verticalLayoutWidget=self.verticalLayoutWidget, containers=self.containers, contaners_item = self.containers_item_selection)
 
         from ..components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
         TopNavigationBarContainers().setup_ui(containers=self.containers)

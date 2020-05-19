@@ -1,7 +1,7 @@
 """
-
+    - Created on May 18/2020 - hacktorco
+    - All rights reserved for hacktor team
 """
-
 from PyQt5.QtWidgets import (QFrame, QLabel)
 from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
 from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
@@ -10,12 +10,15 @@ from commons.constants.app_paths import AppPaths
 from .tool_dialog_frame_styles import ToolDialogFrameStyles
 from  .....utils.utils_clicked_event import UtilsClick
 
+from functools import partial
+
+
 class ToolDialogFrame:
 
     def __init__(self):
         super(ToolDialogFrame, self).__init__()
 
-    def setup_ui(self, containers: QFrame):
+    def setup_ui(self, containers: QFrame, containers_item:QFrame):
 
         self.frame_tools = QFrame(containers)
         self.frame_tools.setGeometry(QRect(1240, 360, 91, 78))
@@ -106,7 +109,7 @@ class ToolDialogFrame:
         self.card_dev_ops.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_dev_ops.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.card_dev_ops.setObjectName("card_dev_ops")
-
+        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.devops_clicked,containers_item = containers_item))
         self.pic_dev_ops_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_dev_ops_logo.setGeometry(QRect(215, 10, 41, 31))
         self.pic_dev_ops_logo.setCursor(QCursor(Qt.PointingHandCursor))
@@ -182,7 +185,7 @@ class ToolDialogFrame:
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
-
+        
     def do_anim_concat_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
         """this method for do animation frame concat to frame tools tools
 
@@ -197,3 +200,15 @@ class ToolDialogFrame:
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()
+    
+    def devops_clicked(self, containers_item:QFrame):
+        """this method when call client push devops item
+
+        Arguments:
+            containers_item {QFrame} -- [devops layout in this layer ]
+        """
+        from ....components.devops_containers.devops_containers import DevopsContainers
+        self.devops=DevopsContainers()
+        self.devops.setup_ui(containers = containers_item)
+        self.devops.setVisibility_effect(True)
+        self.set_visibility_effect(True, False, True)

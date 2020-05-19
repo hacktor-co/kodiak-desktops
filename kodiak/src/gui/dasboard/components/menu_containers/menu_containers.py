@@ -1,5 +1,6 @@
 """
-
+    - Created on May 18/2020 - hacktorco
+    - All rights reserved for hacktor team
 """
 
 from PyQt5.QtWidgets import (
@@ -18,12 +19,14 @@ from  ....utils.utils_clicked_event import UtilsClick
 
 from functools import partial
 
+
 class MenuContainers:
 
     def __init__(self):
         super(MenuContainers, self).__init__()
 
-    def setup_ui(self, verticalLayoutWidget: QVBoxLayout, containers: QFrame):
+    def setup_ui(self, verticalLayoutWidget: QVBoxLayout, containers: QFrame, contaners_item: QFrame):
+
         self.containers_menu_li = QVBoxLayout(verticalLayoutWidget)
         self.containers_menu_li.setContentsMargins(0, 0, 0, 0)
         self.containers_menu_li.setSpacing(23)
@@ -46,25 +49,23 @@ class MenuContainers:
         self.li_menu.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
         self.containers_menu_li.addWidget(self.li_menu)
         
-        #set li_chart
-        self.li_chart = QLabel(verticalLayoutWidget)
-        self.li_chart.setCursor(QCursor(Qt.PointingHandCursor))
-        self.li_chart.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/chart_logo.svg"))
+        #set li_report
+        self.li_report = QLabel(verticalLayoutWidget)
+        self.li_report.setCursor(QCursor(Qt.PointingHandCursor))
+        self.li_report.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/chart_logo.svg"))
+        self.li_report.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.li_report.setAccessibleName(MenuContainersStyles.lis_style[0])
+        self.li_report.setStyleSheet(MenuContainersStyles.lis_style[1])
+        self.containers_menu_li.addWidget(self.li_report)
         
-        self.li_chart.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
-        self.li_chart.setAccessibleName(MenuContainersStyles.lis_style[0])
-        self.li_chart.setStyleSheet(MenuContainersStyles.lis_style[1])
-        self.containers_menu_li.addWidget(self.li_chart)
-        
-        #set li_box
-        self.li_box = QLabel(verticalLayoutWidget)
-        self.li_box.setAccessibleName(MenuContainersStyles.lis_style[0])
-        self.li_box.setStyleSheet(MenuContainersStyles.lis_style[1])
-        self.li_box.setCursor(QCursor(Qt.PointingHandCursor))
-        self.li_box.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/box_logo.svg"))
-        
-        self.li_box.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
-        self.containers_menu_li.addWidget(self.li_box)
+        #set li_store
+        self.li_store = QLabel(verticalLayoutWidget)
+        self.li_store.setAccessibleName(MenuContainersStyles.lis_style[0])
+        self.li_store.setStyleSheet(MenuContainersStyles.lis_style[1])
+        self.li_store.setCursor(QCursor(Qt.PointingHandCursor))
+        self.li_store.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/box_logo.svg"))
+        self.li_store.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.containers_menu_li.addWidget(self.li_store)
         
         #set li_brain
         self.li_brain = QLabel(verticalLayoutWidget)
@@ -72,9 +73,10 @@ class MenuContainers:
         self.li_brain.setStyleSheet(MenuContainersStyles.lis_style[1])
         self.li_brain.setCursor(QCursor(Qt.PointingHandCursor))
         self.li_brain.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/brain_logo.svg"))
-        
         self.li_brain.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
         self.containers_menu_li.addWidget(self.li_brain)
+
+        
 
         from .settings_dialog_frame.setting_dialog_frame import SettingDialogFrame
         self.setting_Dialog = SettingDialogFrame()
@@ -82,7 +84,7 @@ class MenuContainers:
 
         from .tools_dialog_frame.tool_dialog_frame import ToolDialogFrame
         self.tools_dialog = ToolDialogFrame()
-        self.tools_dialog.setup_ui(containers)
+        self.tools_dialog.setup_ui(containers, containers_item = contaners_item)
 
         self.tools_dialog.set_visibility_effect(False,False)
         #Call Events
