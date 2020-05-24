@@ -30,6 +30,7 @@ class DashboardMainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(DashboardMainWindow, self).__init__(parent)
         self.__setup_ui__()
+
     def __setup_ui__(self):
         self.setObjectName(DashboardMainWindowStyles.main_page_style[0])
         self.setWindowModality(Qt.ApplicationModal)
@@ -65,7 +66,7 @@ class DashboardMainWindow(QMainWindow):
         self.navigation_menu.setFrameShape(QFrame.StyledPanel)
         self.navigation_menu.setFrameShadow(QFrame.Raised)
 
-        #Add container items selection
+        # Add container items selection
 
         self.containers_item_selection = QFrame(self.containers)
         self.containers_item_selection.setObjectName("containers_item_selection")
@@ -96,9 +97,8 @@ class DashboardMainWindow(QMainWindow):
         self.verticalLayoutWidget = QWidget(self.navigation_menu)
         self.verticalLayoutWidget.setGeometry(QRect(0, 290, 64, 431))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        
-        
-        #set li_hacktor_logo
+
+        # set li_hacktor_logo
         self.li_hacktor = QLabel(self.navigation_menu)
         self.li_hacktor.setAccessibleName("hacktor_logo")
         self.li_hacktor.setGeometry(QRect(25, 880, 22, 33))
@@ -106,7 +106,10 @@ class DashboardMainWindow(QMainWindow):
         self.li_hacktor.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
         
         from ..components.menu_containers.menu_containers import MenuContainers
-        MenuContainers().setup_ui(verticalLayoutWidget=self.verticalLayoutWidget, containers=self.containers, contaners_item = self.containers_item_selection)
+        MenuContainers().setup_ui(
+            vertical_layoutwidget=self.verticalLayoutWidget, containers=self.containers,
+            contaners_item=self.containers_item_selection
+        )
 
         from ..components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
         TopNavigationBarContainers().setup_ui(containers=self.containers)

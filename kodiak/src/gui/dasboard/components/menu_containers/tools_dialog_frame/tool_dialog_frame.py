@@ -4,11 +4,11 @@
 """
 from PyQt5.QtWidgets import (QFrame, QLabel)
 from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
-from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
+from PyQt5.QtGui import (QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .tool_dialog_frame_styles import ToolDialogFrameStyles
-from  .....utils.utils_clicked_event import UtilsClick
+from .....utils.utils_clicked_event import UtilsClick
 
 from functools import partial
 
@@ -18,7 +18,7 @@ class ToolDialogFrame:
     def __init__(self):
         super(ToolDialogFrame, self).__init__()
 
-    def setup_ui(self, containers: QFrame, containers_item:QFrame):
+    def setup_ui(self, containers: QFrame, containers_item: QFrame):
 
         self.frame_tools = QFrame(containers)
         self.frame_tools.setGeometry(QRect(1240, 360, 91, 78))
@@ -52,7 +52,7 @@ class ToolDialogFrame:
 
         self.lbl_close_frame_tools.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/close_logo.svg"))
         self.lbl_close_frame_tools.setObjectName("lbl_close_frame_tools")
-        UtilsClick.clickable(self.lbl_close_frame_tools).connect(lambda : self.set_visibility_effect(True, False, True))
+        UtilsClick.clickable(self.lbl_close_frame_tools).connect(lambda: self.set_visibility_effect(True, False, True))
 
         self.card_forensic = QLabel(self.frame_concat_to_frame_tools)
         self.card_forensic.setText("Forensic")
@@ -109,7 +109,7 @@ class ToolDialogFrame:
         self.card_dev_ops.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_dev_ops.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.card_dev_ops.setObjectName("card_dev_ops")
-        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.devops_clicked,containers_item = containers_item))
+        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.devops_clicked, containers_item=containers_item))
         self.pic_dev_ops_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_dev_ops_logo.setGeometry(QRect(215, 10, 41, 31))
         self.pic_dev_ops_logo.setCursor(QCursor(Qt.PointingHandCursor))
@@ -150,7 +150,7 @@ class ToolDialogFrame:
         self.pic_web_logo.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.pic_web_logo.setObjectName("pic_web_logo")
 
-    def set_visibility_effect(self, visibility: bool,is_anime: bool, is_close: bool = False ):
+    def set_visibility_effect(self, visibility: bool, is_anime: bool, is_close: bool = False):
         """this method for set visibility  frame tools
 
         Arguments:
@@ -162,13 +162,15 @@ class ToolDialogFrame:
         """
 
         if visibility and is_anime:
-            self.do_anim_frame_tools(self.frame_tools,QRect(1240, 280, 91, 78),QRect(1240, 360, 91, 78))
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 280, 161, 78), QRect(770, 360, 481, 168))
-        
+            self.do_anim_frame_tools(self.frame_tools, QRect(1240, 280, 91, 78), QRect(1240, 360, 91, 78))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 280, 161, 78),
+                                            QRect(770, 360, 481, 168))
+
         if is_close:
-            self.do_anim_frame_tools(self.frame_tools,QRect(1240, 360, 91, 78),QRect(1440, 360, 91, 78))
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 360, 161, 78), QRect(1420, 360, 161, 78))
-    
+            self.do_anim_frame_tools(self.frame_tools, QRect(1240, 360, 91, 78), QRect(1440, 360, 91, 78))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 360, 161, 78),
+                                            QRect(1420, 360, 161, 78))
+
         self.frame_tools.setVisible(visibility)
         self.frame_concat_to_frame_tools.setVisible(visibility)
 
@@ -185,7 +187,7 @@ class ToolDialogFrame:
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
-        
+
     def do_anim_concat_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
         """this method for do animation frame concat to frame tools tools
 
@@ -200,15 +202,17 @@ class ToolDialogFrame:
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()
-    
-    def devops_clicked(self, containers_item:QFrame):
+
+    def devops_clicked(self, containers_item: QFrame):
         """this method when call client push devops item
 
         Arguments:
             containers_item {QFrame} -- [devops layout in this layer ]
         """
-        from ....components.devops_containers.devops_containers import DevopsContainers
-        self.devops=DevopsContainers()
-        self.devops.setup_ui(containers = containers_item)
-        self.devops.setVisibility_effect(True)
-        self.set_visibility_effect(True, False, True)
+        # from ....main_window.components.devops_containers.devops_containers import DevopsContainers
+        # self.devops = DevopsContainers()
+        from ...centeral_page_maker.centeral_page_maker import CenteralPageMaker
+        CenteralPageMaker(containers_item)
+        # self.devops.setup_ui(containers=containers_item)
+        # self.devops.set_visibility_effect(True)
+        # self.set_visibility_effect(True, False, True)

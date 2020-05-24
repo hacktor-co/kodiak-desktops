@@ -29,7 +29,7 @@ class DetailsBoxDevops:
         Returns:
             [int] -- [location for use create other box]
         """
-        from ....components.star_box.starbox import StarBox
+        from .....components.star_box.starbox import StarBox
         for box in range(count_box):
 
             card_details = QFrame(containers)
