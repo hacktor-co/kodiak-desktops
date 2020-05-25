@@ -34,16 +34,15 @@ class DashboardMainWindow(QMainWindow):
     def __setup_ui__(self):
         self.setObjectName(DashboardMainWindowStyles.main_page_style[0])
         self.setWindowModality(Qt.ApplicationModal)
-        self.resize(1346, 928)
         self.setMinimumSize(QSize(1346, 928))
-        self.setMaximumSize(QSize(1346, 928))
         self.setContextMenuPolicy(Qt.NoContextMenu)
         self.setAcceptDrops(False)
         self.setAutoFillBackground(False)
         self.setDocumentMode(False)
         self.setDockNestingEnabled(False)
+
         self.centralwidget = QWidget(self)
-        self.centralwidget.setObjectName("centralwidget")
+        self.centralwidget.setStyleSheet(DashboardMainWindowStyles.centeral_widget_style)
 
         # Add Vertical Layout
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -121,9 +120,11 @@ class DashboardMainWindow(QMainWindow):
         self.setStyleSheet(DashboardMainWindowStyles.main_page_style[1])
         self.setDocumentMode(False)
         self.setDockNestingEnabled(False)
-        self.centralWidget = QWidget(self)
-        self.centralWidget.setStyleSheet(DashboardMainWindowStyles.central_widget_style)
+
+        # self.central_widget = QWidget(self)
+        # self.central_widget.setStyleSheet(DashboardMainWindowStyles.central_widget_style)
         self.verticalLayout.addWidget(self.containers)
+
         self.setCentralWidget(self.centralwidget)
 
         self.__retranslateUi__()

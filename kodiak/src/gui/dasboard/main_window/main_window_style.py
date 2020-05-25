@@ -17,7 +17,7 @@ class DashboardMainWindowStyles:
 
     all_frame_style: str = """
         background-color: rgb(219, 182, 111);
-        border-radius:5px;
+        border-radius: 5px;
         color: rgb(55, 55, 55);
     """
 
@@ -46,6 +46,7 @@ class DashboardMainWindowStyles:
             color: rgb(255, 255, 255);
             margin: 0;
             padding: 0;
+            border: none;
         }
     """)
 
@@ -80,3 +81,7 @@ class DashboardMainWindowStyles:
             font: bold  9px "Caviar Dreams";
         }
     """)
+
+    centeral_widget_style: str = """
+        border: none;
+    """

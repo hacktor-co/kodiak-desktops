@@ -7,14 +7,14 @@ class SettingDialogFrameStyles:
 
     all_frame_style: str = """
        background-color: rgb(219, 182, 111);
-       border-radius:5px;
+       border-radius: 5px;
        color: rgb(55, 55, 55);
     """
 
     cards_in_frame_style: str = """
         background-color: rgb(232, 199, 137);
-        border-radius:5px;
-        padding-bottom:5px;
+        border-radius: 5px;
+        padding-bottom: 5px;
         font:  12px "Roboto Lt";
         color: rgb(55, 55, 55);
     """

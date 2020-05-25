@@ -83,11 +83,16 @@ class SettingDialogFrame:
 
         if visibility and is_anime :
             self.do_anim_frame_setting(self.frame_setting, QRect(1240, 360, 91, 78), QRect(1240, 280, 91, 78))
-            self.do_anim_concat_frame_setting(self.frame_concat_to_frame_setting, QRect(770, 360, 481, 168), QRect(1120, 280, 161, 78))
+            self.do_anim_concat_frame_setting(
+                self.frame_concat_to_frame_setting, QRect(770, 360, 481, 168), QRect(1120, 280, 161, 78)
+            )
 
         if is_close:
             self.do_anim_frame_setting(self.frame_setting, QRect(1240, 280, 91, 78), QRect(1440, 280, 91, 78))
-            self.do_anim_concat_frame_setting(self.frame_concat_to_frame_setting, QRect(1120, 280, 161, 78), QRect(1420, 280, 161, 78))
+            self.do_anim_concat_frame_setting(
+                self.frame_concat_to_frame_setting,
+                QRect(1120, 280, 161, 78), QRect(1420, 280, 161, 78)
+            )
 
         self.frame_setting.setVisible(visibility)
         self.frame_concat_to_frame_setting.setVisible(visibility)
@@ -102,7 +107,7 @@ class SettingDialogFrame:
             end_location {QRect} -- [end location for anime]
         """
         self.anim = QPropertyAnimation(obj, b"geometry")
-        self.anim.setDuration(100)
+        self.anim.setDuration(150)
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
@@ -117,7 +122,7 @@ class SettingDialogFrame:
             end_location {QRect} -- [end location for anime]
         """
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
-        self.anim_2.setDuration(100)
+        self.anim_2.setDuration(150)
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()

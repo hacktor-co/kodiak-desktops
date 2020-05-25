@@ -186,7 +186,7 @@ class ToolDialogFrame:
                 end_location {QRect} -- [end location for anime]
         """
         self.anim = QPropertyAnimation(obj, b"geometry")
-        self.anim.setDuration(100)
+        self.anim.setDuration(150)
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
@@ -201,7 +201,7 @@ class ToolDialogFrame:
         """
 
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
-        self.anim_2.setDuration(100)
+        self.anim_2.setDuration(150)
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()

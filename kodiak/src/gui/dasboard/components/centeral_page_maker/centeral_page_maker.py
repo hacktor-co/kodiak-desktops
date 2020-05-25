@@ -15,7 +15,8 @@ class CenteralPageMaker:
         super(CenteralPageMaker, self).__init__()
         self.__setup_ui__(containers)
 
-    def __setup_ui__(self, containers: QFrame):
+    @staticmethod
+    def __setup_ui__(containers: QFrame):
         page_containers = QFrame(containers)
         page_containers.setGeometry(QRect(50, 30, 1264, 750))
         page_containers.setFrameShape(QFrame.StyledPanel)
