@@ -24,8 +24,8 @@ class ToolDialogFrameStyles:
 
     cards_in_frame_style: str = """
         background-color: rgb(232, 199, 137);
-        border-radius:5px;
-        padding-bottom:5px;
-        font:  12px "Roboto Lt";
+        border-radius: 5px;
+        padding-bottom: 5px;
+        font: 12px "Roboto Lt";
         color: rgb(55, 55, 55);
     """

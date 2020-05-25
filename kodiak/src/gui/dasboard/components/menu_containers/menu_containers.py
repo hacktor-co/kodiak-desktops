@@ -82,8 +82,8 @@ class MenuContainers:
         self.setting_Dialog.set_visibility_effect(False, False)
 
         from .tools_dialog_frame.tool_dialog_frame import ToolDialogFrame
-        self.tools_dialog = ToolDialogFrame()
-        self.tools_dialog.setup_ui(containers, containers_item=contaners_item)
+        self.tools_dialog = ToolDialogFrame(containers)
+        self.tools_dialog.setup_ui(containers_item=contaners_item)
 
         self.tools_dialog.set_visibility_effect(False, False)
         # Call Events

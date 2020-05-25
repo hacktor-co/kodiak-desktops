@@ -8,8 +8,8 @@
 
 
 class DashboardMainWindowStyles:
-    # ---------------------------------------------
-    # Enumurate Styles
+    """ Enumurate Styles """
+
     central_widget_style: str = """
         margin: 0;
         padding: 0;
@@ -23,9 +23,9 @@ class DashboardMainWindowStyles:
 
     cards_in_frame_style: str = """
         background-color: rgb(232, 199, 137);
-        border-radius:5px;
-        padding-bottom:5px;
-        font:  12px "Roboto Lt";
+        border-radius: 5px;
+        padding-bottom: 5px;
+        font: 12px "Roboto Lt";
         color: rgb(55, 55, 55);
     """
 
@@ -40,7 +40,7 @@ class DashboardMainWindowStyles:
 
     main_page_style: tuple = ("main_page_style", """
         #main_page_style {
-            border-radius:20px;
+            border-radius: 20px;
             font: 8pt "Roboto";
             background-color: rgb(22, 22, 21);
             color: rgb(255, 255, 255);
@@ -51,8 +51,9 @@ class DashboardMainWindowStyles:
 
     main_window_containers_style: tuple = ("main_window_containers_style", """
         #main_window_containers_style {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
+            border: none;
         }
     """)
 
