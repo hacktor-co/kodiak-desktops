@@ -20,6 +20,7 @@ from PyQt5.QtCore import (
 
 from .centeral_page_maker_style import CentralPageMakerStyle
 
+
 class CenteralPageMaker:
 
     def __init__(self, containers: QFrame):
@@ -62,5 +63,3 @@ class CenteralPageMaker:
         lbl_registered.setText(_translate("Form", "REGISTERED"))
         lbl_unregistered.setText(_translate("Form", "UNREGISTERED"))
         page_containers.show()  
-
-
