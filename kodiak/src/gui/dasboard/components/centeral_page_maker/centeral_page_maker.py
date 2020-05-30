@@ -7,7 +7,8 @@
 
 from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout,
-    QLabel, QFrame
+    QLabel, QFrame, 
+    QDesktopWidget
 )
 from PyQt5.QtGui import (
     QIcon, QPixmap,
@@ -40,14 +41,21 @@ class CenteralPageMaker:
         Unregistered().setup_ui(containers=page_containers)
         # lbl_registered
         lbl_registered = QLabel(page_containers)
-        lbl_registered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 10, 111, 32))
+        if QDesktopWidget().geometry().height()<800:
+            lbl_registered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 0, 111, 32))
+        else:
+            lbl_registered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 10, 111, 32))
+        
         lbl_registered.setMinimumSize(QSize(91, 32))
         lbl_registered.setObjectName(CentralPageMakerStyle.lbl_registered_style[0])
         lbl_registered.setStyleSheet(CentralPageMakerStyle.lbl_registered_style[1])
         lbl_registered.setAlignment(Qt.AlignCenter)
         # lbl_unregistered
         lbl_unregistered = QLabel(page_containers)
-        lbl_unregistered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 385, 141, 32))
+        if QDesktopWidget().geometry().height()<800:
+            lbl_unregistered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 285, 141, 32))
+        else:
+            lbl_unregistered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 385, 141, 32))
         lbl_unregistered.setMinimumSize(QSize(91, 32))
         lbl_unregistered.setObjectName(CentralPageMakerStyle.lbl_unregistered_style[0])
         lbl_unregistered.setStyleSheet(CentralPageMakerStyle.lbl_unregistered_style[1])

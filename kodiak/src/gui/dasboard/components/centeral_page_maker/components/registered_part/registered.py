@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout,QHBoxLayout,
     QLabel, QFrame,
     QGridLayout, QWidget,
-    QScrollArea
+    QScrollArea, QDesktopWidget
 )
 from PyQt5.QtGui import (
     QIcon, QPixmap,
@@ -30,7 +30,11 @@ class Registered:
     def setup_ui(self, containers: QFrame):
         #registered_frame
         self.registered_frame = QFrame(containers)
-        self.registered_frame.setGeometry(QRect((containers.width()-900)/2, 25, 900, 250))
+        if QDesktopWidget().geometry().height()<800:
+            self.registered_frame.setGeometry(QRect((containers.width()-900)/2, 10, 900, 250))
+        else:
+            self.registered_frame.setGeometry(QRect((containers.width()-900)/2, 25, 900, 250))
+        
         self.registered_frame.setStyleSheet("background-color: rgb(34,34,34);\n""border-radius:5px;")
         self.registered_frame.setFrameShape(QFrame.StyledPanel)
         self.registered_frame.setFrameShadow(QFrame.Raised)
