@@ -35,7 +35,11 @@ class DashboardMainWindow(QMainWindow):
     def __setup_ui__(self):
         self.setObjectName(DashboardMainWindowStyles.main_page_style[0])
         self.setWindowModality(Qt.ApplicationModal)
-        self.setMinimumSize(QSize(1150, 800))
+        if QDesktopWidget().geometry().height()<800:
+            self.setMinimumSize(QSize(1150, 675))
+        else:
+            self.setMinimumSize(QSize(1150, 800))
+
         self.setContextMenuPolicy(Qt.NoContextMenu)
         self.setAcceptDrops(False)
         self.setAutoFillBackground(False)
@@ -68,6 +72,10 @@ class DashboardMainWindow(QMainWindow):
         self.navigation_menu = QFrame(self.containers)
         self.navigation_menu.setObjectName(DashboardMainWindowStyles.navigation_menu_style[0])
         self.navigation_menu.setStyleSheet(DashboardMainWindowStyles.navigation_menu_style[1])
+        if QDesktopWidget().geometry().height()<800:
+            self.navigation_menu.setMinimumSize(QSize(71, 600))
+        else:
+            self.navigation_menu.setMinimumSize(QSize(71, 700))
         self.navigation_menu.setMinimumSize(QSize(71, 700))
         self.navigation_menu.setMaximumSize(QSize(71, 16777215))
         self.navigation_menu.setFrameShape(QFrame.StyledPanel)
