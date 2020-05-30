@@ -11,10 +11,7 @@ class Container(QWidget):
         self.window = window
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        if QDesktopWidget().geometry().height()<800:
-            self.setGeometry(0,0,1150,675)
-        else:
-             self.setGeometry(0,0,1150,800)
+        self.setGeometry(0,0,1150,800)
         self.lay = QVBoxLayout(self)
         self.lay.addWidget(window)
         self.lay.setContentsMargins(50,50,50,50)
