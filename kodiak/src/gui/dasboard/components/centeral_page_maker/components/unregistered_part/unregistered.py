@@ -31,7 +31,7 @@ class Unregistered:
     def setup_ui(self, containers: QFrame):
         #unregistered_frame
         self.unregistered_frame = QFrame(containers)
-        self.unregistered_frame.setGeometry(QRect((containers.width()-900)/2, 440, 900, 250))
+        self.unregistered_frame.setGeometry(QRect((containers.width()-900)/2, 400, 900, 250))
         self.unregistered_frame.setStyleSheet("background-color: rgb(34,34,34);\n""border-radius:5px;\n""")
         self.unregistered_frame.setFrameShape(QFrame.StyledPanel)
         self.unregistered_frame.setFrameShadow(QFrame.Raised)

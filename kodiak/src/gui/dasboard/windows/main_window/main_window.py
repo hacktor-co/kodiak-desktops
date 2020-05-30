@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
     QMainWindow, QWidget,
     QVBoxLayout, QFrame,
     QLabel, QGridLayout,
-    QSizePolicy
+    QSizePolicy, QDesktopWidget
 )
 from PyQt5.QtCore import (
     Qt, QSize,
@@ -123,7 +123,10 @@ class DashboardMainWindow(QMainWindow):
         # set li_hacktor_logo
         self.li_hacktor = QLabel(self.navigation_menu)
         self.li_hacktor.setAccessibleName("hacktor_logo")
-        self.li_hacktor.setGeometry(QRect(25, self.height()-82, 22, 33))
+        if QDesktopWidget().geometry().height()<800:
+            self.li_hacktor.setGeometry(QRect(25, self.height(), 22, 33))
+        else:
+            self.li_hacktor.setGeometry(QRect(25, self.height()-82, 22, 33))
         self.li_hacktor.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/hacktor_logo.svg"))
         self.li_hacktor.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
         
@@ -142,7 +145,6 @@ class DashboardMainWindow(QMainWindow):
             contaners_item=self.page_containers
         )
         
-
         from ...components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
         TopNavigationBarContainers().setup_ui(containers=self.main_frame, main_gridLayout = self.main_frame_gridLayout)
 
