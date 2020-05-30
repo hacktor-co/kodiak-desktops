@@ -18,16 +18,17 @@ class ToolDialogFrame:
 
     def __init__(self, containers: QFrame):
         super(ToolDialogFrame, self).__init__()
+        self.containers = containers
 
-        self.frame_tools = QFrame(containers)
-        self.frame_tools.setGeometry(QRect(1240, 360, 91, 78))
+        self.frame_tools = QFrame(self.containers)
+        self.frame_tools.resize( 91, 78 )
         self.frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_tools.setObjectName("frame_tools")
 
-        self.frame_concat_to_frame_tools = QFrame(containers)
-        self.frame_concat_to_frame_tools.setGeometry(QRect(770, 360, 481, 168))
+        self.frame_concat_to_frame_tools = QFrame(self.containers)
+        self.frame_concat_to_frame_tools.resize( 481, 168 )
         self.frame_concat_to_frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_concat_to_frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_concat_to_frame_tools.setFrameShadow(QFrame.Raised)
@@ -178,19 +179,32 @@ class ToolDialogFrame:
         Keyword Arguments:
             is_close {bool} -- [this argument when you want close frame] (default: {False})            
         """
+        frame_tools_width:int = int(self.frame_tools.width()+10)
+        containers_width: int = int(self.containers.width())
+        frame_concat_to_frame_tools_width: int = int(self.frame_concat_to_frame_tools.width()-10)
 
         if visibility and is_anime:
-            self.do_anim_frame_tools(self.frame_tools, QRect(1240, 280, 91, 78), QRect(1240, 360, 91, 78))
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 280, 161, 78),
-                                            QRect(770, 360, 481, 168))
+            self.do_anim_frame_tools(self.frame_tools, 
+            QRect(containers_width - frame_tools_width, 280, 91, 78)
+            , QRect(containers_width - frame_tools_width, 360, 91, 78))
+
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, 
+            QRect(containers_width - frame_concat_to_frame_tools_width - frame_tools_width, 280, 481, 78),
+            QRect(containers_width  - frame_concat_to_frame_tools_width - frame_tools_width, 360, 481, 168))
 
         if is_close:
-            self.do_anim_frame_tools(self.frame_tools, QRect(1240, 360, 91, 78), QRect(1440, 360, 91, 78))
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, QRect(1120, 360, 161, 78),
-                                            QRect(1420, 360, 161, 78))
+            self.do_anim_frame_tools(self.frame_tools, 
+            QRect(containers_width - frame_tools_width, 360, 91, 78)
+            , QRect(int(containers_width - frame_tools_width) * 4, 360, 91, 78))
+
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, 
+            QRect(containers_width - frame_concat_to_frame_tools_width - frame_tools_width, 360, 481, 78),
+            QRect(int(containers_width - frame_concat_to_frame_tools_width - frame_tools_width) * 4, 360, 481, 168))
 
         self.frame_tools.setVisible(visibility)
         self.frame_concat_to_frame_tools.setVisible(visibility)
+        
+        del frame_tools_width, containers_width
 
     def do_anim_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
         """ this method for do animation frame tools

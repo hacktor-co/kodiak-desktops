@@ -15,7 +15,7 @@ class Box:
         super(Box, self).__init__()
     
     def create_box(self, containers: QFrame, count_box: int, title:str = "" ,box_type : bool = True, start_location: int = 30, count_star_type1: int = 3, count_star_type2:int = 2):
-        """this method for create box mode2
+        """this method for create details
 
         Arguments:
             containers {QFrame} -- [parent layout]

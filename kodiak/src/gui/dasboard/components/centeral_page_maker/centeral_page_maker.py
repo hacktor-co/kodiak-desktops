@@ -30,36 +30,36 @@ class CenteralPageMaker:
     @staticmethod
     def __setup_ui__(containers: QFrame):
         page_containers = QFrame(containers)
-        page_containers.setGeometry(QRect(50, 30, 1264, 750))
+        page_containers.setGeometry(QRect(0, 0, containers.width()+71, containers.height()+71))
         page_containers.setFrameShape(QFrame.StyledPanel)
         page_containers.setFrameShadow(QFrame.Raised)
         page_containers.setObjectName("centeral_page_maker")
-
-        from ...pages.central_page_parts.registered_part.registered import Registered
+        from .components.registered_part.registered import Registered
         Registered().setup_ui(containers=page_containers)
-        from ...pages.central_page_parts.unregistered_part.unregistered import Unregistered
+        from .components.unregistered_part.unregistered import Unregistered
         Unregistered().setup_ui(containers=page_containers)
-        # ----------------------------------------------------------------------lbl_registered
+        # lbl_registered
         lbl_registered = QLabel(page_containers)
-        lbl_registered.setGeometry(QRect(30, 80, 111, 32))
+        lbl_registered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 80, 111, 32))
         lbl_registered.setMinimumSize(QSize(91, 32))
         lbl_registered.setObjectName(CentralPageMakerStyle.lbl_registered_style[0])
         lbl_registered.setStyleSheet(CentralPageMakerStyle.lbl_registered_style[1])
         lbl_registered.setAlignment(Qt.AlignCenter)
-        # ----------------------------------------------------------------------lbl_unregistered
+        # lbl_unregistered
         lbl_unregistered = QLabel(page_containers)
-        lbl_unregistered.setGeometry(QRect(30, 425, 141, 32))
+        lbl_unregistered.setGeometry(QRect((((containers.width()+900)/2)-900)+111, 425, 141, 32))
         lbl_unregistered.setMinimumSize(QSize(91, 32))
         lbl_unregistered.setObjectName(CentralPageMakerStyle.lbl_unregistered_style[0])
         lbl_unregistered.setStyleSheet(CentralPageMakerStyle.lbl_unregistered_style[1])
         lbl_unregistered.setAlignment(Qt.AlignCenter)
-        # ----------------------------------------------------------------------lbl_title
+        # lbl_title
         lbl_title = QLabel(page_containers)
         lbl_title.setGeometry(QRect(441, 10, 281, 16))
         lbl_title.setObjectName(CentralPageMakerStyle.lbl_title_style[0])
         lbl_title.setStyleSheet(CentralPageMakerStyle.lbl_title_style[1])
-        # ----------------------------------------------------------------------
+        
         _translate = QCoreApplication.translate
         lbl_registered.setText(_translate("Form", "REGISTERED"))
         lbl_unregistered.setText(_translate("Form", "UNREGISTERED"))
-        page_containers.show()  
+        containers.clearMask()
+        page_containers.setVisible(True)

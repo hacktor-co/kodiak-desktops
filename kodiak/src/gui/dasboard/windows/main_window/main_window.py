@@ -10,7 +10,8 @@
 from PyQt5.QtWidgets import (
     QMainWindow, QWidget,
     QVBoxLayout, QFrame,
-    QLabel
+    QLabel, QGridLayout,
+    QSizePolicy
 )
 from PyQt5.QtCore import (
     Qt, QSize,
@@ -34,7 +35,7 @@ class DashboardMainWindow(QMainWindow):
     def __setup_ui__(self):
         self.setObjectName(DashboardMainWindowStyles.main_page_style[0])
         self.setWindowModality(Qt.ApplicationModal)
-        self.setMinimumSize(QSize(1346, 928))
+        self.setMinimumSize(QSize(1150, 800))
         self.setContextMenuPolicy(Qt.NoContextMenu)
         self.setAcceptDrops(False)
         self.setAutoFillBackground(False)
@@ -44,12 +45,12 @@ class DashboardMainWindow(QMainWindow):
         self.centralwidget = QWidget(self)
         self.centralwidget.setStyleSheet(DashboardMainWindowStyles.centeral_widget_style)
 
-        # Add Vertical Layout
-        self.verticalLayout = QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setObjectName("verticalLayout")
+        # Add Central Layout
+        self.central_vlayout = QVBoxLayout(self.centralwidget)
+        self.central_vlayout.setContentsMargins(0, 0, 0, 0)
+        self.central_vlayout.setObjectName("central_vlayout")
 
-        # Add
+        # Add Containers
         self.containers = QFrame(self.centralwidget)
         self.containers.setObjectName(DashboardMainWindowStyles.main_window_containers_style[0])
         self.containers.setStyleSheet(DashboardMainWindowStyles.main_window_containers_style[1])
@@ -57,61 +58,93 @@ class DashboardMainWindow(QMainWindow):
         self.containers.setFrameShadow(QFrame.Plain)
         self.containers.setLineWidth(0)
 
+        #Add Containers Layout
+        self.containers_gridlayout = QGridLayout(self.containers)
+        self.containers_gridlayout.setContentsMargins(0, 0, 0, 0)
+        self.containers_gridlayout.setSpacing(0)
+        self.containers_gridlayout.setObjectName("containers_gridlayout")
+
         # Add Navigation
         self.navigation_menu = QFrame(self.containers)
         self.navigation_menu.setObjectName(DashboardMainWindowStyles.navigation_menu_style[0])
         self.navigation_menu.setStyleSheet(DashboardMainWindowStyles.navigation_menu_style[1])
-        self.navigation_menu.setGeometry(QRect(1275, 0, 71, 928))
+        self.navigation_menu.setMinimumSize(QSize(71, 700))
+        self.navigation_menu.setMaximumSize(QSize(71, 16777215))
         self.navigation_menu.setFrameShape(QFrame.StyledPanel)
         self.navigation_menu.setFrameShadow(QFrame.Raised)
 
-        # Add container items selection
+        #َAdd navigation_layout
+        self.navigation_grid_layout = QGridLayout()
+        self.navigation_grid_layout.setContentsMargins(-1, 0, 0, -1)
+        self.navigation_grid_layout.setVerticalSpacing(0)
+        self.navigation_grid_layout.setObjectName("navigation_grid_layout")
+        self.navigation_grid_layout.addWidget(self.navigation_menu, 0, 0, 1, 1)
+        self.containers_gridlayout.addLayout(self.navigation_grid_layout, 2, 2, 1, 1)
 
-        self.containers_item_selection = QFrame(self.containers)
-        self.containers_item_selection.setObjectName("containers_item_selection")
-        self.containers_item_selection.setGeometry(QRect(10, 100, 1224, 750))
-        self.containers_item_selection.setFrameShape(QFrame.StyledPanel)
-        self.containers_item_selection.setFrameShadow(QFrame.Raised)
+        #Add MainFrame
+        self.main_frame = QFrame(self.containers)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.main_frame.sizePolicy().hasHeightForWidth())
+        self.main_frame.setSizePolicy(sizePolicy)
+        self.main_frame.setObjectName("main_frame")
 
+        # Add MainFrameLayout
+        self.main_frame_gridLayout = QGridLayout(self.main_frame)
+        self.main_frame_gridLayout.setContentsMargins(8, 8, 8, 8)
+        self.main_frame_gridLayout.setSpacing(0)
+        self.main_frame_gridLayout.setObjectName("gridLayout")
         # Add pic_main_logo
         self.pic_main_logo = QLabel(self.navigation_menu)
-        self.pic_main_logo.setGeometry(QRect(13, 58, 44, 71))
+        self.pic_main_logo.setGeometry(QRect(0, 35, 71, 71))
+        self.pic_main_logo.setAlignment(Qt.AlignCenter)
         self.pic_main_logo.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/kodiak_icon.svg"))
         self.pic_main_logo.setObjectName("pic_main_logo")
-
+    
         # Add LblTime
         self.lbl_time = QLabel(self.navigation_menu)
-        self.lbl_time.setGeometry(QRect(0, 140, 69, 20))
+        self.lbl_time.setGeometry(QRect(0, 120, 69, 20))
         self.lbl_time.setObjectName(DashboardMainWindowStyles.lbl_time_style[0])
         self.lbl_time.setStyleSheet(DashboardMainWindowStyles.lbl_time_style[1])
         self.lbl_time.setAlignment(Qt.AlignCenter)
 
         # Add lblDate
         self.lbl_date = QLabel(self.navigation_menu)
-        self.lbl_date.setGeometry(QRect(0, 155, 71, 21))
+        self.lbl_date.setGeometry(QRect(0, 140, 71, 21))
         self.lbl_date.setObjectName(DashboardMainWindowStyles.lbl_date_style[0])
         self.lbl_date.setStyleSheet(DashboardMainWindowStyles.lbl_date_style[1])
         self.lbl_date.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayoutWidget = QWidget(self.navigation_menu)
-        self.verticalLayoutWidget.setGeometry(QRect(0, 290, 64, 431))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.navigation_item_vlayout = QWidget(self.navigation_menu)
+        self.navigation_item_vlayout.setGeometry(QRect(0, 220, 64, 431))
+        self.navigation_item_vlayout.setObjectName("navigation_item_vlayout")
 
         # set li_hacktor_logo
         self.li_hacktor = QLabel(self.navigation_menu)
         self.li_hacktor.setAccessibleName("hacktor_logo")
-        self.li_hacktor.setGeometry(QRect(25, 880, 22, 33))
+        self.li_hacktor.setGeometry(QRect(25, self.height()-82, 22, 33))
         self.li_hacktor.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/hacktor_logo.svg"))
         self.li_hacktor.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
         
-        from ..components.menu_containers.menu_containers import MenuContainers
-        MenuContainers().setup_ui(
-            vertical_layoutwidget=self.verticalLayoutWidget, containers=self.containers,
-            contaners_item=self.containers_item_selection
+        self.page_containers = QFrame(self.main_frame)
+        self.page_containers.setFrameShape(QFrame.StyledPanel)
+        self.page_containers.setFrameShadow(QFrame.Raised)
+        self.page_containers.setObjectName("center_page_maker")
+        self.page_containers.setMinimumSize(self.width()-111,self.height()-111)
+        self.main_frame_gridLayout.addWidget(self.page_containers, 1, 0, 1, 4, Qt.AlignHCenter|Qt.AlignVCenter)
+        
+        
+        from ...components.menu_containers.menu_containers import MenuContainers
+        self.menu = MenuContainers()
+        self.menu.setup_ui(
+            navigation_item_vlayout=self.navigation_item_vlayout, containers=self.containers,
+            contaners_item=self.page_containers
         )
+        
 
-        from ..components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
-        TopNavigationBarContainers().setup_ui(containers=self.containers)
+        from ...components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
+        TopNavigationBarContainers().setup_ui(containers=self.main_frame, main_gridLayout = self.main_frame_gridLayout)
 
         main_icon = QIcon()
         main_icon.addPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/main_logo.ico"))
@@ -123,10 +156,10 @@ class DashboardMainWindow(QMainWindow):
 
         # self.central_widget = QWidget(self)
         # self.central_widget.setStyleSheet(DashboardMainWindowStyles.central_widget_style)
-        self.verticalLayout.addWidget(self.containers)
 
+        self.central_vlayout.addWidget(self.containers)
+        self.containers_gridlayout.addWidget(self.main_frame, 2, 1, 1, 1)
         self.setCentralWidget(self.centralwidget)
-
         self.__retranslateUi__()
 
     def __retranslateUi__(self):

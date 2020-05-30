@@ -25,15 +25,15 @@ class MenuContainers:
     def __init__(self):
         super(MenuContainers, self).__init__()
 
-    def setup_ui(self, vertical_layoutwidget: QVBoxLayout, containers: QFrame, contaners_item: QFrame):
+    def setup_ui(self, navigation_item_vlayout: QVBoxLayout, containers: QFrame, contaners_item: QFrame):
 
-        self.containers_menu_li = QVBoxLayout(vertical_layoutwidget)
+        self.containers_menu_li = QVBoxLayout(navigation_item_vlayout)
         self.containers_menu_li.setContentsMargins(0, 0, 0, 0)
         self.containers_menu_li.setSpacing(23)
         self.containers_menu_li.setObjectName("containers_menu_li")
 
         # set li_setting
-        li_setting = QLabel(vertical_layoutwidget)
+        li_setting = QLabel(navigation_item_vlayout)
         li_setting.setAccessibleName(MenuContainersStyles.lis_style[0])
         li_setting.setStyleSheet(MenuContainersStyles.lis_style[1])
         li_setting.setCursor(QCursor(Qt.PointingHandCursor))
@@ -43,7 +43,7 @@ class MenuContainers:
         self.containers_menu_li.addWidget(li_setting)
 
         # set li_menu
-        li_menu = QLabel(vertical_layoutwidget)
+        li_menu = QLabel(navigation_item_vlayout)
         li_menu.setCursor(QCursor(Qt.PointingHandCursor))
         li_menu.setAccessibleName(MenuContainersStyles.lis_style[0])
         li_menu.setStyleSheet(MenuContainersStyles.lis_style[1])
@@ -53,7 +53,7 @@ class MenuContainers:
         self.containers_menu_li.addWidget(li_menu)
 
         # set li_report
-        li_report = QLabel(vertical_layoutwidget)
+        li_report = QLabel(navigation_item_vlayout)
         li_report.setCursor(QCursor(Qt.PointingHandCursor))
         li_report.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/chart_logo.svg"))
         li_report.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
@@ -62,7 +62,7 @@ class MenuContainers:
         self.containers_menu_li.addWidget(li_report)
 
         # set li_store
-        li_store = QLabel(vertical_layoutwidget)
+        li_store = QLabel(navigation_item_vlayout)
         li_store.setAccessibleName(MenuContainersStyles.lis_style[0])
         li_store.setStyleSheet(MenuContainersStyles.lis_style[1])
         li_store.setCursor(QCursor(Qt.PointingHandCursor))
@@ -71,7 +71,7 @@ class MenuContainers:
         self.containers_menu_li.addWidget(li_store)
 
         # set li_brain
-        li_brain = QLabel(vertical_layoutwidget)
+        li_brain = QLabel(navigation_item_vlayout)
         li_brain.setAccessibleName(MenuContainersStyles.lis_style[0])
         li_brain.setStyleSheet(MenuContainersStyles.lis_style[1])
         li_brain.setCursor(QCursor(Qt.PointingHandCursor))
@@ -88,9 +88,13 @@ class MenuContainers:
         self.tools_dialog = ToolDialogFrame(containers)
         self.tools_dialog.setup_ui(containers_item=contaners_item)
         self.tools_dialog.set_visibility_effect(False, False)
-
+    
     def li_clicked(self, li_name: str):
+        """this method for event clicked  list item navigation menu
 
+        Arguments:
+            li_name {str} -- [list item name]
+        """
         if li_name == "setting":
             self.hide_all_frame()
             self.setting_Dialog.set_visibility_effect(True, True)

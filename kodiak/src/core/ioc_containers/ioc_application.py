@@ -13,8 +13,8 @@ from dependency_injector.providers import (
     Callable as DI_Callable
 )
 
-from gui.dasboard.main_window.main_window import DashboardMainWindow
-from gui.dasboard.pages.shadow_page import Container
+from gui.dasboard.windows.main_window.main_window import DashboardMainWindow
+from gui.dasboard.windows.shadow_window.shadow_main_widnow import Container
 
 
 class Application(DI_DeclarativeContainer):
@@ -26,7 +26,7 @@ class Application(DI_DeclarativeContainer):
     def __run_app__(self):
         app = QApplication(argv)
         main = DashboardMainWindow()
-        container = Container(main)
+        container = Container(main,containers= main.containers, containers_gridlayout= main.containers_gridlayout)
         container.show()
         sys_exit(app.exec_())
 

@@ -18,9 +18,9 @@ class SettingDialogFrame:
         super(SettingDialogFrame, self).__init__()
 
     def setup_ui(self, containers: QFrame):
-
-        self.frame_concat_to_frame_setting = QFrame(containers)
-        self.frame_concat_to_frame_setting.setGeometry(QRect(1120, 280, 161, 78))
+        self.containers = containers
+        self.frame_concat_to_frame_setting = QFrame(self.containers)
+        self.frame_concat_to_frame_setting.resize(161, 78)
         self.frame_concat_to_frame_setting.setStyleSheet(SettingDialogFrameStyles.all_frame_style)
         self.frame_concat_to_frame_setting.setFrameShape(QFrame.StyledPanel)
         self.frame_concat_to_frame_setting.setFrameShadow(QFrame.Raised)
@@ -49,8 +49,8 @@ class SettingDialogFrame:
         self.pic_plugin_logo.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.pic_plugin_logo.setObjectName("pic_plugin_logo")
 
-        self.frame_setting = QFrame(containers)
-        self.frame_setting.setGeometry(QRect(1240, 280, 91, 78))
+        self.frame_setting = QFrame(self.containers)
+        self.frame_setting.resize(91, 78)
         self.frame_setting.setStyleSheet(SettingDialogFrameStyles.all_frame_style)
         self.frame_setting.setObjectName("frame_setting")
         self.frame_setting.setFrameShape(QFrame.StyledPanel)
@@ -80,22 +80,42 @@ class SettingDialogFrame:
         Keyword Arguments:
             is_close {bool} -- [this argument when you want close frame] (default: {False})   
         """
-
+        frame_setting_width:int = int(self.frame_setting.width()+10)
+        containers_width: int = int(self.containers.width())
+        frame_concat_to_frame_setting_width: int = int(self.frame_concat_to_frame_setting.width()-10)
+        
         if visibility and is_anime :
-            self.do_anim_frame_setting(self.frame_setting, QRect(1240, 360, 91, 78), QRect(1240, 280, 91, 78))
+            
+            self.do_anim_frame_setting(self.frame_setting, 
+            
+                QRect(containers_width - frame_setting_width , 360, 91, 78), 
+                QRect(containers_width - frame_setting_width, 280, 91, 78)
+            )
+
             self.do_anim_concat_frame_setting(
-                self.frame_concat_to_frame_setting, QRect(770, 360, 481, 168), QRect(1120, 280, 161, 78)
+                self.frame_concat_to_frame_setting,
+                QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 360, 161, 168)
+                , QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 280, 161, 78)
             )
 
         if is_close:
-            self.do_anim_frame_setting(self.frame_setting, QRect(1240, 280, 91, 78), QRect(1440, 280, 91, 78))
+
+            self.do_anim_frame_setting(self.frame_setting,
+             QRect(containers_width - frame_setting_width, 280, 91, 78)
+            , QRect(int(containers_width - frame_setting_width)*3, 280, 91, 78))
+
             self.do_anim_concat_frame_setting(
                 self.frame_concat_to_frame_setting,
-                QRect(1120, 280, 161, 78), QRect(1420, 280, 161, 78)
+                QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 280, 161, 78), 
+                QRect(int(containers_width - frame_concat_to_frame_setting_width - frame_setting_width)*3, 280, 161, 78)
             )
 
         self.frame_setting.setVisible(visibility)
         self.frame_concat_to_frame_setting.setVisible(visibility)
+        #delete from memory    
+        del frame_setting_width
+        del containers_width
+        del frame_concat_to_frame_setting_width
 
     def do_anim_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
 
@@ -126,8 +146,3 @@ class SettingDialogFrame:
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()
-    
-
-        
-
-    

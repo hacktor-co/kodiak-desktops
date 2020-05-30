@@ -25,7 +25,7 @@ class DashboardMainWindowStyles:
         background-color: rgb(232, 199, 137);
         border-radius: 5px;
         padding-bottom: 5px;
-        font: 12px "Roboto Lt";
+        font: 12px Roboto Lt;
         color: rgb(55, 55, 55);
     """
 
@@ -34,14 +34,14 @@ class DashboardMainWindowStyles:
     """
 
     lbl_frames_style: str = """
-        font: bold 17px "Roboto Cn";
+        font: bold 17px Roboto Cn;
         color: rgb(0, 0, 0);
     """
 
     main_page_style: tuple = ("main_page_style", """
         #main_page_style {
             border-radius: 20px;
-            font: 8pt "Roboto";
+            font: 8pt Roboto;
             background-color: rgb(22, 22, 21);
             color: rgb(255, 255, 255);
             margin: 0;
@@ -60,25 +60,24 @@ class DashboardMainWindowStyles:
 
     navigation_menu_style: tuple = ("navigation_menu_style", """
         #navigation_menu_style {
-            border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
             background-color: rgb(38, 38, 38);
             color: rgb(255, 255, 255);
-            font: 8pt "Roboto";
+            font: 8pt Roboto;
         }
     """)
 
     lbl_time_style: tuple = ("lbl_time_style", """
         #lbl_time_style {
             color: rgb(255, 255, 255);
-            font: bold  14px "Caviar Dreams";
+            font: bold  14px Caviar Dreams;
         }
     """)
 
     lbl_date_style: tuple = ("lbl_date_style", """
         #lbl_date_style {
             color: rgb(255, 255, 255);
-            font: bold  9px "Caviar Dreams";
+            font: bold  9px Caviar Dreams;
         }
     """)
 

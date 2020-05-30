@@ -41,7 +41,7 @@ class UnregisteredStyles:
 
         background-color: rgba(0, 0, 0, 0);
         color: rgb(255, 255, 255);
-        font:  14px \"Roboto Cn\";
+        font:  14px "Roboto Cn";
         border:0;
         border-radius:0;
 
