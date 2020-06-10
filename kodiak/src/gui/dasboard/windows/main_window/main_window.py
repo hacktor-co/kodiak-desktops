@@ -197,6 +197,7 @@ class DashboardMainWindow(QMainWindow):
         self.lbl_date.setText("2020/15/19")
 
     def __media_screen__(self):
+        
         """
         this is private method for set a standard size window for Your monitor , Tablet or ...
         """
@@ -206,27 +207,32 @@ class DashboardMainWindow(QMainWindow):
         is_extra_large_screen, extra_large_screen_width, extra_large_screen_height = MediaScreen().is_extra_large()
 
         if is_extra_large_screen:
+            print("extra_large")
             if extra_large_screen_height <= 900:
 
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
                                           extra_large_screen_height - (extra_large_screen_height / 4)+100))
+        
             else:
-
+    
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
                                           extra_large_screen_height - (extra_large_screen_height / 6)+50))
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         elif is_large_screen:
+            print("large")
             self.setMinimumSize(QSize(large_screen_width - 200, large_screen_height - 90))
             self.navigation_menu.setMinimumSize(QSize(71, 550))
         elif is_medium_screen:
+            print("medium")
             self.setMinimumSize(QSize(medium_screen_width - 100, medium_screen_height - 100))
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         elif is_small_screen:
-            self.setMinimumSize(QSize(small_screen_width - 150, small_screen_width - 250))
+            print("small")
+            self.setMinimumSize(QSize(small_screen_width - 150, small_screen_height-200 ))
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         else:
             # any thing else
-            self.setMinimumSize(QSize(1150, 690))
+            self.setMinimumSize(QSize(1150, 800))
             self.navigation_menu.setMinimumSize(QSize(71, 550))
 
         # Delete From Memory
