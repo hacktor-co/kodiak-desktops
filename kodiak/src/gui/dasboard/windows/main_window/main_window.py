@@ -133,7 +133,10 @@ class DashboardMainWindow(QMainWindow):
         self.li_hacktor.setAccessibleName("hacktor_logo")
         is_extra_screen, extra_screen_width, extra_screen_height = MediaScreen().is_extra_large()
         if is_extra_screen:
-            self.li_hacktor.setGeometry(QRect(25, self.height() - 80, 22, 33))
+            if extra_screen_height <= 800:
+                self.li_hacktor.hide()
+            else:
+                self.li_hacktor.setGeometry(QRect(25, self.height() - 80, 22, 33))
         else:
             if extra_screen_height > 800:
                 self.li_hacktor.setGeometry(QRect(25, self.height() - 80, 22, 33))
@@ -203,14 +206,14 @@ class DashboardMainWindow(QMainWindow):
         is_extra_large_screen, extra_large_screen_width, extra_large_screen_height = MediaScreen().is_extra_large()
 
         if is_extra_large_screen:
-            if not extra_large_screen_height <= 900:
+            if extra_large_screen_height <= 900:
 
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
-                                          extra_large_screen_height - (extra_large_screen_height / 6)))
+                                          extra_large_screen_height - (extra_large_screen_height / 4)+100))
             else:
 
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
-                                          extra_large_screen_height - (extra_large_screen_height / 6)))
+                                          extra_large_screen_height - (extra_large_screen_height / 6)+50))
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         elif is_large_screen:
             self.setMinimumSize(QSize(large_screen_width - 200, large_screen_height - 90))
