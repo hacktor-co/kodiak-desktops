@@ -3,7 +3,7 @@
     - All rights reserved for hacktor team
 """
 
-from PyQt5.QtWidgets import (QFrame, QLabel)
+from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout)
 from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
 from PyQt5.QtGui import (QPixmap, QCursor)
 
@@ -16,25 +16,26 @@ from functools import partial
 
 class ToolDialogFrame:
 
-    def __init__(self, containers: QFrame):
+    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout):
         super(ToolDialogFrame, self).__init__()
         self.containers = containers
+        self.page_containers_grid_layout: QGridLayout = page_containers_grid_layout
 
         self.frame_tools = QFrame(self.containers)
-        self.frame_tools.resize( 91, 78 )
+        self.frame_tools.resize(91, 78)
         self.frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_tools.setObjectName("frame_tools")
 
         self.frame_concat_to_frame_tools = QFrame(self.containers)
-        self.frame_concat_to_frame_tools.resize( 481, 168 )
+        self.frame_concat_to_frame_tools.resize(481, 168)
         self.frame_concat_to_frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_concat_to_frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_concat_to_frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_concat_to_frame_tools.setObjectName("frame_concat_to_frame_tools")
 
-    def setup_ui(self, containers_item: QFrame):
+    def setup_ui(self, page_containers: QFrame):
 
         self.lbl_tools = QLabel(self.frame_tools)
         self.lbl_tools.setText("Tools")
@@ -152,22 +153,22 @@ class ToolDialogFrame:
         self.pic_web_logo.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.pic_web_logo.setObjectName("pic_web_logo")
 
-        self.set_events(containers_item)
+        self.set_events(page_containers)
 
-    def set_events(self, containers_item: QFrame):
+    def set_events(self, page_containers: QFrame):
         """this method for 
 
         Arguments:
-            containers_item {QFrame} -- [description]
+            page_containers {QFrame} -- [description]
         """
         UtilsClick.clickable(self.lbl_close_frame_tools).connect(lambda: self.set_visibility_effect(True, False, True))
 
-        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.item_clicked, containers_item=containers_item))
-        UtilsClick.clickable(self.card_web).connect(partial(self.item_clicked, containers_item=containers_item))
-        UtilsClick.clickable(self.card_lot).connect(partial(self.item_clicked, containers_item=containers_item))
-        UtilsClick.clickable(self.card_forensic).connect(partial(self.item_clicked, containers_item=containers_item))
-        UtilsClick.clickable(self.card_monitoring).connect(partial(self.item_clicked, containers_item=containers_item))
-        UtilsClick.clickable(self.card_network).connect(partial(self.item_clicked, containers_item=containers_item))
+        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_web).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_lot).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_forensic).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_monitoring).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_network).connect(partial(self.item_clicked, page_containers=page_containers))
 
     def set_visibility_effect(self, visibility: bool, is_anime: bool, is_close: bool = False):
         """this method for set visibility  frame tools
@@ -179,32 +180,44 @@ class ToolDialogFrame:
         Keyword Arguments:
             is_close {bool} -- [this argument when you want close frame] (default: {False})            
         """
-        frame_tools_width:int = int(self.frame_tools.width()+10)
+        frame_tools_width: int = int(self.frame_tools.width() + 10)
         containers_width: int = int(self.containers.width())
-        frame_concat_to_frame_tools_width: int = int(self.frame_concat_to_frame_tools.width()-10)
+        frame_concat_to_frame_tools_width: int = int(self.frame_concat_to_frame_tools.width() - 10)
+        #
+        x_location_frame_tools: int = int(containers_width - frame_tools_width)
+
+        x_location_frame_tools_concat: int = int(
+            containers_width - frame_concat_to_frame_tools_width - frame_tools_width)
 
         if visibility and is_anime:
-            self.do_anim_frame_tools(self.frame_tools, 
-            QRect(containers_width - frame_tools_width, 280, 91, 78)
-            , QRect(containers_width - frame_tools_width, 360, 91, 78))
+            # start animation
+            self.do_anim_frame_tools(self.frame_tools,
+                                     QRect(x_location_frame_tools, 280, 91, 78)
+                                     , QRect(x_location_frame_tools, 360, 91, 78))
 
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, 
-            QRect(containers_width - frame_concat_to_frame_tools_width - frame_tools_width, 280, 481, 78),
-            QRect(containers_width  - frame_concat_to_frame_tools_width - frame_tools_width, 360, 481, 168))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools,
+                                            QRect(
+                                                self.frame_tools.x() - 78,
+                                                280, 161, 78),
+                                            QRect(
+                                                self.frame_tools.x() - frame_concat_to_frame_tools_width,
+                                                360, 481, 168))
 
         if is_close:
-            self.do_anim_frame_tools(self.frame_tools, 
-            QRect(containers_width - frame_tools_width, 360, 91, 78)
-            , QRect(int(containers_width - frame_tools_width) * 4, 360, 91, 78))
+            # click close button
+            self.do_anim_frame_tools(self.frame_tools,
+                                     QRect(x_location_frame_tools, 360, 91, 78)
+                                     , QRect(x_location_frame_tools+containers_width, 360, 91, 78))
 
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools, 
-            QRect(containers_width - frame_concat_to_frame_tools_width - frame_tools_width, 360, 481, 78),
-            QRect(int(containers_width - frame_concat_to_frame_tools_width - frame_tools_width) * 4, 360, 481, 168))
+            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools,
+                                            QRect(x_location_frame_tools_concat, 360, 481, 78),
+                                            QRect(x_location_frame_tools_concat+containers_width, 360, 481, 168))
 
         self.frame_tools.setVisible(visibility)
         self.frame_concat_to_frame_tools.setVisible(visibility)
-        
-        del frame_tools_width, containers_width
+
+        del frame_tools_width, frame_concat_to_frame_tools_width, containers_width
+        del x_location_frame_tools, x_location_frame_tools_concat
 
     def do_anim_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
         """ this method for do animation frame tools
@@ -215,7 +228,6 @@ class ToolDialogFrame:
                 end_location {QRect} -- [end location for anime]
         """
         self.anim = QPropertyAnimation(obj, b"geometry")
-        self.anim.setDuration(150)
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
@@ -230,18 +242,18 @@ class ToolDialogFrame:
         """
 
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
-        self.anim_2.setDuration(150)
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()
 
-    def item_clicked(self, containers_item: QFrame):
+    def item_clicked(self, page_containers: QFrame):
         """ this method when call client push devops item
 
             Arguments:
-                containers_item {QFrame} -- [devops layout in this layer ]78
+                page_containers {QFrame} -- [devops layout in this layer ]78
         """
-        from ...centeral_page_maker.centeral_page_maker import CenteralPageMaker
-        CenteralPageMaker(containers = containers_item)
-        self.set_visibility_effect(True, False, True)
+        from ...central_page_maker.central_page_maker import CentralPageMaker
+        # Delete Children in Parent
 
+        CentralPageMaker(containers=page_containers, page_containers_grid_layout=self.page_containers_grid_layout)
+        self.set_visibility_effect(True, False, True)

@@ -1,10 +1,11 @@
-# -*- coding: utf-8 -*-
 """
     - Created on May 16/2020 - hacktorco
     - All rights reserved for hacktor team
 
     - This package is main window styles
 """
+
+from ....utils.custom_scrollbar.custom_scrollbar import ScrollBar
 
 
 class DashboardMainWindowStyles:
@@ -67,6 +68,13 @@ class DashboardMainWindowStyles:
         }
     """)
 
+    navigation_scroll_layout_style: tuple = ("navigation_scroll_layout_style", """
+    #navigation_scroll_layout_style
+    {
+        background-color:rgb(38, 38, 38);border-bottom-right-radius: 20px;
+    } 
+    """ + ScrollBar.create_scrollbar("vertical")
+                                             )
     lbl_time_style: tuple = ("lbl_time_style", """
         #lbl_time_style {
             color: rgb(255, 255, 255);
@@ -81,6 +89,13 @@ class DashboardMainWindowStyles:
         }
     """)
 
-    centeral_widget_style: str = """
+    central_widget_style: str = """
         border: none;
     """
+
+    scroll_area_page_containers_style: tuple = ("scroll_area_page_containers_style", """
+        #scroll_area_page_containers_style{
+                background-color: rgb(22, 22, 21);
+        }
+    """
+                                                )

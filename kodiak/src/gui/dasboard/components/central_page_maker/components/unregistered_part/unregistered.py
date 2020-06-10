@@ -4,91 +4,104 @@
 """
 
 from PyQt5.QtWidgets import (
-    QVBoxLayout,QHBoxLayout,
-    QLabel, QFrame,
-    QGridLayout,QScrollArea,
-    QWidget, QDesktopWidget
-)
-from PyQt5.QtGui import (
-    QIcon, QPixmap,
-    QCursor
-)
-from PyQt5.QtCore import (
-    Qt, QSize,
-    QRect, QCoreApplication
+    QVBoxLayout, QFrame,
+    QGridLayout, QScrollArea,
+    QWidget, QFormLayout,
+    QLabel
 )
 
-from commons.constants.app_paths import AppPaths
+from PyQt5.QtCore import (Qt, QRect, QSize)
 
 from .unregistered_style import UnregisteredStyles
 
 
 class Unregistered:
 
-    def __init__(self):
+    def __init__(self, form_base_layout: QFormLayout):
         super(Unregistered, self).__init__()
 
+        self.form_base_layout: QFormLayout = form_base_layout
+
     def setup_ui(self, containers: QFrame):
-        #unregistered_frame
-        self.unregistered_frame = QFrame(containers)
-        if QDesktopWidget().geometry().height()<800:
-            self.unregistered_frame.setGeometry(QRect((containers.width()-900)/2, 295, 900, 250))
-        else:
-            self.unregistered_frame.setGeometry(QRect((containers.width()-900)/2, 400, 900, 250))
-        
-        self.unregistered_frame.setStyleSheet("background-color: rgb(34,34,34);\n""border-radius:5px;\n""")
+        # parent_unregistered_frame
+        self.parent_unregistered_frame = QFrame(containers)
+        self.parent_unregistered_frame.setFrameShape(QFrame.StyledPanel)
+        self.parent_unregistered_frame.setFrameShadow(QFrame.Raised)
+        self.parent_unregistered_frame.setContentsMargins(0, 45, 0, 0)
+        # parent_vl_unregistered_frame
+        self.parent_vl_unregistered_frame = QVBoxLayout(self.parent_unregistered_frame)
+        self.parent_vl_unregistered_frame.setContentsMargins(30, 30, 30, 30)
+        self.parent_vl_unregistered_frame.setObjectName("vl_registered_frame")
+        # unregistered_frame
+        self.unregistered_frame = QFrame(self.parent_unregistered_frame)
+        self.unregistered_frame.setMinimumSize(QSize(0, 250))
+        self.unregistered_frame.setMaximumSize(QSize(16777215, 350))
+        self.unregistered_frame.setObjectName(UnregisteredStyles.unregistered_frame_style[0])
+        self.unregistered_frame.setStyleSheet(UnregisteredStyles.unregistered_frame_style[1])
         self.unregistered_frame.setFrameShape(QFrame.StyledPanel)
+        self.unregistered_frame.setLayoutDirection(Qt.LeftToRight)
         self.unregistered_frame.setFrameShadow(QFrame.Raised)
-        self.unregistered_frame.setObjectName("unregistered_frame")
-        #vl_unregistered_frame
+        # vl_unregistered_frame
         self.vl_unregistered_frame = QVBoxLayout(self.unregistered_frame)
         self.vl_unregistered_frame.setContentsMargins(30, 30, 30, 30)
         self.vl_unregistered_frame.setObjectName("vl_unregistered_frame")
-        #Add ScrollView
-        self.scrollArea = QScrollArea(self.unregistered_frame)
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1080, 344))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        #Add Vlayout ScroolView
-        self.vlayout_scroll_view = QVBoxLayout(self.scrollAreaWidgetContents)
+        # Add ScrollView
+        self.scroll_area = QScrollArea(self.unregistered_frame)
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setObjectName(UnregisteredStyles.scroll_area_style[0])
+        self.scroll_area.setStyleSheet(UnregisteredStyles.scroll_area_style[1])
+        self.scroll_area_contents = QWidget()
+        self.scroll_area_contents.setGeometry(QRect(0, 0, 1080, 344))
+        self.scroll_area_contents.setObjectName("scroll_area_contents_page_containers")
+        # Add Vlayout ScroolView
+        self.vlayout_scroll_view = QVBoxLayout(self.scroll_area_contents)
         self.vlayout_scroll_view.setObjectName("verticalLayout_3")
-        #frame_containers_items_unregistered
+        # frame_containers_items_unregistered
         self.frame_containers_items_unregistered = QFrame(self.unregistered_frame)
         self.frame_containers_items_unregistered.setStyleSheet("")
         self.frame_containers_items_unregistered.setFrameShape(QFrame.StyledPanel)
         self.frame_containers_items_unregistered.setFrameShadow(QFrame.Raised)
         self.frame_containers_items_unregistered.setObjectName("frame_containers_items_unregistered")
         self.vl_unregistered_frame.addWidget(self.frame_containers_items_unregistered)
-        #unregestered_frame_gridLayout
+        # unregestered_frame_gridLayout
         self.unregestered_frame_gridLayout = QGridLayout(self.frame_containers_items_unregistered)
         self.unregestered_frame_gridLayout.setSpacing(24)
         self.unregestered_frame_gridLayout.setObjectName("unregestered_frame_gridLayout")
 
+        # lbl_unregistered
+        self.lbl_unregistered = QLabel(self.parent_unregistered_frame)
+        self.lbl_unregistered.setGeometry(QRect(75, 15, 141, 32))
+        self.lbl_unregistered.setMinimumSize(QSize(91, 32))
+        self.lbl_unregistered.setObjectName(UnregisteredStyles.lbl_unregistered_style[0])
+        self.lbl_unregistered.setStyleSheet(UnregisteredStyles.lbl_unregistered_style[1])
+        self.lbl_unregistered.setAlignment(Qt.AlignCenter)
+        self.lbl_unregistered.setText("UNREGISTERED")
+
         from .....components.primitive_box.box import Box as box_primitive
 
         start_index = box_primitive().create_box(
-            containers = self.frame_containers_items_unregistered, count_box = 2,
-            frame_gridLayout = self.unregestered_frame_gridLayout
+            containers=self.frame_containers_items_unregistered, count_box=10,
+            frame_gridLayout=self.unregestered_frame_gridLayout
         )
         box_primitive().create_box(
-            containers = self.frame_containers_items_unregistered, count_box = 3,
-            start_index= start_index,frame_gridLayout = self.unregestered_frame_gridLayout,
-            box_type = False
-            )
-        
+            containers=self.frame_containers_items_unregistered, count_box=5,
+            start_index=start_index, frame_gridLayout=self.unregestered_frame_gridLayout,
+            box_type=False
+        )
+
         del start_index
 
         self.vlayout_scroll_view.addWidget(self.frame_containers_items_unregistered, 0, Qt.AlignLeft)
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.vl_unregistered_frame.addWidget(self.scrollArea)
+        self.scroll_area.setWidget(self.scroll_area_contents)
+        self.vl_unregistered_frame.addWidget(self.scroll_area)
+        self.parent_vl_unregistered_frame.addWidget(self.unregistered_frame)
+        self.form_base_layout.setWidget(2, QFormLayout.SpanningRole, self.parent_unregistered_frame)
 
         # start_location = box_primitive().create_box(
         #     containers = self.frame_containers_items_unregistered,count_box = 1, 
         #     box_type = False
         #     )
-            
+
         # end_location = box_primitive().create_box(
         #     containers = self.frame_containers_items_unregistered,count_box = 1, 
         #     start_location= start_location
@@ -128,7 +141,7 @@ class Unregistered:
         # )
         # self.card_add_plugins_to_unregistered.setFrameShape(QFrame.StyledPanel)
         # self.card_add_plugins_to_unregistered.setFrameShadow(QFrame.Raised)
-        
+
         # #----------------------------------------------------------------------pic_add_plugin_to_unregistered
         # self.pic_add_plugin_to_unregistered = QLabel(self.card_add_plugins_to_unregistered)
         # self.pic_add_plugin_to_unregistered.setGeometry(QRect(0, 40, 131, 51))

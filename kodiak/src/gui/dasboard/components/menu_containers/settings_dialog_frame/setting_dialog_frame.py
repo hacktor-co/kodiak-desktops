@@ -9,7 +9,7 @@ from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .setting_dialog_frame_styles import SettingDialogFrameStyles
-from  .....utils.utils_clicked_event import UtilsClick
+from .....utils.utils_clicked_event import UtilsClick
 
 
 class SettingDialogFrame:
@@ -31,7 +31,8 @@ class SettingDialogFrame:
 
         self.lbl_close_frame_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/close_logo.svg"))
         self.lbl_close_frame_setting.setObjectName("lbl_close_frame_setting")
-        UtilsClick.clickable(self.lbl_close_frame_setting).connect(lambda : self.set_visibility_effect(True, False, True))
+        UtilsClick.clickable(self.lbl_close_frame_setting).connect(
+            lambda: self.set_visibility_effect(True, False, True))
 
         self.card_plugin = QLabel(self.frame_concat_to_frame_setting)
         self.card_plugin.setText("Add Plugin")
@@ -80,42 +81,46 @@ class SettingDialogFrame:
         Keyword Arguments:
             is_close {bool} -- [this argument when you want close frame] (default: {False})   
         """
-        frame_setting_width:int = int(self.frame_setting.width()+10)
-        containers_width: int = int(self.containers.width())
-        frame_concat_to_frame_setting_width: int = int(self.frame_concat_to_frame_setting.width()-10)
-        
-        if visibility and is_anime :
-            
-            self.do_anim_frame_setting(self.frame_setting, 
-            
-                QRect(containers_width - frame_setting_width , 360, 91, 78), 
-                QRect(containers_width - frame_setting_width, 280, 91, 78)
-            )
+        frame_setting_width: int = int(self.frame_setting.geometry().width() + 10)
 
+        containers_width: int = int(self.containers.width())
+
+        frame_concat_to_frame_setting_width: int = int(self.frame_concat_to_frame_setting.width() - 10)
+        #
+        x_location_frame_setting: int = int(containers_width - frame_setting_width)
+
+        x_location_frame_setting_concat: int = int(
+            containers_width - frame_concat_to_frame_setting_width - frame_setting_width)
+
+        if visibility and is_anime:
+            # start animation
+            self.do_anim_frame_setting(self.frame_setting,
+                                       QRect(x_location_frame_setting, 360, 91, 78),
+                                       QRect(x_location_frame_setting, 280, 91, 78)
+                                       )
             self.do_anim_concat_frame_setting(
                 self.frame_concat_to_frame_setting,
-                QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 360, 161, 168)
-                , QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 280, 161, 78)
+                QRect(self.frame_setting.x() - 471, 360, 481, 168)
+                , QRect(self.frame_setting.x() - frame_concat_to_frame_setting_width, 280, 161, 78)
             )
 
         if is_close:
-
+            # click button close animation
             self.do_anim_frame_setting(self.frame_setting,
-             QRect(containers_width - frame_setting_width, 280, 91, 78)
-            , QRect(int(containers_width - frame_setting_width)*3, 280, 91, 78))
+                                       QRect(x_location_frame_setting, 280, 91, 78)
+                                       , QRect(x_location_frame_setting+containers_width, 280, 91, 78))
 
             self.do_anim_concat_frame_setting(
                 self.frame_concat_to_frame_setting,
-                QRect(containers_width - frame_concat_to_frame_setting_width - frame_setting_width, 280, 161, 78), 
-                QRect(int(containers_width - frame_concat_to_frame_setting_width - frame_setting_width)*3, 280, 161, 78)
+                QRect(x_location_frame_setting_concat, 280, 161, 78),
+                QRect(x_location_frame_setting_concat+containers_width, 280, 161, 78)
             )
 
         self.frame_setting.setVisible(visibility)
         self.frame_concat_to_frame_setting.setVisible(visibility)
-        #delete from memory    
-        del frame_setting_width
-        del containers_width
-        del frame_concat_to_frame_setting_width
+        # delete from memory
+        del frame_setting_width, frame_concat_to_frame_setting_width, containers_width
+        del x_location_frame_setting, x_location_frame_setting_concat
 
     def do_anim_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
 
@@ -127,7 +132,6 @@ class SettingDialogFrame:
             end_location {QRect} -- [end location for anime]
         """
         self.anim = QPropertyAnimation(obj, b"geometry")
-        self.anim.setDuration(150)
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
         self.anim.start()
@@ -142,7 +146,6 @@ class SettingDialogFrame:
             end_location {QRect} -- [end location for anime]
         """
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
-        self.anim_2.setDuration(150)
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
         self.anim_2.start()

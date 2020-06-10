@@ -5,7 +5,8 @@
 
 from PyQt5.QtWidgets import (
     QVBoxLayout,
-    QLabel, QFrame
+    QLabel, QFrame,
+    QGridLayout
 )
 from PyQt5.QtGui import (
     QIcon, QPixmap,
@@ -22,10 +23,12 @@ from functools import partial
 
 class MenuContainers:
 
-    def __init__(self):
+    def __init__(self, page_containers_grid_layout: QGridLayout):
         super(MenuContainers, self).__init__()
 
-    def setup_ui(self, navigation_item_vlayout: QVBoxLayout, containers: QFrame, contaners_item: QFrame):
+        self.page_containers_grid_layout: QGridLayout = page_containers_grid_layout
+
+    def setup_ui(self, navigation_item_vlayout: QVBoxLayout, containers: QFrame, page_containers: QFrame):
 
         self.containers_menu_li = QVBoxLayout(navigation_item_vlayout)
         self.containers_menu_li.setContentsMargins(0, 0, 0, 0)
@@ -85,10 +88,10 @@ class MenuContainers:
         self.setting_Dialog.set_visibility_effect(False, False)
 
         from .tools_dialog_frame.tool_dialog_frame import ToolDialogFrame
-        self.tools_dialog = ToolDialogFrame(containers)
-        self.tools_dialog.setup_ui(containers_item=contaners_item)
+        self.tools_dialog = ToolDialogFrame(containers, self.page_containers_grid_layout)
+        self.tools_dialog.setup_ui(page_containers=page_containers)
         self.tools_dialog.set_visibility_effect(False, False)
-    
+
     def li_clicked(self, li_name: str):
         """this method for event clicked  list item navigation menu
 
