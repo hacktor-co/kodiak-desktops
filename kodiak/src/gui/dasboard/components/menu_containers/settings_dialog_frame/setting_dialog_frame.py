@@ -4,8 +4,8 @@
 """
 
 from PyQt5.QtWidgets import (QFrame, QLabel)
-from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
-from PyQt5.QtGui import (QIcon, QPixmap, QCursor)
+from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation, QEasingCurve)
+from PyQt5.QtGui import (QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .setting_dialog_frame_styles import SettingDialogFrameStyles
@@ -14,10 +14,8 @@ from .....utils.utils_clicked_event import UtilsClick
 
 class SettingDialogFrame:
 
-    def __init__(self):
+    def __init__(self, containers: QFrame):
         super(SettingDialogFrame, self).__init__()
-
-    def setup_ui(self, containers: QFrame):
         self.containers = containers
         self.frame_concat_to_frame_setting = QFrame(self.containers)
         self.frame_concat_to_frame_setting.resize(161, 78)
@@ -25,6 +23,18 @@ class SettingDialogFrame:
         self.frame_concat_to_frame_setting.setFrameShape(QFrame.StyledPanel)
         self.frame_concat_to_frame_setting.setFrameShadow(QFrame.Raised)
         self.frame_concat_to_frame_setting.setObjectName("frame_concat_to_frame_setting")
+
+        self.frame_setting = QFrame(self.containers)
+        self.frame_setting.resize(68, 78)
+        self.frame_setting.setStyleSheet(SettingDialogFrameStyles.all_frame_style)
+        self.frame_setting.setObjectName("frame_setting")
+        self.frame_setting.setFrameShape(QFrame.StyledPanel)
+        self.frame_setting.setFrameShadow(QFrame.Raised)
+        self.ease_out = QEasingCurve(QEasingCurve.OutQuad)
+        self.ease_in = QEasingCurve(QEasingCurve.InQuad)
+
+    def setup_ui(self):
+
         self.lbl_close_frame_setting = QLabel(self.frame_concat_to_frame_setting)
         self.lbl_close_frame_setting.setGeometry(QRect(5, 5, 21, 21))
         self.lbl_close_frame_setting.setCursor(QCursor(Qt.PointingHandCursor))
@@ -50,22 +60,15 @@ class SettingDialogFrame:
         self.pic_plugin_logo.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
         self.pic_plugin_logo.setObjectName("pic_plugin_logo")
 
-        self.frame_setting = QFrame(self.containers)
-        self.frame_setting.resize(91, 78)
-        self.frame_setting.setStyleSheet(SettingDialogFrameStyles.all_frame_style)
-        self.frame_setting.setObjectName("frame_setting")
-        self.frame_setting.setFrameShape(QFrame.StyledPanel)
-        self.frame_setting.setFrameShadow(QFrame.Raised)
-
         self.lbl_setting = QLabel(self.frame_setting)
         self.lbl_setting.setText("Setting")
-        self.lbl_setting.setGeometry(QRect(0, 27, 91, 21))
+        self.lbl_setting.setGeometry(QRect(0, 27, 68, 21))
         self.lbl_setting.setStyleSheet(SettingDialogFrameStyles.lbl_frames_style)
         self.lbl_setting.setAlignment(Qt.AlignCenter)
         self.lbl_setting.setObjectName("lbl_setting")
 
         self.lbl_ellipse_setting = QLabel(self.frame_setting)
-        self.lbl_ellipse_setting.setGeometry(QRect(0, 43, 91, 21))
+        self.lbl_ellipse_setting.setGeometry(QRect(0, 43, 68, 21))
         self.lbl_ellipse_setting.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
         self.lbl_ellipse_setting.setAlignment(Qt.AlignCenter)
         self.lbl_ellipse_setting.setObjectName("lbl_ellipse_setting")
@@ -81,45 +84,37 @@ class SettingDialogFrame:
         Keyword Arguments:
             is_close {bool} -- [this argument when you want close frame] (default: {False})   
         """
-        frame_setting_width: int = int(self.frame_setting.geometry().width() + 10)
+        x_location_frame_setting: int = int(self.containers.width() - 81)
 
-        containers_width: int = int(self.containers.width())
-
-        frame_concat_to_frame_setting_width: int = int(self.frame_concat_to_frame_setting.width() - 10)
-        #
-        x_location_frame_setting: int = int(containers_width - frame_setting_width)
-
-        x_location_frame_setting_concat: int = int(
-            containers_width - frame_concat_to_frame_setting_width - frame_setting_width)
+        x_location_frame_setting_concat: int = int(x_location_frame_setting + 10)
 
         if visibility and is_anime:
             # start animation
             self.do_anim_frame_setting(self.frame_setting,
-                                       QRect(x_location_frame_setting, 360, 91, 78),
-                                       QRect(x_location_frame_setting, 280, 91, 78)
+                                       QRect(x_location_frame_setting, 360, 68, 78),
+                                       QRect(x_location_frame_setting, 280, 68, 78)
                                        )
             self.do_anim_concat_frame_setting(
                 self.frame_concat_to_frame_setting,
-                QRect(self.frame_setting.x() - 471, 360, 481, 168)
-                , QRect(self.frame_setting.x() - frame_concat_to_frame_setting_width, 280, 161, 78)
+                QRect(x_location_frame_setting_concat-500, 360, 500, 168)
+                , QRect(x_location_frame_setting_concat - self.frame_concat_to_frame_setting.width(), 280, 161, 78)
             )
 
         if is_close:
             # click button close animation
             self.do_anim_frame_setting(self.frame_setting,
-                                       QRect(x_location_frame_setting, 280, 91, 78)
-                                       , QRect(x_location_frame_setting+containers_width, 280, 91, 78))
+                                       QRect(x_location_frame_setting, 280, 68, 78)
+                                       , QRect(x_location_frame_setting + self.containers.width(), 280, 68, 78))
 
             self.do_anim_concat_frame_setting(
                 self.frame_concat_to_frame_setting,
                 QRect(x_location_frame_setting_concat, 280, 161, 78),
-                QRect(x_location_frame_setting_concat+containers_width, 280, 161, 78)
+                QRect(x_location_frame_setting_concat + self.containers.width(), 280, 161, 78)
             )
 
         self.frame_setting.setVisible(visibility)
         self.frame_concat_to_frame_setting.setVisible(visibility)
         # delete from memory
-        del frame_setting_width, frame_concat_to_frame_setting_width, containers_width
         del x_location_frame_setting, x_location_frame_setting_concat
 
     def do_anim_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
@@ -134,6 +129,9 @@ class SettingDialogFrame:
         self.anim = QPropertyAnimation(obj, b"geometry")
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
+        self.anim.setDuration(200)
+        self.curve = QEasingCurve(QEasingCurve.OutQuad)
+        self.anim.setEasingCurve(self.ease_out)
         self.anim.start()
 
     def do_anim_concat_frame_setting(self, obj: QFrame, start_location: QRect, end_location: QRect):
@@ -148,4 +146,6 @@ class SettingDialogFrame:
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
+        self.anim_2.setDuration(200)
+        self.anim_2.setEasingCurve(self.ease_out)
         self.anim_2.start()

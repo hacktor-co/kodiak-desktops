@@ -83,8 +83,8 @@ class MenuContainers:
         self.containers_menu_li.addWidget(li_brain)
 
         from .settings_dialog_frame.setting_dialog_frame import SettingDialogFrame
-        self.setting_Dialog = SettingDialogFrame()
-        self.setting_Dialog.setup_ui(containers)
+        self.setting_Dialog = SettingDialogFrame(containers)
+        self.setting_Dialog.setup_ui()
         self.setting_Dialog.set_visibility_effect(False, False)
 
         from .tools_dialog_frame.tool_dialog_frame import ToolDialogFrame

@@ -41,7 +41,7 @@ class DashboardMainWindow(QMainWindow):
         self.setAutoFillBackground(False)
         self.setDocumentMode(False)
         self.setDockNestingEnabled(False)
-
+        self.setMouseTracking(True)
         self.central_widget = QWidget(self)
         self.central_widget.setStyleSheet(DashboardMainWindowStyles.central_widget_style)
 
@@ -209,11 +209,11 @@ class DashboardMainWindow(QMainWindow):
             if extra_large_screen_height <= 900:
 
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
-                                          extra_large_screen_height - (extra_large_screen_height / 4)+100))
+                                          extra_large_screen_height - (extra_large_screen_height / 4) + 100))
             else:
 
                 self.setMinimumSize(QSize(extra_large_screen_width - (extra_large_screen_width / 4),
-                                          extra_large_screen_height - (extra_large_screen_height / 6)+50))
+                                          extra_large_screen_height - (extra_large_screen_height / 6) + 50))
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         elif is_large_screen:
             self.setMinimumSize(QSize(large_screen_width - 200, large_screen_height - 90))
@@ -226,10 +226,12 @@ class DashboardMainWindow(QMainWindow):
             self.navigation_menu.setMinimumSize(QSize(71, 700))
         else:
             # any thing else
-            self.setMinimumSize(QSize(1150, 690))
-            self.navigation_menu.setMinimumSize(QSize(71, 550))
+            self.setMinimumSize(QSize(1150, 800))
+            self.navigation_menu.setMinimumSize(QSize(71, 700))
 
         # Delete From Memory
         del is_small_screen, is_medium_screen, is_large_screen
         del small_screen_width, medium_screen_width, large_screen_width
         del small_screen_height, medium_screen_height, large_screen_height
+
+

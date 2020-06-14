@@ -3,9 +3,9 @@
     - All rights reserved for hacktor team
 """
 
-from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout)
-from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation)
-from PyQt5.QtGui import (QPixmap, QCursor)
+from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout, QGraphicsOpacityEffect)
+from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation, QEasingCurve)
+from PyQt5.QtGui import (QPixmap, QCursor, QColor)
 
 from commons.constants.app_paths import AppPaths
 from .tool_dialog_frame_styles import ToolDialogFrameStyles
@@ -22,30 +22,32 @@ class ToolDialogFrame:
         self.page_containers_grid_layout: QGridLayout = page_containers_grid_layout
 
         self.frame_tools = QFrame(self.containers)
-        self.frame_tools.resize(91, 78)
+        self.frame_tools.resize(68, 78)
         self.frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_tools.setObjectName("frame_tools")
 
         self.frame_concat_to_frame_tools = QFrame(self.containers)
-        self.frame_concat_to_frame_tools.resize(481, 168)
+        self.frame_concat_to_frame_tools.resize(500, 168)
         self.frame_concat_to_frame_tools.setStyleSheet(ToolDialogFrameStyles.all_frame_style)
         self.frame_concat_to_frame_tools.setFrameShape(QFrame.StyledPanel)
         self.frame_concat_to_frame_tools.setFrameShadow(QFrame.Raised)
         self.frame_concat_to_frame_tools.setObjectName("frame_concat_to_frame_tools")
 
-    def setup_ui(self, page_containers: QFrame):
+        self.ease_out = QEasingCurve(QEasingCurve.OutQuad)
+        self.ease_in = QEasingCurve(QEasingCurve.InQuad)
 
+    def setup_ui(self, page_containers: QFrame):
         self.lbl_tools = QLabel(self.frame_tools)
         self.lbl_tools.setText("Tools")
-        self.lbl_tools.setGeometry(QRect(0, 27, 91, 21))
+        self.lbl_tools.setGeometry(QRect(0, 27, 68, 21))
         self.lbl_tools.setStyleSheet(ToolDialogFrameStyles.lbl_frames_style)
         self.lbl_tools.setAlignment(Qt.AlignCenter)
         self.lbl_tools.setObjectName("lbl_tools")
 
         self.lbl_ellipse_tools = QLabel(self.frame_tools)
-        self.lbl_ellipse_tools.setGeometry(QRect(0, 43, 91, 21))
+        self.lbl_ellipse_tools.setGeometry(QRect(0, 43, 68, 21))
         self.lbl_ellipse_tools.setStyleSheet(ToolDialogFrameStyles.transparent_color_style)
         self.lbl_ellipse_tools.setPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/ellipse_logo.svg"))
         self.lbl_ellipse_tools.setAlignment(Qt.AlignCenter)
@@ -156,7 +158,7 @@ class ToolDialogFrame:
         self.set_events(page_containers)
 
     def set_events(self, page_containers: QFrame):
-        """this method for 
+        """this method for
 
         Arguments:
             page_containers {QFrame} -- [description]
@@ -178,45 +180,37 @@ class ToolDialogFrame:
             is_anime {bool} -- [this argument show anime effect]
 
         Keyword Arguments:
-            is_close {bool} -- [this argument when you want close frame] (default: {False})            
+            is_close {bool} -- [this argument when you want close frame] (default: {False})
         """
-        frame_tools_width: int = int(self.frame_tools.width() + 10)
-        containers_width: int = int(self.containers.width())
-        frame_concat_to_frame_tools_width: int = int(self.frame_concat_to_frame_tools.width() - 10)
-        #
-        x_location_frame_tools: int = int(containers_width - frame_tools_width)
+        x_location_frame_tools: int = int(self.containers.width() - 81)
 
-        x_location_frame_tools_concat: int = int(
-            containers_width - frame_concat_to_frame_tools_width - frame_tools_width)
+        x_location_frame_tools_concat: int = int(x_location_frame_tools + 10)
 
         if visibility and is_anime:
             # start animation
             self.do_anim_frame_tools(self.frame_tools,
-                                     QRect(x_location_frame_tools, 280, 91, 78)
-                                     , QRect(x_location_frame_tools, 360, 91, 78))
+                                     QRect(x_location_frame_tools, 280, 68, 78)
+                                     , QRect(x_location_frame_tools, 360, 68, 78))
 
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools,
-                                            QRect(
-                                                self.frame_tools.x() - 78,
-                                                280, 161, 78),
-                                            QRect(
-                                                self.frame_tools.x() - frame_concat_to_frame_tools_width,
-                                                360, 481, 168))
+            self.do_anim_concat_frame_tools(
+                self.frame_concat_to_frame_tools,
+                QRect(x_location_frame_tools_concat-161, 280, 161, 78)
+                , QRect(x_location_frame_tools_concat - self.frame_concat_to_frame_tools.width(), 360, 500, 168))
 
         if is_close:
             # click close button
             self.do_anim_frame_tools(self.frame_tools,
-                                     QRect(x_location_frame_tools, 360, 91, 78)
-                                     , QRect(x_location_frame_tools+containers_width, 360, 91, 78))
+                                     QRect(x_location_frame_tools, 360, 68, 78)
+                                     , QRect(x_location_frame_tools + self.containers.width(), 360, 68, 78))
 
             self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools,
-                                            QRect(x_location_frame_tools_concat, 360, 481, 78),
-                                            QRect(x_location_frame_tools_concat+containers_width, 360, 481, 168))
+                                            QRect(x_location_frame_tools_concat, 360, 500, 78),
+                                            QRect(x_location_frame_tools_concat + self.containers.width(), 360, 500,
+                                                  168))
 
         self.frame_tools.setVisible(visibility)
         self.frame_concat_to_frame_tools.setVisible(visibility)
 
-        del frame_tools_width, frame_concat_to_frame_tools_width, containers_width
         del x_location_frame_tools, x_location_frame_tools_concat
 
     def do_anim_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
@@ -230,7 +224,9 @@ class ToolDialogFrame:
         self.anim = QPropertyAnimation(obj, b"geometry")
         self.anim.setStartValue(start_location)
         self.anim.setEndValue(end_location)
-        self.anim.start()
+        self.anim.setDuration(200)
+        self.anim.setEasingCurve(self.ease_out)
+        self.anim.start(QPropertyAnimation.DeleteWhenStopped)
 
     def do_anim_concat_frame_tools(self, obj: QFrame, start_location: QRect, end_location: QRect):
         """ this method for do animation frame concat to frame tools tools
@@ -244,7 +240,10 @@ class ToolDialogFrame:
         self.anim_2 = QPropertyAnimation(obj, b"geometry")
         self.anim_2.setStartValue(start_location)
         self.anim_2.setEndValue(end_location)
-        self.anim_2.start()
+        self.anim_2.setDuration(200)
+        self.anim_2.setEasingCurve(self.ease_out)
+        self.anim_2.start(QPropertyAnimation.DeleteWhenStopped)
+
 
     def item_clicked(self, page_containers: QFrame):
         """ this method when call client push devops item

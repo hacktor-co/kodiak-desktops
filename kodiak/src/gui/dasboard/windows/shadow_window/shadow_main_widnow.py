@@ -11,6 +11,7 @@ class Container(QWidget):
         super(Container, self).__init__(parent)
         self.window = window
         self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setMouseTracking(True)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setGeometry(window.x()+50, window.y()+50, window.width()+50, window.height()+50)
         self.lay = QVBoxLayout(self)
