@@ -6,11 +6,11 @@
 """
 
 from PyQt5.QtWidgets import (
-    QLabel, QFrame, QFormLayout, QGridLayout, QScrollArea,
+    QLabel, QFrame, QFormLayout, QScrollArea,
     QVBoxLayout, QWidget
 )
 from PyQt5.QtCore import (
-    Qt, QSize, QRect, QCoreApplication
+    Qt, QRect
 )
 
 from .central_page_maker_style import CentralPageMakerStyle
@@ -21,7 +21,7 @@ class CentralPageMaker(QWidget):
     def __init__(self):
         super(CentralPageMaker, self).__init__()
 
-    def setup_ui(self, containers: QFrame):
+    def setup_ui(self, containers: QFrame, page_name: str):
         page_containers = QFrame(containers)
         page_containers.setFrameShape(QFrame.StyledPanel)
         page_containers.setFrameShadow(QFrame.Raised)
@@ -44,10 +44,12 @@ class CentralPageMaker(QWidget):
         form_base_layout.setVerticalSpacing(100)
         form_base_layout.setObjectName("form_base_layout")
 
-        from .components.registered_part.registered import Registered
-        Registered(form_base_layout).setup_ui(containers=scroll_area_contents_page_containers)
-        from .components.unregistered_part.unregistered import Unregistered
-        Unregistered(form_base_layout).setup_ui(containers=scroll_area_contents_page_containers)
+        print(page_name)
+        if page_name.split('-')[0] == "[TOOL]":
+            from ...pages.tools_page.tool_page_maker import ToolPageMaker
+            ToolPageMaker(
+                self, form_base_layout, scroll_area_contents_page_containers, tool_box=page_name.split('-')[2].split(' ')[0]
+            ).make_page()
 
         # lbl_title
         lbl_title = QLabel(scroll_area_contents_page_containers)

@@ -322,7 +322,7 @@ class ToolDialogFrame:
 
         from ...central_page_maker.central_page_maker import CentralPageMaker
         self.page_containers_grid_layout.addWidget(CentralPageMaker().setup_ui(
-            containers=page_containers
+            containers=page_containers, page_name=object_name
         ), 0, 1, 1, 1)
 
         self.set_visibility_effect(True, False, True)

@@ -15,6 +15,7 @@ from PyQt5.QtCore import (
 
 from .registered_style import RegisteredStyles
 
+
 class Registered:
 
     def __init__(self, form_base_layout: QFormLayout):
@@ -77,9 +78,7 @@ class Registered:
         self.lbl_registered.setAlignment(Qt.AlignCenter)
         self.lbl_registered.setText("REGISTERED")
 
-        from .....components.primitive_box.box import Box as box_primitive
-
-        # start_location =
+        from ....components.primitive_box.box import Box as box_primitive
 
         start_index = box_primitive().create_box(
             containers=self.frame_containers_items_registered, count_box=1,

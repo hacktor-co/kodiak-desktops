@@ -15,10 +15,10 @@ from PyQt5.QtCore import (Qt, QRect, QSize)
 from .unregistered_style import UnregisteredStyles
 
 
-class Unregistered:
+class UnRegistered:
 
     def __init__(self, form_base_layout: QFormLayout):
-        super(Unregistered, self).__init__()
+        super(UnRegistered, self).__init__()
 
         self.form_base_layout: QFormLayout = form_base_layout
 
@@ -77,7 +77,7 @@ class Unregistered:
         self.lbl_unregistered.setAlignment(Qt.AlignCenter)
         self.lbl_unregistered.setText("UNREGISTERED")
 
-        from .....components.primitive_box.box import Box as box_primitive
+        from ....components.primitive_box.box import Box as box_primitive
 
         # start_index = box_primitive().create_box(
         #     containers=self.frame_containers_items_unregistered, count_box=10,
