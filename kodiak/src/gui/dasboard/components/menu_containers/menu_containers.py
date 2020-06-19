@@ -1,16 +1,17 @@
 """
     - Created on May 18/2020 - hacktorco
     - All rights reserved for hacktor team
+    - this package contains all item in menu side bar like {
+        1- Setting
+        2- Tools , ...
+    }
 """
 
 from PyQt5.QtWidgets import (
-    QVBoxLayout,
-    QLabel, QFrame,
-    QGridLayout
+    QVBoxLayout, QLabel, QFrame, QGridLayout
 )
 from PyQt5.QtGui import (
-    QIcon, QPixmap,
-    QCursor
+    QIcon, QPixmap, QCursor
 )
 from PyQt5.QtCore import Qt
 
@@ -93,10 +94,9 @@ class MenuContainers:
         self.tools_dialog.set_visibility_effect(False, False)
 
     def li_clicked(self, li_name: str):
-        """this method for event clicked  list item navigation menu
-
-        Arguments:
-            li_name {str} -- [list item name]
+        """ this method for event clicked  list item navigation menu
+            Arguments:
+                li_name {str} -- [list item name]
         """
         if li_name == "setting":
             self.hide_all_frame()

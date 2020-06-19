@@ -1,6 +1,7 @@
 """
     - Created on May 18/2020 - hacktorco
     - All rights reserved for hacktor team
+    - this package work as tools menu dialog animation component
 """
 
 from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout, QGraphicsOpacityEffect)
@@ -65,7 +66,7 @@ class ToolDialogFrame:
         self.card_forensic.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_forensic.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_forensic.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_forensic.setObjectName("card_forensic")
+        self.card_forensic.setObjectName("[TOOL]-[FORENSIC]-Forensic Tools")
 
         self.pic_forensic = QLabel(self.frame_concat_to_frame_tools)
         self.pic_forensic.setGeometry(QRect(40, 10, 41, 31))
@@ -81,7 +82,7 @@ class ToolDialogFrame:
         self.card_lot.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_lot.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_lot.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_lot.setObjectName("card_lot")
+        self.card_lot.setObjectName("[TOOL]-[IOT]-IOT Tools")
 
         self.pic_lot_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_lot_logo.setGeometry(QRect(126, 10, 41, 31))
@@ -97,7 +98,7 @@ class ToolDialogFrame:
         self.card_network.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_network.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_network.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_network.setObjectName("card_network")
+        self.card_network.setObjectName("[TOOL]-[NETWORK]-Network Tools")
 
         self.pic_network_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_network_logo.setGeometry(QRect(300, 10, 41, 31))
@@ -113,7 +114,7 @@ class ToolDialogFrame:
         self.card_dev_ops.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_dev_ops.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_dev_ops.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_dev_ops.setObjectName("card_dev_ops")
+        self.card_dev_ops.setObjectName("[TOOL]-[DEVOPS]-DevOps Tools")
 
         self.pic_dev_ops_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_dev_ops_logo.setGeometry(QRect(215, 10, 41, 31))
@@ -129,7 +130,7 @@ class ToolDialogFrame:
         self.card_monitoring.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_monitoring.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_monitoring.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_monitoring.setObjectName("card_monitoring")
+        self.card_monitoring.setObjectName("[TOOL]-[MONITORING]-Monitoring Tools")
 
         self.pic_monitoring_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_monitoring_logo.setGeometry(QRect(388, 90, 41, 31))
@@ -145,7 +146,7 @@ class ToolDialogFrame:
         self.card_web.setCursor(QCursor(Qt.PointingHandCursor))
         self.card_web.setStyleSheet(ToolDialogFrameStyles.cards_in_frame_style)
         self.card_web.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
-        self.card_web.setObjectName("card_web")
+        self.card_web.setObjectName("[TOOL]-[WEB]-Web Tools")
 
         self.pic_web_logo = QLabel(self.frame_concat_to_frame_tools)
         self.pic_web_logo.setGeometry(QRect(388, 10, 41, 31))
@@ -165,12 +166,59 @@ class ToolDialogFrame:
         """
         UtilsClick.clickable(self.lbl_close_frame_tools).connect(lambda: self.set_visibility_effect(True, False, True))
 
-        UtilsClick.clickable(self.card_dev_ops).connect(partial(self.item_clicked, page_containers=page_containers))
-        UtilsClick.clickable(self.card_web).connect(partial(self.item_clicked, page_containers=page_containers))
-        UtilsClick.clickable(self.card_lot).connect(partial(self.item_clicked, page_containers=page_containers))
-        UtilsClick.clickable(self.card_forensic).connect(partial(self.item_clicked, page_containers=page_containers))
-        UtilsClick.clickable(self.card_monitoring).connect(partial(self.item_clicked, page_containers=page_containers))
-        UtilsClick.clickable(self.card_network).connect(partial(self.item_clicked, page_containers=page_containers))
+        UtilsClick.clickable(self.card_dev_ops).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_dev_ops.objectName()
+        ))
+        UtilsClick.clickable(self.pic_dev_ops_logo).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_dev_ops.objectName()
+        ))
+
+        UtilsClick.clickable(self.card_web).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_web.objectName()
+        ))
+        UtilsClick.clickable(self.pic_web_logo).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_web.objectName()
+        ))
+
+        UtilsClick.clickable(self.card_lot).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_lot.objectName()
+        ))
+        UtilsClick.clickable(self.pic_lot_logo).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_lot.objectName()
+        ))
+
+        UtilsClick.clickable(self.card_forensic).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_forensic.objectName()
+        ))
+        UtilsClick.clickable(self.pic_forensic).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_forensic.objectName()
+        ))
+
+        UtilsClick.clickable(self.card_monitoring).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_monitoring.objectName()
+        ))
+        UtilsClick.clickable(self.pic_monitoring_logo).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_monitoring.objectName()
+        ))
+
+        UtilsClick.clickable(self.card_network).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_network.objectName()
+        ))
+        UtilsClick.clickable(self.pic_network_logo).connect(partial(
+            self.item_clicked, page_containers=page_containers,
+            object_name=self.card_network.objectName()
+        ))
 
     def set_visibility_effect(self, visibility: bool, is_anime: bool, is_close: bool = False):
         """this method for set visibility  frame tools
@@ -188,25 +236,27 @@ class ToolDialogFrame:
 
         if visibility and is_anime:
             # start animation
-            self.do_anim_frame_tools(self.frame_tools,
-                                     QRect(x_location_frame_tools, 280, 68, 78)
-                                     , QRect(x_location_frame_tools, 360, 68, 78))
+            self.do_anim_frame_tools(
+                self.frame_tools, QRect(x_location_frame_tools, 280, 68, 78),
+                QRect(x_location_frame_tools, 360, 68, 78)
+            )
 
             self.do_anim_concat_frame_tools(
-                self.frame_concat_to_frame_tools,
-                QRect(x_location_frame_tools_concat-161, 280, 161, 78)
-                , QRect(x_location_frame_tools_concat - self.frame_concat_to_frame_tools.width(), 360, 500, 168))
+                self.frame_concat_to_frame_tools, QRect(x_location_frame_tools_concat-161, 280, 161, 78),
+                QRect(x_location_frame_tools_concat - self.frame_concat_to_frame_tools.width(), 360, 500, 168)
+            )
 
         if is_close:
             # click close button
-            self.do_anim_frame_tools(self.frame_tools,
-                                     QRect(x_location_frame_tools, 360, 68, 78)
-                                     , QRect(x_location_frame_tools + self.containers.width(), 360, 68, 78))
+            self.do_anim_frame_tools(
+                self.frame_tools, QRect(x_location_frame_tools, 360, 68, 78),
+                QRect(x_location_frame_tools + self.containers.width(), 360, 68, 78)
+            )
 
-            self.do_anim_concat_frame_tools(self.frame_concat_to_frame_tools,
-                                            QRect(x_location_frame_tools_concat, 360, 500, 78),
-                                            QRect(x_location_frame_tools_concat + self.containers.width(), 360, 500,
-                                                  168))
+            self.do_anim_concat_frame_tools(
+                self.frame_concat_to_frame_tools, QRect(x_location_frame_tools_concat, 360, 500, 78),
+                QRect(x_location_frame_tools_concat + self.containers.width(), 360, 500, 168)
+            )
 
         self.frame_tools.setVisible(visibility)
         self.frame_concat_to_frame_tools.setVisible(visibility)
@@ -244,15 +294,17 @@ class ToolDialogFrame:
         self.anim_2.setEasingCurve(self.ease_out)
         self.anim_2.start(QPropertyAnimation.DeleteWhenStopped)
 
-
-    def item_clicked(self, page_containers: QFrame):
+    def item_clicked(self, page_containers: QFrame, object_name: str):
         """ this method when call client push devops item
 
             Arguments:
-                page_containers {QFrame} -- [devops layout in this layer ]78
+                page_containers {QFrame} -- [devops layout in this layer]
         """
         from ...central_page_maker.central_page_maker import CentralPageMaker
         # Delete Children in Parent
 
-        CentralPageMaker(containers=page_containers, page_containers_grid_layout=self.page_containers_grid_layout)
+        CentralPageMaker(
+            containers=page_containers, page_containers_grid_layout=self.page_containers_grid_layout,
+            page_name=object_name
+        )
         self.set_visibility_effect(True, False, True)

@@ -6,13 +6,11 @@
 """
 
 from PyQt5.QtWidgets import (
-    QLabel, QFrame, QFormLayout,
-    QGridLayout, QScrollArea,
+    QLabel, QFrame, QFormLayout, QGridLayout, QScrollArea,
     QVBoxLayout
 )
 from PyQt5.QtCore import (
-    Qt, QSize,
-    QRect, QCoreApplication
+    Qt, QSize, QRect, QCoreApplication
 )
 
 from .central_page_maker_style import CentralPageMakerStyle
@@ -20,12 +18,14 @@ from .central_page_maker_style import CentralPageMakerStyle
 
 class CentralPageMaker:
 
-    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout):
+    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout, page_name: str):
         super(CentralPageMaker, self).__init__()
+
+        self.page_name: str = page_name
+
         self.__setup_ui__(containers, page_containers_grid_layout)
 
-    @staticmethod
-    def __setup_ui__(containers: QFrame, page_containers_grid_layout: QGridLayout):
+    def __setup_ui__(self, containers: QFrame, page_containers_grid_layout: QGridLayout):
         page_containers = QFrame(containers)
         page_containers.setFrameShape(QFrame.StyledPanel)
         page_containers.setFrameShadow(QFrame.Raised)
@@ -47,10 +47,12 @@ class CentralPageMaker:
         form_base_layout.setHorizontalSpacing(0)
         form_base_layout.setVerticalSpacing(100)
         form_base_layout.setObjectName("form_base_layout")
+
         from .components.registered_part.registered import Registered
         Registered(form_base_layout).setup_ui(containers=scroll_area_contents_page_containers)
         from .components.unregistered_part.unregistered import Unregistered
         Unregistered(form_base_layout).setup_ui(containers=scroll_area_contents_page_containers)
+
         # lbl_title
         lbl_title = QLabel(scroll_area_contents_page_containers)
         lbl_title.setGeometry(QRect(441, 10, 281, 16))
@@ -60,3 +62,4 @@ class CentralPageMaker:
         scroll_area_page_containers.setWidget(scroll_area_contents_page_containers)
         page_containers_grid_layout.addWidget(scroll_area_page_containers, 0, 1, 1, 1)
 
+        print(self.page_name)

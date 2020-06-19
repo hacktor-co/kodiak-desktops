@@ -63,6 +63,7 @@ class DashboardMainWindow(QMainWindow):
         self.containers_gridlayout.setContentsMargins(0, 0, 0, 0)
         self.containers_gridlayout.setSpacing(0)
         self.containers_gridlayout.setObjectName("containers_gridlayout")
+
         # Add Scroll Layout
         self.navigation_scroll_layout = QScrollArea(self.containers)
         self.navigation_scroll_layout.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -233,5 +234,3 @@ class DashboardMainWindow(QMainWindow):
         del is_small_screen, is_medium_screen, is_large_screen
         del small_screen_width, medium_screen_width, large_screen_width
         del small_screen_height, medium_screen_height, large_screen_height
-
-

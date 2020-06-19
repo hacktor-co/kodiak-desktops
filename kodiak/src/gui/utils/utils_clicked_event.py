@@ -3,23 +3,18 @@
     - All rights reserved for hacktor team
 """
 
-from PyQt5.QtCore import (
-    QEvent, pyqtSignal,
-    QObject, Qt
-)
+from PyQt5.QtCore import QEvent, pyqtSignal, QObject, Qt
 
 
 class UtilsClick:
+
     @staticmethod
     def clickable(widget):
-
-        """this class for when object clicked 
-
-        Arguments:
-            widget {Qobject}
-
-        Returns:
-            [filter]
+        """ this class for when object clicked
+            Arguments:
+                widget {Qobject}
+            Returns:
+                [filter]
         """
 
         class Filter(QObject):
