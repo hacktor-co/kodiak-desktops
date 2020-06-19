@@ -61,5 +61,3 @@ class CentralPageMaker:
         vl_page_containers.addWidget(scroll_area_page_containers)
         scroll_area_page_containers.setWidget(scroll_area_contents_page_containers)
         page_containers_grid_layout.addWidget(scroll_area_page_containers, 0, 1, 1, 1)
-
-        print(self.page_name)
