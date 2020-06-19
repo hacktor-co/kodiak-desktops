@@ -17,10 +17,22 @@ from PyQt5.QtGui import (
 from commons.constants.app_paths import AppPaths
 from .top_navigation_bar_containers_styles import TopNavigationBarContainersStyles
 
+from interfaces.gui_concentrates.gui_observer import GUIObserver
+from commons.constants.gui_class_names import GUIClassNames
 
-class TopNavigationBarContainers:
-    
-    def __init__(self):
+
+class TopNavigationBarContainers(GUIObserver):
+
+    def on_message(self, message: dict):
+        self.location_box.setText(str(message["data"]["value"]).split('-')[2])
+
+    @property
+    def class_name(self):
+        return GUIClassNames.TOP_NAVIGATION_BAR_CONTAINERS
+
+    def __init__(self, gui_concentrate_handler):
+        gui_concentrate_handler.attach(self)
+
         super(TopNavigationBarContainers, self).__init__()
 
     def setup_ui(self, containers: QFrame, main_gridLayout: QGridLayout):
@@ -28,12 +40,12 @@ class TopNavigationBarContainers:
         self.frame_location_box.setFrameShape(QFrame.StyledPanel)
         self.frame_location_box.setFrameShadow(QFrame.Raised)
         self.frame_location_box.setObjectName("frame_location_box")
-        
+
         self.vlayout_location_box = QVBoxLayout(self.frame_location_box)
         self.vlayout_location_box.setContentsMargins(0, 0, 71, 0)
         self.vlayout_location_box.setObjectName("vlayout_location_box")
         self.location_box = QLabel(self.frame_location_box)
-        self.location_box.setText("DevOps")
+        self.location_box.setText("MainPage")
         self.location_box.setCursor(QCursor(Qt.PointingHandCursor))
         self.location_box.setObjectName(TopNavigationBarContainersStyles.location_box_style[0])
         self.location_box.setStyleSheet(TopNavigationBarContainersStyles.location_box_style[1])

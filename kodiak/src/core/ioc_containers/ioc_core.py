@@ -6,6 +6,11 @@
 from dependency_injector.containers import (
     DeclarativeContainer as DI_DeclarativeContainer
 )
+from dependency_injector.providers import (
+    Singleton as DI_provider_singleton
+)
+
+from ..inner_concert_handlers.gui_concentrate_handler import GUIConcentrateHandler
 
 
 class Core(DI_DeclarativeContainer):
@@ -13,4 +18,4 @@ class Core(DI_DeclarativeContainer):
             here we initialize the configs and other core options like logger or ...
     """
 
-    pass
+    gui_concentrate_handler = DI_provider_singleton(GUIConcentrateHandler)

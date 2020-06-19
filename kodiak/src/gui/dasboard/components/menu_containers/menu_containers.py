@@ -24,9 +24,9 @@ from functools import partial
 
 class MenuContainers:
 
-    def __init__(self, page_containers_grid_layout: QGridLayout):
+    def __init__(self, page_containers_grid_layout: QGridLayout, gui_concentrate_handler):
         super(MenuContainers, self).__init__()
-
+        self.gui_concentrate_handler = gui_concentrate_handler
         self.page_containers_grid_layout: QGridLayout = page_containers_grid_layout
 
     def setup_ui(self, navigation_item_vlayout: QVBoxLayout, containers: QFrame, page_containers: QFrame):
@@ -89,7 +89,7 @@ class MenuContainers:
         self.setting_Dialog.set_visibility_effect(False, False)
 
         from .tools_dialog_frame.tool_dialog_frame import ToolDialogFrame
-        self.tools_dialog = ToolDialogFrame(containers, self.page_containers_grid_layout)
+        self.tools_dialog = ToolDialogFrame(containers, self.page_containers_grid_layout, self.gui_concentrate_handler)
         self.tools_dialog.setup_ui(page_containers=page_containers)
         self.tools_dialog.set_visibility_effect(False, False)
 

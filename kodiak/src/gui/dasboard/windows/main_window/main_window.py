@@ -29,8 +29,11 @@ from .main_window_style import DashboardMainWindowStyles
 
 class DashboardMainWindow(QMainWindow):
 
-    def __init__(self, parent=None):
+    def __init__(self, gui_concentrate_handler, parent=None):
         super(DashboardMainWindow, self).__init__(parent)
+
+        self.gui_concentrate_handler = gui_concentrate_handler
+
         self.__setup_ui__()
 
     def __setup_ui__(self):
@@ -161,13 +164,17 @@ class DashboardMainWindow(QMainWindow):
         self.page_containers_grid_layout.setObjectName("page_containers_gridLayout")
 
         from ...components.menu_containers.menu_containers import MenuContainers
-        self.menu = MenuContainers(self.page_containers_grid_layout)
+        self.menu = MenuContainers(
+            self.page_containers_grid_layout, gui_concentrate_handler=self.gui_concentrate_handler
+        )
         self.menu.setup_ui(
             navigation_item_vlayout=self.navigation_item_vlayout, containers=self.containers,
             page_containers=self.page_containers
         )
         from ...components.top_navigation_bar_containers.top_navigation_bar_containers import TopNavigationBarContainers
-        TopNavigationBarContainers().setup_ui(containers=self.main_frame, main_gridLayout=self.main_frame_gridLayout)
+        TopNavigationBarContainers(
+            gui_concentrate_handler=self.gui_concentrate_handler
+        ).setup_ui(containers=self.main_frame, main_gridLayout=self.main_frame_gridLayout)
 
         main_icon = QIcon()
         main_icon.addPixmap(QPixmap(AppPaths.GUI_ASSETS_ICONS_PATH + "/main_window/main_logo.ico"))

@@ -3,6 +3,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+./kodiak/build
+./kodiak/dist
 
 # C extensions
 *.so

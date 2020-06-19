@@ -17,9 +17,10 @@ from functools import partial
 
 class ToolDialogFrame:
 
-    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout):
+    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout, gui_concentrate_handler):
         super(ToolDialogFrame, self).__init__()
         self.containers = containers
+        self.gui_concentrate_handler = gui_concentrate_handler
         self.page_containers_grid_layout: QGridLayout = page_containers_grid_layout
 
         self.frame_tools = QFrame(self.containers)
@@ -300,9 +301,20 @@ class ToolDialogFrame:
             Arguments:
                 page_containers {QFrame} -- [devops layout in this layer]
         """
-        from ...central_page_maker.central_page_maker import CentralPageMaker
         # Delete Children in Parent
 
+        from commons.constants.gui_class_names import GUIClassNames
+        self.gui_concentrate_handler.notify(message={
+            "data": {
+                "value": object_name
+            },
+            "params": None,
+            "command": {
+                "name": "[CHANGE_NAME]"
+            }
+        }, to=GUIClassNames.TOP_NAVIGATION_BAR_CONTAINERS)
+
+        from ...central_page_maker.central_page_maker import CentralPageMaker
         CentralPageMaker(
             containers=page_containers, page_containers_grid_layout=self.page_containers_grid_layout,
             page_name=object_name
