@@ -7,7 +7,7 @@
 
 from PyQt5.QtWidgets import (
     QLabel, QFrame, QFormLayout, QGridLayout, QScrollArea,
-    QVBoxLayout
+    QVBoxLayout, QWidget
 )
 from PyQt5.QtCore import (
     Qt, QSize, QRect, QCoreApplication
@@ -16,16 +16,12 @@ from PyQt5.QtCore import (
 from .central_page_maker_style import CentralPageMakerStyle
 
 
-class CentralPageMaker:
+class CentralPageMaker(QWidget):
 
-    def __init__(self, containers: QFrame, page_containers_grid_layout: QGridLayout, page_name: str):
+    def __init__(self):
         super(CentralPageMaker, self).__init__()
 
-        self.page_name: str = page_name
-
-        self.__setup_ui__(containers, page_containers_grid_layout)
-
-    def __setup_ui__(self, containers: QFrame, page_containers_grid_layout: QGridLayout):
+    def setup_ui(self, containers: QFrame):
         page_containers = QFrame(containers)
         page_containers.setFrameShape(QFrame.StyledPanel)
         page_containers.setFrameShadow(QFrame.Raised)
@@ -60,4 +56,5 @@ class CentralPageMaker:
         lbl_title.setStyleSheet(CentralPageMakerStyle.lbl_title_style[1])
         vl_page_containers.addWidget(scroll_area_page_containers)
         scroll_area_page_containers.setWidget(scroll_area_contents_page_containers)
-        page_containers_grid_layout.addWidget(scroll_area_page_containers, 0, 1, 1, 1)
+
+        return scroll_area_page_containers

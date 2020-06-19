@@ -79,17 +79,17 @@ class Unregistered:
 
         from .....components.primitive_box.box import Box as box_primitive
 
-        start_index = box_primitive().create_box(
-            containers=self.frame_containers_items_unregistered, count_box=10,
-            frame_gridLayout=self.unregestered_frame_gridLayout
-        )
+        # start_index = box_primitive().create_box(
+        #     containers=self.frame_containers_items_unregistered, count_box=10,
+        #     frame_gridLayout=self.unregestered_frame_gridLayout
+        # )
         box_primitive().create_box(
-            containers=self.frame_containers_items_unregistered, count_box=5,
-            start_index=start_index, frame_gridLayout=self.unregestered_frame_gridLayout,
+            containers=self.frame_containers_items_unregistered, count_box=1,
+            start_index=0, frame_gridLayout=self.unregestered_frame_gridLayout,
             box_type=False
         )
 
-        del start_index
+        # del start_index
 
         self.vlayout_scroll_view.addWidget(self.frame_containers_items_unregistered, 0, Qt.AlignLeft)
         self.scroll_area.setWidget(self.scroll_area_contents)

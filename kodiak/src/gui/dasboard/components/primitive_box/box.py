@@ -31,8 +31,8 @@ class Box:
             start_location {int} -- [ create box in location] (default: {30})
         """
 
-        box_enumerate=0
-        for box_enumerate in range(0,count_box):
+        box_enumerate = 0
+        for box_enumerate in range(0, count_box):
             frame_border = QFrame(containers)
             frame_border.setCursor(QCursor(Qt.PointingHandCursor))
             frame_border.setMaximumSize(138,138)

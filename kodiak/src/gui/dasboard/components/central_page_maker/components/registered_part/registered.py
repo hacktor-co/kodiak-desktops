@@ -82,14 +82,14 @@ class Registered:
         # start_location =
 
         start_index = box_primitive().create_box(
-            containers=self.frame_containers_items_registered, count_box=10,
+            containers=self.frame_containers_items_registered, count_box=1,
             frame_gridLayout=self.regestered_frame_gridLayout
         )
-        box_primitive().create_box(
-            containers=self.frame_containers_items_registered, count_box=5,
-            start_index=start_index, frame_gridLayout=self.regestered_frame_gridLayout,
-            box_type=False
-        )
+        # box_primitive().create_box(
+        #     containers=self.frame_containers_items_registered, count_box=5,
+        #     start_index=start_index, frame_gridLayout=self.regestered_frame_gridLayout,
+        #     box_type=False
+        # )
 
         del start_index
 

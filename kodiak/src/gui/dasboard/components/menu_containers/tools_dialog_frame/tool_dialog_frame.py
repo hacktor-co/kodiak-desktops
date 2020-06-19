@@ -314,9 +314,15 @@ class ToolDialogFrame:
             }
         }, to=GUIClassNames.TOP_NAVIGATION_BAR_CONTAINERS)
 
+        # delete all pervious widget that created on page_containers_grid_layout
+        from utils.widget_helper import WidgetHelper
+        widget_helper = WidgetHelper()
+        widget_helper.delete_all_widget(self.page_containers_grid_layout)
+        del widget_helper
+
         from ...central_page_maker.central_page_maker import CentralPageMaker
-        CentralPageMaker(
-            containers=page_containers, page_containers_grid_layout=self.page_containers_grid_layout,
-            page_name=object_name
-        )
+        self.page_containers_grid_layout.addWidget(CentralPageMaker().setup_ui(
+            containers=page_containers
+        ), 0, 1, 1, 1)
+
         self.set_visibility_effect(True, False, True)
