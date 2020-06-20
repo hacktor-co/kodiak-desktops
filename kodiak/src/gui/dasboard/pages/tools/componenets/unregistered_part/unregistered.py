@@ -4,15 +4,14 @@
 """
 
 from PyQt5.QtWidgets import (
-    QVBoxLayout, QFrame,
-    QGridLayout, QScrollArea,
-    QWidget, QFormLayout,
-    QLabel
+    QVBoxLayout, QFrame, QGridLayout, QScrollArea,
+    QWidget, QFormLayout, QLabel
 )
-
 from PyQt5.QtCore import (Qt, QRect, QSize)
 
 from .unregistered_style import UnregisteredStyles
+
+from typing import Any
 
 
 class UnRegistered:
@@ -22,16 +21,19 @@ class UnRegistered:
 
         self.form_base_layout: QFormLayout = form_base_layout
 
-    def setup_ui(self, containers: QFrame):
+    def setup_ui(self, containers: QFrame, plugins: Any):
+
         # parent_unregistered_frame
         self.parent_unregistered_frame = QFrame(containers)
         self.parent_unregistered_frame.setFrameShape(QFrame.StyledPanel)
         self.parent_unregistered_frame.setFrameShadow(QFrame.Raised)
         self.parent_unregistered_frame.setContentsMargins(0, 45, 0, 0)
+
         # parent_vl_unregistered_frame
         self.parent_vl_unregistered_frame = QVBoxLayout(self.parent_unregistered_frame)
         self.parent_vl_unregistered_frame.setContentsMargins(30, 30, 30, 30)
         self.parent_vl_unregistered_frame.setObjectName("vl_registered_frame")
+
         # unregistered_frame
         self.unregistered_frame = QFrame(self.parent_unregistered_frame)
         self.unregistered_frame.setMinimumSize(QSize(0, 250))
@@ -41,10 +43,12 @@ class UnRegistered:
         self.unregistered_frame.setFrameShape(QFrame.StyledPanel)
         self.unregistered_frame.setLayoutDirection(Qt.LeftToRight)
         self.unregistered_frame.setFrameShadow(QFrame.Raised)
+
         # vl_unregistered_frame
         self.vl_unregistered_frame = QVBoxLayout(self.unregistered_frame)
         self.vl_unregistered_frame.setContentsMargins(30, 30, 30, 30)
         self.vl_unregistered_frame.setObjectName("vl_unregistered_frame")
+
         # Add ScrollView
         self.scroll_area = QScrollArea(self.unregistered_frame)
         self.scroll_area.setWidgetResizable(True)
@@ -53,9 +57,11 @@ class UnRegistered:
         self.scroll_area_contents = QWidget()
         self.scroll_area_contents.setGeometry(QRect(0, 0, 1080, 344))
         self.scroll_area_contents.setObjectName("scroll_area_contents_page_containers")
+
         # Add Vlayout ScroolView
         self.vlayout_scroll_view = QVBoxLayout(self.scroll_area_contents)
         self.vlayout_scroll_view.setObjectName("verticalLayout_3")
+
         # frame_containers_items_unregistered
         self.frame_containers_items_unregistered = QFrame(self.unregistered_frame)
         self.frame_containers_items_unregistered.setStyleSheet("")
@@ -63,6 +69,7 @@ class UnRegistered:
         self.frame_containers_items_unregistered.setFrameShadow(QFrame.Raised)
         self.frame_containers_items_unregistered.setObjectName("frame_containers_items_unregistered")
         self.vl_unregistered_frame.addWidget(self.frame_containers_items_unregistered)
+
         # unregestered_frame_gridLayout
         self.unregestered_frame_gridLayout = QGridLayout(self.frame_containers_items_unregistered)
         self.unregestered_frame_gridLayout.setSpacing(24)
@@ -77,16 +84,16 @@ class UnRegistered:
         self.lbl_unregistered.setAlignment(Qt.AlignCenter)
         self.lbl_unregistered.setText("UNREGISTERED")
 
-        from ....components.primitive_box.box import Box as box_primitive
+        from .....components.primitive_box.box import Box as box_primitive
 
         # start_index = box_primitive().create_box(
         #     containers=self.frame_containers_items_unregistered, count_box=10,
         #     frame_gridLayout=self.unregestered_frame_gridLayout
         # )
         box_primitive().create_box(
-            containers=self.frame_containers_items_unregistered, count_box=1,
+            containers=self.frame_containers_items_unregistered,
             start_index=0, frame_gridLayout=self.unregestered_frame_gridLayout,
-            box_type=False
+            plugins=plugins
         )
 
         # del start_index

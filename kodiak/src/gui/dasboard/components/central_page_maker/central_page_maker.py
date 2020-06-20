@@ -44,9 +44,8 @@ class CentralPageMaker(QWidget):
         form_base_layout.setVerticalSpacing(100)
         form_base_layout.setObjectName("form_base_layout")
 
-        print(page_name)
         if page_name.split('-')[0] == "[TOOL]":
-            from ...pages.tools_page.tool_page_maker import ToolPageMaker
+            from ...pages.tools.tool_page_maker import ToolPageMaker
             ToolPageMaker(
                 self, form_base_layout, scroll_area_contents_page_containers, tool_box=page_name.split('-')[2].split(' ')[0]
             ).make_page()

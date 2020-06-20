@@ -18,8 +18,8 @@ class Box:
     def __init__(self):
         super(Box, self).__init__()
 
-    def create_box(self, containers: QFrame, count_box: int, frame_gridLayout: QGridLayout, start_index: int = 0,
-                   image: QPixmap = None, title: str = "", box_type: bool = True):
+    def create_box(self, containers: QFrame, frame_gridLayout: QGridLayout, start_index: int = 0,
+                   plugins=None, box_type: bool = True):
         """this method for create primitive box
 
         Arguments:
@@ -34,7 +34,7 @@ class Box:
         """
 
         box_enumerate = 0
-        for box_enumerate in range(0, count_box):
+        for box_enumerate in range(0, len(plugins)):
             frame_border = QFrame(containers)
             frame_border.setCursor(QCursor(Qt.PointingHandCursor))
             frame_border.setMaximumSize(138, 138)
@@ -61,24 +61,30 @@ class Box:
             box.setFrameShape(QFrame.StyledPanel)
             box.setFrameShadow(QFrame.Raised)
 
+            box.mouseReleaseEvent = (
+                lambda x: plugins[box_enumerate][0].execute_app()
+            )
+
             box_vlayout = QVBoxLayout(box)
             box_vlayout.setContentsMargins(-1, 40, -1, -1)
             box_vlayout.setObjectName("box_vlayout")
+
+            image: str = plugins[box_enumerate][1]
 
             if image is not None:
                 picture = QLabel(box)
                 picture.setGeometry(QRect(0, 40, 131, 51))
                 picture.setObjectName(BoxStyles.picture_style[0])
                 picture.setStyleSheet(BoxStyles.picture_style[1])
-                picture.setPixmap(image)
+                picture.setPixmap(QPixmap(image))
                 picture.setAlignment(Qt.AlignCenter)
-            if title is not None:
-                lbl_title = QLabel(box)
-                lbl_title.setGeometry(QRect(0, 100, 133, 20))
-                lbl_title.setObjectName(BoxStyles.lbl_title_style[0])
-                lbl_title.setStyleSheet(BoxStyles.lbl_title_style[1])
-                lbl_title.setAlignment(Qt.AlignCenter)
-                lbl_title.setText(title)
+
+            lbl_title = QLabel(box)
+            lbl_title.setGeometry(QRect(0, 100, 133, 20))
+            lbl_title.setObjectName(BoxStyles.lbl_title_style[0])
+            lbl_title.setStyleSheet(BoxStyles.lbl_title_style[1])
+            lbl_title.setAlignment(Qt.AlignCenter)
+            lbl_title.setText(plugins[box_enumerate][2])
 
             frame_gridLayout.addWidget(frame_border, 0, (box_enumerate + start_index), Qt.AlignLeft)
 

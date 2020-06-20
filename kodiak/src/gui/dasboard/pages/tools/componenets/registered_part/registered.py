@@ -15,6 +15,8 @@ from PyQt5.QtCore import (
 
 from .registered_style import RegisteredStyles
 
+from typing import Any
+
 
 class Registered:
 
@@ -23,16 +25,19 @@ class Registered:
 
         self.form_base_layout: QFormLayout = form_base_layout
 
-    def setup_ui(self, containers: QFrame):
+    def setup_ui(self, containers: QFrame, plugins: Any):
+
         # parent_unregistered_frame
         self.parent_registered_frame = QFrame(containers)
         self.parent_registered_frame.setFrameShape(QFrame.StyledPanel)
         self.parent_registered_frame.setFrameShadow(QFrame.Raised)
         self.parent_registered_frame.setContentsMargins(0, 45, 0, 0)
+
         # parent_vl_unregistered_frame
         self.parent_vl_registered_frame = QVBoxLayout(self.parent_registered_frame)
         self.parent_vl_registered_frame.setContentsMargins(30, 30, 30, 30)
         self.parent_vl_registered_frame.setObjectName("vl_registered_frame")
+
         # registered_frame
         self.registered_frame = QFrame(self.parent_registered_frame)
         self.registered_frame.setMinimumSize(QSize(0, 250))
@@ -78,11 +83,11 @@ class Registered:
         self.lbl_registered.setAlignment(Qt.AlignCenter)
         self.lbl_registered.setText("REGISTERED")
 
-        from ....components.primitive_box.box import Box as box_primitive
+        from .....components.primitive_box.box import Box as box_primitive
 
         start_index = box_primitive().create_box(
-            containers=self.frame_containers_items_registered, count_box=1,
-            frame_gridLayout=self.regestered_frame_gridLayout
+            containers=self.frame_containers_items_registered,
+            frame_gridLayout=self.regestered_frame_gridLayout, plugins=plugins
         )
         # box_primitive().create_box(
         #     containers=self.frame_containers_items_registered, count_box=5,
