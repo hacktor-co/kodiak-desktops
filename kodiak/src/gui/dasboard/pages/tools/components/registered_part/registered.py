@@ -14,6 +14,7 @@ from PyQt5.QtCore import (
 )
 
 from .registered_style import RegisteredStyles
+from .....components.primitive_box.box import Box as box_primitive
 
 from typing import Any
 
@@ -40,8 +41,8 @@ class Registered:
 
         # registered_frame
         self.registered_frame = QFrame(self.parent_registered_frame)
-        self.registered_frame.setMinimumSize(QSize(0, 250))
-        self.registered_frame.setMaximumSize(QSize(16777215, 350))
+        self.registered_frame.setMinimumSize(QSize(0, 500))
+        self.registered_frame.setMaximumSize(QSize(16777215, 16777215))
         self.registered_frame.setObjectName(RegisteredStyles.registered_frame_style[0])
         self.registered_frame.setStyleSheet(RegisteredStyles.registered_frame_style[1])
         self.registered_frame.setFrameShape(QFrame.StyledPanel)
@@ -77,13 +78,11 @@ class Registered:
         self.lbl_registered = QLabel(self.parent_registered_frame)
         self.lbl_registered.setGeometry(QRect(75, 15, 141, 32))
 
-        self.lbl_registered.setMinimumSize(QSize(91, 32))
-        self.lbl_registered.setObjectName(RegisteredStyles.lbl_registered_style[0])
-        self.lbl_registered.setStyleSheet(RegisteredStyles.lbl_registered_style[1])
-        self.lbl_registered.setAlignment(Qt.AlignCenter)
-        self.lbl_registered.setText("REGISTERED")
-
-        from .....components.primitive_box.box import Box as box_primitive
+        # self.lbl_registered.setMinimumSize(QSize(91, 32))
+        # self.lbl_registered.setObjectName(RegisteredStyles.lbl_registered_style[0])
+        # self.lbl_registered.setStyleSheet(RegisteredStyles.lbl_registered_style[1])
+        # self.lbl_registered.setAlignment(Qt.AlignCenter)
+        # self.lbl_registered.setText("REGISTERED")
 
         start_index = box_primitive().create_box(
             containers=self.frame_containers_items_registered,

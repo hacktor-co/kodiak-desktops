@@ -6,7 +6,7 @@
 """
 
 from .components.registered_part.registered import Registered
-from .components.unregistered_part.unregistered import UnRegistered
+# from .components.unregistered_part.unregistered import UnRegistered
 from utils.dir_manager import DirManager
 
 from importlib import import_module
@@ -31,9 +31,9 @@ class ToolPageMaker:
         Registered(self.form_base_layout).setup_ui(
             containers=self.scroll_area_contents_page_containers, plugins=self.registered_tool
         )
-        UnRegistered(self.form_base_layout).setup_ui(
-            containers=self.scroll_area_contents_page_containers, plugins=self.unregistered_tool
-        )
+        # UnRegistered(self.form_base_layout).setup_ui(
+        #     containers=self.scroll_area_contents_page_containers, plugins=self.unregistered_tool
+        # )
 
     def __load_tool_plugins__(self):
         dir_manager = DirManager()
