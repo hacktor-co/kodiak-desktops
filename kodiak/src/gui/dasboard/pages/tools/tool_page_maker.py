@@ -5,8 +5,8 @@
     - This package create tool page for each categories of toolsbox
 """
 
-from .componenets.registered_part.registered import Registered
-from .componenets.unregistered_part.unregistered import UnRegistered
+from .components.registered_part.registered import Registered
+from .components.unregistered_part.unregistered import UnRegistered
 from utils.dir_manager import DirManager
 
 from importlib import import_module
