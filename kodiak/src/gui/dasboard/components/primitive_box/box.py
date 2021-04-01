@@ -32,13 +32,24 @@ class Box:
             box_type {box type color type star box ...} -- [description] (default: {True})
             start_location {int} -- [ create box in location] (default: {30})
         """
-
         box_enumerate = 0
+        row_enumerate = 0
+        box_size = 0
         for box_enumerate in range(0, len(plugins)):
+
             frame_border = QFrame(containers)
             frame_border.setCursor(QCursor(Qt.PointingHandCursor))
             frame_border.setMaximumSize(138, 138)
             frame_border.setMinimumSize(138, 138)
+
+            if box_size>containers.width():
+                box_size=0
+                row_enumerate+=1
+                start_index=0
+
+            start_index += 1
+            box_size += 100
+
             if box_type:
                 frame_border.setObjectName(BoxStyles.frame_border_style_type1[0])
                 frame_border.setStyleSheet(BoxStyles.frame_border_style_type1[1])
@@ -73,7 +84,7 @@ class Box:
 
             if image is not None:
                 picture = QLabel(box)
-                picture.setGeometry(QRect(0, 40, 131, 51))
+                picture.setGeometry(QRect(0, 10, 131, 88))
                 picture.setObjectName(BoxStyles.picture_style[0])
                 picture.setStyleSheet(BoxStyles.picture_style[1])
                 picture.setPixmap(QPixmap(image))
@@ -85,7 +96,4 @@ class Box:
             lbl_title.setStyleSheet(BoxStyles.lbl_title_style[1])
             lbl_title.setAlignment(Qt.AlignCenter)
             lbl_title.setText(plugins[box_enumerate][2])
-
-            frame_gridLayout.addWidget(frame_border, 0, (box_enumerate + start_index), Qt.AlignLeft)
-
-        return int(box_enumerate + 1)
+            frame_gridLayout.addWidget(frame_border, row_enumerate, start_index, Qt.AlignTop)

@@ -21,19 +21,14 @@ class ToolPageMaker:
         self.scroll_area_contents_page_containers = scroll_area_contents_page_containers
         self.form_base_layout = form_base_layout
         self.tool_box: str = tool_box
-
         self.registered_tool: List = list()
-        self.unregistered_tool: List = list()
 
     def make_page(self):
         self.__load_tool_plugins__()
 
         Registered(self.form_base_layout).setup_ui(
-            containers=self.scroll_area_contents_page_containers, plugins=self.registered_tool
+            containers=self.scroll_area_contents_page_containers, plugins=self.registered_tool,
         )
-        # UnRegistered(self.form_base_layout).setup_ui(
-        #     containers=self.scroll_area_contents_page_containers, plugins=self.unregistered_tool
-        # )
 
     def __load_tool_plugins__(self):
         dir_manager = DirManager()

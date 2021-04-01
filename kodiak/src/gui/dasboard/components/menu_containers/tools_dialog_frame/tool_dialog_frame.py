@@ -4,9 +4,9 @@
     - this package work as tools menu dialog animation component
 """
 
-from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout, QGraphicsOpacityEffect)
+from PyQt5.QtWidgets import (QFrame, QLabel, QGridLayout)
 from PyQt5.QtCore import (Qt, QRect, QPropertyAnimation, QEasingCurve)
-from PyQt5.QtGui import (QPixmap, QCursor, QColor)
+from PyQt5.QtGui import (QPixmap, QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .tool_dialog_frame_styles import ToolDialogFrameStyles
@@ -315,14 +315,17 @@ class ToolDialogFrame:
         }, to=GUIClassNames.TOP_NAVIGATION_BAR_CONTAINERS)
 
         # delete all pervious widget that created on page_containers_grid_layout
+        from ...central_page_maker.central_page_maker import CentralPageMaker
         from utils.widget_helper import WidgetHelper
+        page_containers.setVisible(False)
         widget_helper = WidgetHelper()
         widget_helper.delete_all_widget(self.page_containers_grid_layout)
         del widget_helper
 
-        from ...central_page_maker.central_page_maker import CentralPageMaker
-        self.page_containers_grid_layout.addWidget(CentralPageMaker().setup_ui(
+        self.page_containers_grid_layout.addWidget(CentralPageMaker().
+            setup_ui(
             containers=page_containers, page_name=object_name
         ), 0, 1, 1, 1)
+        page_containers.setVisible(True)
 
         self.set_visibility_effect(True, False, True)

@@ -21,6 +21,7 @@ class CentralPageMaker(QWidget):
     def __init__(self):
         super(CentralPageMaker, self).__init__()
 
+
     def setup_ui(self, containers: QFrame, page_name: str):
         page_containers = QFrame(containers)
         page_containers.setFrameShape(QFrame.StyledPanel)
@@ -47,7 +48,8 @@ class CentralPageMaker(QWidget):
         if page_name.split('-')[0] == "[TOOL]":
             from ...pages.tools.tool_page_maker import ToolPageMaker
             ToolPageMaker(
-                self, form_base_layout, scroll_area_contents_page_containers, tool_box=page_name.split('-')[2].split(' ')[0]
+                self, form_base_layout, scroll_area_contents_page_containers
+                , tool_box=page_name.split('-')[2].split(' ')[0]
             ).make_page()
 
         # lbl_title

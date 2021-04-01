@@ -5,14 +5,10 @@
 
 from PyQt5.QtWidgets import (
     QVBoxLayout, QFrame,
-    QLabel, QSizePolicy,
-    QSpacerItem, QGridLayout
+    QLabel, QSizePolicy,QGridLayout
 )
 from PyQt5.QtCore import (Qt, QRect, QSize)
-from PyQt5.QtGui import (
-    QIcon, QPixmap,
-    QCursor
-)
+from PyQt5.QtGui import (QPixmap,QCursor)
 
 from commons.constants.app_paths import AppPaths
 from .top_navigation_bar_containers_styles import TopNavigationBarContainersStyles

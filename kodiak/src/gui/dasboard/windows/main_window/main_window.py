@@ -159,7 +159,7 @@ class DashboardMainWindow(QMainWindow):
         self.page_containers.setObjectName("center_page_maker")
         self.page_containers.setMinimumSize(self.width() - 111, self.height() - 111)
 
-        self.main_frame_gridLayout.addWidget(self.page_containers, 1, 0, 1, 4)  # Qt.AlignHCenter | Qt.AlignVCenter)
+        self.main_frame_gridLayout.addWidget(self.page_containers, 1, 0, 1, 4)
         self.page_containers_grid_layout = QGridLayout(self.page_containers)
         self.page_containers_grid_layout.setObjectName("page_containers_gridLayout")
 

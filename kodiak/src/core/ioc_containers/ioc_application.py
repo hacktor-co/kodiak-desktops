@@ -34,7 +34,7 @@ class Application(DI_DeclarativeContainer):
         )
         container = Container(
             main, containers=main.containers,
-            containers_gridlayout=main.containers_gridlayout
+            containers_gridlayout=main.containers_gridlayout,
         )
         container.show()
         sys_exit(app.exec_())
