@@ -31,10 +31,8 @@ The code and program architecture are described separately in a separate documen
 The purpose of this system is to have easy access to your systems and have the right toolbox that you can use anywhere.
 KodiakX easy access to information systems.
 
-
-<p align="center">
-  <img src="./pics/main.png" width="738">
-</p>
+![1618485953954](https://user-images.githubusercontent.com/63051195/127722933-f282d6aa-17a8-4cfb-91f4-47ad402f4c99.jpg)
+![1618488371420](https://user-images.githubusercontent.com/63051195/127722940-331b80a2-a449-472d-aab8-4d80978f0cb9.jpg)
 
 # SUPPORTED DISTRIBUTIONS
 |Distribution | Version Check | released | builded |status |
